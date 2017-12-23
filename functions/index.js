@@ -2,6 +2,7 @@ const functions = require('firebase-functions');
 const express = require('express');
 const path = require('path');
 const engines = require('consolidate');
+// const auth = require('./auth');
 
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -46,12 +47,23 @@ app.set('views', './views');
 app.set('view engine', 'hbs');
 // ----------------------------------------------------- //
 
-// ----------------------- ROUTES ----------------------- //
+// the authentication route in ./auth.js
+// app.use('/auth', auth);
+
 app.get('/', (req, res) => {
   res.render('index');
 });
 
+app.get('/signup', (req, res) => {
+  res.render('signup');
+});
 
-// ------------------------------------------------------ //
+app.post('/auth', (req, res) => {
+    res.status(200).send('neuromancer')
+});
 
-exports.mosaic = functions.https.onRequest(app);
+app.get('/dashboard', (req, res) => {
+  res.render('dashboard');
+});
+
+exports.router = functions.https.onRequest(app);
