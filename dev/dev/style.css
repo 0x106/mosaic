@@ -1,0 +1,119 @@
+body {
+  font-family: 'Lato', Arial, sans-serif;
+  font-style: light;
+  background-color: #FB887C;
+}
+
+h1 {
+  color: #E0E0E0;
+}
+
+h2 {
+  color: #3D405B;
+  font-size: 3em;
+  font-weight: 300;
+
+  line-height: 1.6;
+  letter-spacing: 0.16em;
+}
+
+p {
+  color: #E0E0E0;
+}
+
+.signupline {
+  font-size: 1.5em;
+  font-weight: 300;
+  color: #E0E0E0;
+}
+
+.button-style {
+    border: none; /*1px solid #ccc;*/
+    /*display: inline-block;*/
+    /*padding: 6px 12px;*/
+    cursor: pointer;
+}
+
+#signupCTA {
+  font-weight: 300;
+  line-height: 2.0;
+  position: relative;
+  margin-top: 40px;
+}
+
+.signup {
+  /*background-color: #E07D78;*/
+  border: 5px solid red;
+  border-width: 0 0 2px 0;
+  border-color: #81B29A;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+#signupbutton {
+  display: none;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #284C60;
+  /*background-color: transparent;*/
+  /* opacity: 0.85; */
+  background: transparent;
+  border-color: transparent;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.content {
+  position: absolute;
+  left: 50%;
+  top: 30%;
+}
+
+.videocontainer {
+    /* float: left; */
+    background-image: url("iPhoneTemplate.jpg");
+    background-repeat:no-repeat;
+    background-size: 700px 700px;
+    /*no-repeat top left transparent;*/
+    /* background-color: #E0E0E0; */
+    width: 700px; /* Adjust TV image width */
+    height: 700px; /* Adjust TV image height */
+
+    /* position: relative; */
+    top: 50%;
+    transform: translateY(-50%);
+
+    overflow: hidden;
+    position: fixed;
+}
+
+.videocontainer video {
+    /* position: absolute; */
+    top: 114px; /* Adjust top position*/
+    left: 119px; /* Adjust left position*/
+
+    /* top: 50%; */
+    /* transform: translateY(-50%); */
+
+    overflow: hidden;
+    position: fixed;
+}

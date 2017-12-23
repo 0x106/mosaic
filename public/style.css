@@ -3,29 +3,9 @@
 /* background-color: #40798C; */
 /* F2CC8F */
 
-body .main {
+.main {
   font-family: 'Lato', Arial, sans-serif;
   font-style: light;
-}
-
-.landingpage {
-  position: static;
-  width: 100%;
-  display: table;
-  margin: 0;
-  max-width: none;
-  height: 100vh;
-  background-color: #FB887C;
-}
-
-.developerpage {
-  position: static;
-  width: 100%;
-  display: table;
-  margin: 0;
-  max-width: none;
-  height: 100vh;
-  background-color: #FB887C;
 }
 
 .infopage {
@@ -41,7 +21,8 @@ body .main {
 .infopage #infocontent {
   position: absolute;
   left: 50%;
-  top: 225%;
+  top: 50%;
+  /* top: 225%; */
 }
 
 .title {
@@ -62,10 +43,13 @@ body .main {
     background: transparent;
     border-color: transparent;
     position: fixed;
+    margin-left: 40px;
+    margin-right: 40px;
+    /* width: 100%; */
 }
 
 /* Style the topnav links */
-.topnav a {
+.topnavgeneral {
     float: left;
     display: block;
     color: #f2f2f2;
@@ -74,6 +58,28 @@ body .main {
     padding: 14px 16px;
     text-decoration: none;
     resize:  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.signupNAVbutton  {
+  float: right;
+  display: block;
+  color: #f2f2f2;
+  /*opacity: 1.0;*/
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  resize:  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.loginNAVbutton {
+  float: right;
+  display: block;
+  color: #f2f2f2;
+  /*opacity: 1.0;*/
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  resize:  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 
