@@ -1,10 +1,16 @@
 {
   "hosting": {
     "public": "public",
-    "rewrites": [{
+    "rewrites": [
+      {
       "source": "**",
-      "function": "mosaic"
-      }],
+      "function": "mosaic_core"
+    },
+    {
+      "source": "/auth",
+      "function": "mosaic_auth"
+    }
+    ],
     "ignore": [
       "firebase.json",
       "**/.*",
