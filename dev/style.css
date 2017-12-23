@@ -22,6 +22,15 @@ h2 {
   letter-spacing: 0.16em;
 }
 
+h3 {
+  color: #3D405B;
+  font-size: 1.0em;
+  font-weight: 300;
+
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
 p {
   /* color: #E0E0E0; */
 }
@@ -177,4 +186,23 @@ ul {
 
     overflow: hidden;
     position: fixed;
+}
+
+.formdiv {
+  line-height: 3.0;
+  position: fixed;
+  float: center;
+  top: 20%;
+  left: 20%;
+  font-size: 1.6em;
+  font-weight: 300;
+}
+
+form input {
+  outline: 0;
+  border-width: 0 0 2px 0;
+  border-color: #3D405B;
+  font-size: 0.8em;
+  font-weight: 300;
+  padding-bottom: 10px;
 }
