@@ -10,14 +10,48 @@ const Auth0Strategy = require('passport-auth0');
 const session = require('express-session');
 const dotenv = require('dotenv');
 
+// ------------------- AUTHENTICATION ------------------- //
+dotenv.load();
+// This will configure Passport to use Auth0
+const strategy = new Auth0Strategy(
+  {
+    domain: process.env.AUTH0_DOMAIN,
+    clientID: process.env.AUTH0_CLIENT_ID,
+    clientSecret: process.env.AUTH0_CLIENT_SECRET,
+    callbackURL:
+      process.env.AUTH0_CALLBACK_URL || 'http://localhost:5000/callback'
+  },
+  function(accessToken, refreshToken, extraParams, profile, done) {
+    // accessToken is the token to call Auth0 API (not needed in the most cases)
+    // extraParams.id_token has the JSON Web Token
+    // profile has all the information from the user
+    return done(null, profile);
+  }
+);
+passport.use(strategy);
+// This can be used to keep a smaller payload
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+// ------------------------------------------------------ //
+
 const app = express();
 
+// -------------------- VIEW ENGINE -------------------- //
 app.engine('hbs', engines.handlebars );
 app.set('views', './views');
 app.set('view engine', 'hbs');
+// ----------------------------------------------------- //
 
+// ----------------------- ROUTES ----------------------- //
 app.get('/', (req, res) => {
   res.render('index');
 });
+
+
+// ------------------------------------------------------ //
 
 exports.mosaic = functions.https.onRequest(app);
