@@ -1,8 +1,8 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
-const router = express.Router();
 
 const authCore = require("authCore");
+const router = express.Router();
 
 // a new user sign up
 router.post('/',

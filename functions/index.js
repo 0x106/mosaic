@@ -2,6 +2,8 @@ const functions = require('firebase-functions');
 const express = require('express');
 const path = require('path');
 const engines = require('consolidate');
+const bodyParser = require('body-parser');
+
 const auth = require('./api/auth');
 
 const app = express();
@@ -10,11 +12,24 @@ const app = express();
 // https://medium.com/@atbe/firebase-functions-true-routing-2cb17a5cd288
 app.disable("x-powered-by");
 
+
+
 // -------------------- VIEW ENGINE -------------------- //
 app.engine('hbs', engines.handlebars );
 app.set('views', './views');
 app.set('view engine', 'hbs');
 // ----------------------------------------------------- //
+
+
+
+// ----------------------- QUERY ----------------------- //
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+}));
+// ----------------------------------------------------- //
+
+
 
 // ------------------------ API ------------------------ //
 app.get('/', (req, res) => {
