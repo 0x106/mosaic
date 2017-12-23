@@ -4,11 +4,7 @@
     "rewrites": [
       {
       "source": "**",
-      "function": "mosaic_core"
-    },
-    {
-      "source": "/auth",
-      "function": "mosaic_auth"
+      "function": "router"
     }
     ],
     "ignore": [
