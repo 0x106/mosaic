@@ -1,33 +1,20 @@
-/* background-color: #81B29A; */
-/* background-color: #90708C; */
-/* background-color: #40798C; */
-/* F2CC8F */
-
-.main {
+body {
   font-family: 'Lato', Arial, sans-serif;
   font-style: light;
+  /* background-color: #FB887C; */
+  /* background-color: #81B29A; */
+  /* background-color: #55868C; /* <- best so far*/ */
+  /* background-color: #508AA8; */
+  /* background-color: #42718A; */
 }
 
-.infopage {
-  position: static;
-  width: 100%;
-  display: table;
-  margin: 0;
-  max-width: none;
-  height: 100vh;
-  background-color: #FB887C;
+h1 {
+  /* color: #E0E0E0; */
+  color: #42718A;
 }
 
-.infopage #infocontent {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  /* top: 225%; */
-}
-
-.title {
+h2 {
   color: #3D405B;
-  /* color: #031927; */
   font-size: 3em;
   font-weight: 300;
 
@@ -35,112 +22,15 @@
   letter-spacing: 0.16em;
 }
 
-.topnav {
-    overflow: hidden;
-    background-color: #284C60;
-    /*background-color: transparent;*/
-    /* opacity: 0.85; */
-    background: transparent;
-    border-color: transparent;
-    position: fixed;
-    margin-left: 40px;
-    margin-right: 40px;
-    /* width: 100%; */
-}
-
-/* Style the topnav links */
-.topnavgeneral {
-    float: left;
-    display: block;
-    color: #f2f2f2;
-    /*opacity: 1.0;*/
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    resize:  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-.signupNAVbutton  {
-  float: right;
-  display: block;
-  color: #f2f2f2;
-  /*opacity: 1.0;*/
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  resize:  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-.loginNAVbutton {
-  float: right;
-  display: block;
-  color: #f2f2f2;
-  /*opacity: 1.0;*/
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  resize:  font: 14px "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-
-.videocontainer {
-    /* float: left; */
-    background-image: url("/iPhoneTemplate.jpg");
-    background-repeat:no-repeat;
-    background-size: 700px 700px;
-    /*no-repeat top left transparent;*/
-    /* background-color: #E0E0E0; */
-    width: 700px; /* Adjust TV image width */
-    height: 700px; /* Adjust TV image height */
-
-    /* position: relative; */
-    top: 50%;
-    transform: translateY(-50%);
-
-    overflow: hidden;
-    position: fixed;
-}
-
-.videocontainer video {
-    /* position: absolute; */
-    top: 114px; /* Adjust top position*/
-    left: 119px; /* Adjust left position*/
-
-    /* top: 50%; */
-    /* transform: translateY(-50%); */
-
-    overflow: hidden;
-    position: fixed;
-}
-
-.formdiv {
-  line-height: 3.0;
-}
-
-.signup {
-  /*background-color: #E07D78;*/
-  border: 5px solid red;
-  border-width: 0 0 2px 0;
-  border-color: #81B29A;
-  position: relative;
-  padding-bottom: 10px;
-}
-
-#signupbutton {
-  display: none;
+p {
+  /* color: #E0E0E0; */
 }
 
 .signupline {
   font-size: 1.5em;
   font-weight: 300;
-  color: #E0E0E0;
-}
-
-form input {
-  background: rgba(251,136,124,.3);
-  outline: 0;
-  border-width: 0 0 2px 0;
-  border-color: #3D405B;
+  /* color: #E0E0E0; */
+  color: #42718A;
 }
 
 .button-style {
@@ -157,8 +47,134 @@ form input {
   margin-top: 40px;
 }
 
+.signup {
+  /*background-color: #E07D78;*/
+  border: 5px solid red;
+  border-width: 0 0 2px 0;
+  /* border-color: #81B29A; */
+  border-color: #FB887C;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+#signupbutton {
+  display: none;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #284C60;
+  /* background-color: #81B29A; */
+  /* opacity: 0.2; */
+  background: transparent;
+  /* border-color: transparent; */
+  background-opacity: 0.2;
+  float: center;
+  /* margin-left: 60px; */
+  margin-right: 80px;
+  /* margin-top: 10px; */
 
 
+  /* border: 5px solid red; */
+  /* border-width: 0 0 2px 0; */
+  /* border-color: #81B29A; */
+  /* border-color: #FB887C; */
+  /* border-color: #81B29A; */
+  /* position: relative; */
+  /* padding-bottom: 10px; */
 
+}
 
-/* end */
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+/* li {
+    float: left;
+} */
+
+/* li a {
+
+} */
+
+.content {
+  position: absolute;
+  left: 50%;
+  top: 30%;
+}
+
+.generalnav {
+  float: left;
+  display: block;
+  /* color: white; */
+  color: #42718A;
+  text-align: center;
+  /* padding: 14px 16px; */
+  text-decoration: none;
+}
+
+.loginnav {
+  float: right;
+  /* float: left; */
+  display: block;
+  /* color: white; */
+  color: #42718A;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.signupnav {
+  float: right;
+  /* float: left; */
+  display: block;
+  /* color: white; */
+  color: #42718A;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+
+  border: 5px solid red;
+  border-width: 2px 2px 2px 2px;
+  /* border-color: #81B29A; */
+  /* border-color: #FB887C; */
+  /* border-color: #81B29A; */
+  border-color: #FB887C;
+  border-radius: 6px;
+  /* position: relative; */
+  padding-bottom: 14px;
+}
+
+.videocontainer {
+    /* float: left; */
+    background-image: url("iPhoneTemplate.jpg");
+    background-repeat:no-repeat;
+    background-size: 700px 700px;
+    /*no-repeat top left transparent;*/
+    /* background-color: #E0E0E0; */
+    width: 700px; /* Adjust TV image width */
+    height: 700px; /* Adjust TV image height */
+
+    /* position: relative; */
+    top: 50%;
+    transform: translateY(-50%);
+
+    overflow: hidden;
+    position: fixed;
+
+    /* left: 5%; */
+}
+
+.videocontainer video {
+    /* position: absolute; */
+    top: 114px; /* Adjust top position*/
+    left: 119px; /* Adjust left position*/
+    /* top: 50%; */
+    /* transform: translateY(-50%); */
+
+    overflow: hidden;
+    position: fixed;
+}
