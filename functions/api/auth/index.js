@@ -14,8 +14,7 @@ const router = express.Router();
 // }
 
 // New user SIGN UP
-router.post('/',
-  function(req, res, next) {
+router.post('/', function(req, res, next) {
 
     // TODO: check that the password conforms to our specifications
 
@@ -27,20 +26,36 @@ router.post('/',
 
     // create the entry for this user
     // TODO: check that the new user sign up worked?
-    var defaultAuth = firebase.auth();
-    defaultAuth.createUser({
+    // var defaultAuth = firebase.auth();
+    // defaultAuth.createUser({
+    //   email: req.body.email,
+    //   password: hash_password,
+    //   displayName: req.body.username,
+    // });
+
+    firebase.auth().createUser({
       email: req.body.email,
+      emailVerified: false,
       password: hash_password,
       displayName: req.body.username,
+      disabled: false
     })
+      .then(function(userRecord) {
+        // See the UserRecord reference doc for the contents of userRecord.
+        console.log("Successfully created new user:", userRecord.uid);
+        res.status(200).send("New user: " + req.body.username + " created.\n");
+      })
+      .catch(function(error) {
+        console.log("Error creating new user:", error);
+      });
 
     // TODO: send them to the dashboard
-    res.status(200).send("New user: " + req.body.username + " created.\n");
+
 });
 
-router.get('/', function(req, res, next) {
-  res.send('get auth request\n');
-});
+// router.get('/', function(req, res, next) {
+  // res.send('get auth request\n');
+// });
 
 module.exports = router;
 

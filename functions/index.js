@@ -1,12 +1,15 @@
 const functions = require('firebase-functions');
 const express = require('express');
 const bodyParser = require('body-parser');
-const handlebars = require('handlebars');
+const engines = require('consolidate');
 const auth = require('./api/auth');
 
 
 // ----------------- FIREBASE CONFIG ----------------- //
 var admin = require("firebase-admin");
+
+// TODO: test this
+// admin.initializeApp(functions.config().firebase);
 var serviceAccount = require("./key.json");
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -21,7 +24,7 @@ const app = express();
 app.disable("x-powered-by");
 
 // -------------------- VIEW ENGINE -------------------- //
-app.engine('hbs', handlebars );
+app.engine('hbs', engines.handlebars );
 app.set('views', './views');
 app.set('view engine', 'hbs');
 // ----------------------------------------------------- //
