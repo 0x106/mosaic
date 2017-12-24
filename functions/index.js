@@ -1,10 +1,18 @@
 const functions = require('firebase-functions');
 const express = require('express');
-const path = require('path');
-const engines = require('consolidate');
 const bodyParser = require('body-parser');
-
+const handlebars = require('handlebars');
 const auth = require('./api/auth');
+
+
+// ----------------- FIREBASE CONFIG ----------------- //
+var admin = require("firebase-admin");
+var serviceAccount = require("./key.json");
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://mosaic-portal.firebaseio.com"
+});
+// ---------------------------------------------------- //
 
 const app = express();
 
@@ -12,15 +20,11 @@ const app = express();
 // https://medium.com/@atbe/firebase-functions-true-routing-2cb17a5cd288
 app.disable("x-powered-by");
 
-
-
 // -------------------- VIEW ENGINE -------------------- //
-app.engine('hbs', engines.handlebars );
+app.engine('hbs', handlebars );
 app.set('views', './views');
 app.set('view engine', 'hbs');
 // ----------------------------------------------------- //
-
-
 
 // ----------------------- QUERY ----------------------- //
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
@@ -29,23 +33,20 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 }));
 // ----------------------------------------------------- //
 
-
-
 // ------------------------ API ------------------------ //
 app.get('/', (req, res) => {
   res.render('index');
 });
 
+// TODO: move this into its own file
 app.get('/signup', (req, res) => {
   res.render('signup');
 });
 
-// app.post('/auth', function(req, res) {
-//     res.status(200).send('')
-// });
 // the authentication route in functions/api/auth/index.js
 app.use('/auth', auth);
 
+// TODO: move this into its own file
 app.get('/faq', (req, res) => {
     res.status(200).send('“Cyberspace. A consensual hallucination experienced daily by billions of legitimate operators, \
     in every nation, by children being taught mathematical concepts... A graphic representation of data abstracted from banks \
@@ -54,6 +55,7 @@ app.get('/faq', (req, res) => {
     - William Gibson, Neuromancer.')
 });
 
+// TODO: move this into its own file
 app.get('/dashboard', (req, res) => {
   res.render('dashboard');
 });
