@@ -41,7 +41,7 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-// TODO: move this into its own file
+// TODO: move this into its own file (routes.js?)
 app.get('/signup', (req, res) => {
   res.render('signup');
 });
@@ -58,7 +58,7 @@ app.get('/faq', (req, res) => {
     - William Gibson, Neuromancer.')
 });
 
-// TODO: move this into its own file
+// TODO: move this into its own file (users.js?)
 app.get('/dashboard', (req, res) => {
   res.render('dashboard');
 });

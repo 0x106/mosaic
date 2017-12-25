@@ -5,15 +5,66 @@
   <head>
     <title>Atlas Reality</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script type="text/javascript">
+      // http://www.tutorialstag.com/jquery-switching-between-login-and-signup-forms.html
+      $(document).ready(function()
+      {
+          $('.loginformdiv').hide();
+          $('#signupoption').click(function() {
+              $('.loginformdiv').slideUp('slow');
+              $('.signupformdiv').slideDown('slow');
+              // $("#signupoption").css("border-color", "#81B29A");
+
+              // // SIGNUP clicked --> underline LOGIN
+              // $("#loginoption").css("border-color", "#81B29A");
+              // $("#loginoption").css("border-style", "solid");
+              // $("#signupoption").css("border-style", "none");
+
+              // SIGNUP clicked --> underline SIGNUP
+              $("#signupoption").css("border-color", "#81B29A");
+              $("#signupoption").css("border-style", "solid");
+              $("#loginoption").css("border-style", "none");
+          });
+          $('#loginoption').click(function() {
+              $('.signupformdiv').hide();
+              $('.signupformdiv').slideUp('slow');
+              $('.loginformdiv').slideDown('slow');
+              // $("#loginoption").css("border-color", "#81B29A");
+
+              // // LOGIN clicked --> underline SIGNUP
+              // $("#signupoption").css("border-color", "#81B29A");
+              // $("#signupoption").css("border-style", "solid");
+              // $("#loginoption").css("border-style", "none");
+
+              // LOGIN clicked --> underline LOGIN
+              $("#loginoption").css("border-color", "#81B29A");
+              $("#loginoption").css("border-style", "solid");
+              $("#signupoption").css("border-style", "none");
+          });
+      });
+      </script>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
 
+    <!-- TODO: Need to have a toggle for sign up / login -->
+    <!-- TODO: login should only have email + password fields (signup also has username) -->
+
+    <!-- Navbar -->
+    <div class="navbar">
+      <ul>
+        <!-- <li><a class="generalnav">Atlas</a></li> -->
+        <!-- <li><a class="generalnav">Contact</a></li> -->
+        <!-- <li><a class="generalnav">FAQ</a></li> -->
+        <li><a id="signupoption" tabindex="-1">Sign Up</a></li>
+        <li><a id="loginoption" tabindex="-1">Log In</a></li>
+      </ul>
+    </div>
 
     <!-- Content -->
-    <div class="formdiv">
+    <div class="signupformdiv">
 
       <h3 class="signupformh2">Make your content accessible to anyone, anywhere - for free.</h3>
 
@@ -24,7 +75,24 @@
 
         <div class="signupline">
           <label for="signupbutton" class="button-style">
-              <p id="signupCTA"> <span class="signup">Submit</span></p>
+              <p id="signupCTA"> <span class="signup">Sign Up</span></p>
+          </label>
+          <button type="submit" onclick="" id="signupbutton"></button>
+        </div>
+      </form>
+    </div>
+
+    <div class="loginformdiv">
+
+      <h3 class="signupformh2">Make your content accessible to anyone, anywhere - for free.</h3>
+
+      <form id="scene-upload-form" action="https://atlasreality.xyz/auth" method="post">
+        <input type="text" name="email" placeholder="Email" size="60"><br>
+        <input type="password" name="password" placeholder="Password" size="60"><br>
+
+        <div class="signupline">
+          <label for="signupbutton" class="button-style">
+              <p id="signupCTA"> <span class="signup">Log In</span></p>
           </label>
           <button type="submit" onclick="" id="signupbutton"></button>
         </div>

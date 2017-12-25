@@ -43,10 +43,50 @@ router.post('/', function(req, res, next) {
       .then(function(userRecord) {
         // See the UserRecord reference doc for the contents of userRecord.
         console.log("Successfully created new user:", userRecord.uid);
-        res.status(200).send("New user: " + req.body.username + " created.\n");
+        res.status(200).send("New user: " + userRecord.uid + " created.\n");
       })
       .catch(function(error) {
         console.log("Error creating new user:", error);
+      });
+
+    // TODO: send them to the dashboard
+
+});
+
+// New user LOG IN
+router.post('/login', function(req, res, next) {
+
+    // TODO: check that the password conforms to our specifications
+
+    // hash the password provided
+    // TODO: check that the hash was succesfull
+    let hash_password = bcrypt.hashSync(req.body.password, 10);
+
+    // TODO: check if we already have an entry for this user
+
+    // create the entry for this user
+    // TODO: check that the new user sign up worked?
+    // var defaultAuth = firebase.auth();
+    // defaultAuth.createUser({
+    //   email: req.body.email,
+    //   password: hash_password,
+    //   displayName: req.body.username,
+    // });
+
+    firebase.auth().signInWithEmailAndPassword({
+      email: req.body.email,
+      password: hash_password,
+    })
+      .then(function(userRecord) {
+        // See the UserRecord reference doc for the contents of userRecord.
+        console.log("Successfully logged in user:", userRecord.uid);
+
+        //
+
+        res.status(200).send("User: " + userRecord.uid);
+      })
+      .catch(function(error) {
+        console.log("Error signing in user:", error);
       });
 
     // TODO: send them to the dashboard
