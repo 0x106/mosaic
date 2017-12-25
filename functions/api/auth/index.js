@@ -7,12 +7,6 @@ const router = express.Router();
 router.post('/', function(req, res, next) {
 
     // TODO: check that the password conforms to our specifications
-    // firebase.auth().createUserWithEmailAndPassword(req.body.email, req.body.password).catch(function(error) {
-    //   // Handle Errors here.
-    //   var errorCode = error.code;
-    //   var errorMessage = error.message;
-    // });
-
     firebase.auth().createUserWithEmailAndPassword(req.body.email, req.body.password).then(function(user) {
         user.updateProfile( { displayName: req.body.username } ).then(
           function() {
@@ -27,20 +21,10 @@ router.post('/', function(req, res, next) {
         // TODO: presumably we can check these errors for things like incorrect formats, duplicates etc?
         res.send('Error creating user:' + error.code + ' --> ' + error.message);
     });
-
-    // TODO: send them to the dashboard
-    // res.status(200).send("New user created.\n");
-    // res.render('thankyouPage', {username: req.body.username})
 });
 
 // New user LOG IN
 router.post('/login', function(req, res, next) {
-
-    // firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).catch(function(error) {
-    //   // Handle Errors here.
-    //   var errorCode = error.code;
-    //   var errorMessage = error.message;
-    // });
 
     firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then(function(user) {
         // TODO: get user info - make sure we have the full set of scenes
@@ -51,10 +35,6 @@ router.post('/login', function(req, res, next) {
         var errorMessage = error.message;
         res.send('Error signing in user:' + error.code + ' --> ' + error.message);
     });
-
-    // TODO: send them to the dashboard
-    // res.status(200).send("New user signed in.\n");
-    res.render('dashboard')
 });
 
 router.get('/logout', function(req, res, next) {
