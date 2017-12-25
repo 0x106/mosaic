@@ -56,6 +56,8 @@ router.post('/', function(req, res, next) {
 // New user LOG IN
 router.post('/login', function(req, res, next) {
 
+    // TODO: Check that we even need to hash passwords (does Firebase handle that?)
+
     // TODO: check that the password conforms to our specifications
 
     // hash the password provided
@@ -83,10 +85,10 @@ router.post('/login', function(req, res, next) {
 
         //
 
-        res.status(200).send("User: " + userRecord.uid);
+        res.status(200).send("User: " + userRecord.uid + "successfully logged in");
       })
       .catch(function(error) {
-        console.log("Error signing in user:", error);
+        console.log("Error logging in user:", error);
       });
 
     // TODO: send them to the dashboard
