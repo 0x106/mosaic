@@ -56,6 +56,13 @@ p {
   margin-top: 40px;
 }
 
+#loginCTA {
+  font-weight: 300;
+  line-height: 2.0;
+  position: relative;
+  margin-top: 40px;
+}
+
 .signup {
   /*background-color: #E07D78;*/
   border: 5px solid red;
