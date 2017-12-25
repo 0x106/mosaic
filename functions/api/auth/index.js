@@ -1,7 +1,8 @@
 
 const express = require('express');
 const bcrypt = require('bcrypt');
-const firebase = require('firebase-admin');
+const admin = require('firebase-admin');
+const firebase = require('firebase')
 
 const router = express.Router();
 
@@ -33,7 +34,7 @@ router.post('/', function(req, res, next) {
     //   displayName: req.body.username,
     // });
 
-    firebase.auth().createUser({
+    admin.auth().createUser({
       email: req.body.email,
       emailVerified: false,
       password: hash_password,
@@ -82,9 +83,6 @@ router.post('/login', function(req, res, next) {
       .then(function(userRecord) {
         // See the UserRecord reference doc for the contents of userRecord.
         console.log("Successfully logged in user:", userRecord.uid);
-
-        //
-
         res.status(200).send("User: " + userRecord.uid + "successfully logged in");
       })
       .catch(function(error) {
