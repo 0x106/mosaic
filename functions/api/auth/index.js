@@ -8,12 +8,7 @@ router.post('/', function(req, res, next) {
 
     // TODO: check that the password conforms to our specifications
     firebase.auth().createUserWithEmailAndPassword(req.body.email, req.body.password).then(function(user) {
-        user.updateProfile( { displayName: req.body.username } ).then(
-          function() {
-            // TODO: get user info
-            res.render('dashboard', {username: user.displayName})
-          }
-        );
+        user.updateProfile( { displayName: req.body.username } ).then( function() { res.render('dashboard', {username: user.displayName}) } );
     }, function(error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -27,8 +22,8 @@ router.post('/', function(req, res, next) {
 router.post('/login', function(req, res, next) {
 
     firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then(function(user) {
-        // TODO: get user info - make sure we have the full set of scenes
-        res.render('dashboard', {username: user.displayName});
+        console.log(req.body.username + ' '  + user.displayName);
+        res.render('dashboard');
     }, function(error) {
         // Handle Errors here.
         var errorCode = error.code;
