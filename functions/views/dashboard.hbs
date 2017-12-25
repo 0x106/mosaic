@@ -22,9 +22,63 @@
     <div class="wrapper">
 
       <div class="grid-item">
-        <a href="https://www.atlasreality.xyz/newScene">
-          <img src="https://www.atlasreality.xyz/addButton.png" alt="Add new scene" height="162" width="162">
-        </a><p>Add New Scene</p>
+        <!-- <a href="https://www.atlasreality.xyz/newScene"> -->
+          <!-- <img src="https://www.atlasreality.xyz/addButton.png" alt="Add new scene" height="162" width="162"> -->
+        <!-- </a><p>Add New Scene</p> -->
+        <div>
+            <label for="file-upload" class="custom-file-upload">
+                <img src="https://www.atlasreality.xyz/addButton.png" alt="Add new scene" height="162" width="162">
+                <input id="file-upload" type="file" name="scene" value="Please upload your scene">
+                <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+                <script>
+                  // https://eloquentjavascript.net/18_forms.html
+                  var fileUploadButton = document.querySelector('input');
+                  fileUploadButton.addEventListener("change", function() {
+                    // if (input.files.length > 0) {
+                    //   var file = input.files[0];
+                    //   console.log("You chose", file.name);
+                    //   if (file.type)
+                    //     console.log("It has type", file.type);
+                    // }
+
+                    // const firebase = require('firebase');
+
+                    var config = {
+                        apiKey: "AIzaSyBI9kkVq2jZNpTKjaX79BqgcepavI9wzQs",
+                        authDomain: "mosaic-portal.firebaseapp.com",
+                        projectId: "mosaic-portal",
+                        storageBucket: "mosaic-portal.appspot.com",
+                    };
+                    // cF2SedCeMFWTmEP4evpFcogOONH3
+                    firebase.initializeApp(config);
+
+                    var storage = firebase.storage();
+
+                    if (fileUploadButton.files.length > 0) {
+                      var file = fileUploadButton.files[0];
+                      var storageRef = storage.ref().child('users/cF2SedCeMFWTmEP4evpFcogOONH3/scene1.png');
+
+                      // var metadata = {
+                      //   contentType: 'image/jpeg'
+                      // };
+
+                      var uploadTask = storageRef.put(file);
+
+                      console.log(storageRef);
+
+                      // // Listen for state changes, errors, and completion of the upload.
+                      // uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+                      //    function() {
+                      //   // Upload completed successfully, now we can get the download URL
+                      //   var downloadURL = uploadTask.snapshot.downloadURL;
+                      // });
+                    }
+                  });
+                </script>
+            </label>
+        </div>
+
+        
       </div>
 
       <!-- Add all the scenes in a loop below -->

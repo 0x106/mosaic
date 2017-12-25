@@ -30,18 +30,4 @@ router.get('/newScene', (req, res) => {
   res.render('newScene');
 });
 
-// router.post('/uploadScene',
-//
-//     upload.single('scene'),
-//
-//     // (req, res, next) => updateDatabase(req, res, next),
-//     // (req, res, next) => storageupload(req, res, next),
-//     // (req, res, next) => retrieveUserData(req, res, next),
-//
-//     function(req, res, next) {
-//       res.status(200).send('uploaded a file')
-//       // res.render('users', {userdata: req.session.passport.user} );
-//     }
-// );
-
 module.exports = router;
