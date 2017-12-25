@@ -14,9 +14,13 @@ router.post('/', function(req, res, next) {
     // });
 
     firebase.auth().createUserWithEmailAndPassword(req.body.email, req.body.password).then(function(user) {
-        user.updateProfile( { displayName: req.body.username } );
-        // TODO: get user info
-        res.render('dashboard', {username: user.displayName})
+        user.updateProfile( { displayName: req.body.username } ).then(
+          function() {
+            // TODO: get user info
+            res.render('dashboard', {username: user.displayName})
+          }
+        );
+
     }, function(error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -67,6 +71,14 @@ router.post('/login', function(req, res, next) {
     // TODO: send them to the dashboard
     // res.status(200).send("New user signed in.\n");
     res.render('dashboard')
+});
+
+router.get('/logout', function(req, res, next) {
+  firebase.auth().signOut().then(function() {
+      res.render('index')
+    }, function(error) {
+      res.send('Error:' + error)
+  });
 });
 
 module.exports = router;
