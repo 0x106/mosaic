@@ -23,7 +23,10 @@ router.post('/', function(req, res, next) {
 router.post('/login', function(req, res, next) {
     firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then(function(user) {
         // res.status(200).send(user.displayName)
-        res.render('dashboard', {username: user.displayName})
+        // res.render('dashboard', {username: user.displayName})
+        user.updateProfile( { email: req.body.email } ).then( function() {
+          res.render('dashboard', {username: user.displayName})
+        });
     }, function(error) {
         var errorCode = error.code;
         var errorMessage = error.message;
