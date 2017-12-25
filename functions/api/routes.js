@@ -26,6 +26,10 @@ router.get('/dashboard', (req, res) => {
   res.render('dashboard');
 });
 
+router.get('/newScene', (req, res) => {
+  res.render('newScene');
+});
+
 // router.post('/uploadScene',
 //
 //     upload.single('scene'),
