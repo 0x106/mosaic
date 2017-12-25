@@ -1,5 +1,4 @@
-// const multer  = require('multer')
-// const upload = multer({ dest: '../data/upload/' })
+
 // const firebase = require('../../config.js');
 //
 // function uploadSceneToStorage(req) {

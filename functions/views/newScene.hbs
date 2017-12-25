@@ -22,7 +22,8 @@
 <!-- signupformdiv -->
     <div class="sceneUploadFormDiv">
 
-      <!-- SIGN UP /api/auth/ -->
+      <!-- when we upload the file we can first get the data for the user that is logged in -->
+      <!--    and therefore the one uploading the file. -->
       <form enctype="multipart/form-data" id="sceneUploadForm" action="https://atlasreality.xyz/uploadScene" method="post">
         <input type="text" name="scenename" placeholder="Name" size="60"><br>
         <input type="file" name="scene" placeholder="Please choose a scene to upload" size="60"><br>
@@ -34,7 +35,6 @@
         </div>
       </form>
     </div>
-
 
     <!-- <br> <input id="scenenameinput" type="text" name="scenename" value="Name" placeholder="Name"> <br> -->
     <!-- <div id="preview"> -->
