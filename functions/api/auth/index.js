@@ -43,14 +43,14 @@ router.post('/', function(req, res, next) {
       .then(function(userRecord) {
         // See the UserRecord reference doc for the contents of userRecord.
         console.log("Successfully created new user:", userRecord.uid);
-        res.status(200).send("New user: " + userRecord.uid + " created.\n");
+        // res.status(200).send("New user: " + userRecord.uid + " created.\n");
       })
       .catch(function(error) {
         console.log("Error creating new user:", error);
       });
 
     // TODO: send them to the dashboard
-
+    res.status(200).send("New user created.\n");
 });
 
 // New user LOG IN
@@ -92,7 +92,7 @@ router.post('/login', function(req, res, next) {
       });
 
     // TODO: send them to the dashboard
-
+    res.status(200).send("New user signed in.\n");
 });
 
 // router.get('/', function(req, res, next) {
