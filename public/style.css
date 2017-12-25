@@ -70,6 +70,10 @@ p {
   display: none;
 }
 
+#loginbutton {
+  display: none;
+}
+
 .navbar {
   overflow: hidden;
   background-color: #284C60;
