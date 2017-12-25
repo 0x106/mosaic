@@ -35,10 +35,15 @@ router.post('/login', function(req, res, next) {
     });
 });
 
+function renderIndex(res) {
+  res.render('index');
+}
+
 // User requested LOGOUT
 router.get('/logout', function(req, res, next) {
   firebase.auth().signOut().then(function() {
-      res.render('index');
+      renderIndex(res);
+      // res.render('index');
     }, function(error) {
       res.send('Error:' + error)
   });
