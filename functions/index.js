@@ -2,19 +2,13 @@ const functions = require('firebase-functions');
 const express = require('express');
 const bodyParser = require('body-parser');
 const engines = require('consolidate');
-const auth = require('./api/auth');
 
+const auth = require('./api/auth');
+const routes = require('./api/routes');
 
 // ----------------- FIREBASE CONFIG ----------------- //
-// var admin = require("firebase-admin");
-//
-// // TODO: test this
-// // admin.initializeApp(functions.config().firebase);
-// var serviceAccount = require("./key.json");
-// admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount),
-//   databaseURL: "https://mosaic-portal.firebaseio.com"
-// });
+// config is now found in config.js:
+// 'const firebase = require('./config.js');'
 // ---------------------------------------------------- //
 
 const app = express();
@@ -37,31 +31,11 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 // ----------------------------------------------------- //
 
 // ------------------------ API ------------------------ //
-app.get('/', (req, res) => {
-  res.render('index');
-});
-
-// TODO: move this into its own file (routes.js?)
-app.get('/signup', (req, res) => {
-  res.render('signup');
-});
+// general calls
+app.use('/', routes);
 
 // the authentication route in functions/api/auth/index.js
 app.use('/auth', auth);
-
-// TODO: move this into its own file
-app.get('/faq', (req, res) => {
-    res.status(200).send('“Cyberspace. A consensual hallucination experienced daily by billions of legitimate operators, \
-    in every nation, by children being taught mathematical concepts... A graphic representation of data abstracted from banks \
-    of every computer in the human system. Unthinkable complexity. Lines of light ranged in the nonspace of the mind, clusters \
-    and constellations of data. Like city lights, receding...”\
-    - William Gibson, Neuromancer.')
-});
-
-// TODO: move this into its own file (users.js?)
-app.get('/dashboard', (req, res) => {
-  res.render('dashboard');
-});
 // ----------------------------------------------------- //
 
 exports.mosaic = functions.https.onRequest(app);

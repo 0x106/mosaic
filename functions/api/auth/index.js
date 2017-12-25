@@ -1,5 +1,4 @@
 const express = require('express');
-const bcrypt = require('bcrypt');
 const firebase = require('../../config.js');
 
 const router = express.Router();
