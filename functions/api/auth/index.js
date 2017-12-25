@@ -35,7 +35,6 @@ router.post('/login', function(req, res, next) {
     });
 });
 
-
 // User requested LOGOUT
 router.get('/logout', function(req, res, next) {
   firebase.auth().signOut().then(function() {

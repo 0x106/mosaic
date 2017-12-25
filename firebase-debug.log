@@ -1,0 +1,244 @@
+[debug] [2017-12-25T06:07:01.440Z] ----------------------------------------------------------------------
+[debug] [2017-12-25T06:07:01.443Z] Command:       /Users/jordancampbell/.nvm/versions/node/v6.9.1/bin/node /usr/local/bin/firebase deploy
+[debug] [2017-12-25T06:07:01.443Z] CLI Version:   3.12.0
+[debug] [2017-12-25T06:07:01.443Z] Platform:      darwin
+[debug] [2017-12-25T06:07:01.443Z] Node Version:  v6.9.1
+[debug] [2017-12-25T06:07:01.444Z] Time:          Mon Dec 25 2017 19:07:01 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:07:01.444Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-12-25T06:07:01.455Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-12-25T06:07:01.455Z] > authorizing via signed-in user
+[debug] [2017-12-25T06:07:01.457Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2017-12-25T06:07:01.457Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token { refresh_token: '1/jfTrPr81zxX3-IX6jB-392dvoalpEGb_xq8ujqNmQBU',
+  client_id: '563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com',
+  client_secret: 'j9iVZfS8kkCEFUPaAeJV0sAi',
+  grant_type: 'refresh_token',
+  scope: 'email https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/cloudplatformprojects.readonly https://www.googleapis.com/auth/firebase openid' } 
+ Mon Dec 25 2017 19:07:01 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:07:02.142Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:07:02.147Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/mosaic-portal  
+ Mon Dec 25 2017 19:07:02 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:07:03.875Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:07:03.876Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/mosaic-portal/tokens  
+ Mon Dec 25 2017 19:07:03 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:07:05.281Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'mosaic-portal'...
+[info] 
+[info] i  deploying functions, hosting
+[debug] [2017-12-25T06:07:07.409Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "consolidate": "^0.15.0",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "firebase": "^4.8.1",
+    "firebase-admin": "~5.2.1",
+    "firebase-functions": "^0.6.2",
+    "handlebars": "^4.0.11"
+  },
+  "private": true
+}
+[info] i  functions: ensuring necessary APIs are enabled...
+[info] i  runtimeconfig: ensuring necessary APIs are enabled...
+[debug] [2017-12-25T06:07:07.411Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/cloudfunctions.googleapis.com/projectSettings/mosaic-portal?view=CONSUMER_VIEW  
+ Mon Dec 25 2017 19:07:07 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:07:07.411Z] >>> HTTP REQUEST GET https://servicemanagement.googleapis.com/v1/services/runtimeconfig.googleapis.com/projectSettings/mosaic-portal?view=CONSUMER_VIEW  
+ Mon Dec 25 2017 19:07:07 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:07:09.383Z] <<< HTTP RESPONSE 200
+[info] ✔  runtimeconfig: all necessary APIs are enabled
+[debug] [2017-12-25T06:07:09.478Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: all necessary APIs are enabled
+[debug] [2017-12-25T06:07:09.480Z] >>> HTTP REQUEST GET https://appengine.googleapis.com/v1/apps/mosaic-portal  
+ Mon Dec 25 2017 19:07:09 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:07:09.480Z] >>> HTTP REQUEST GET https://apikeys.googleapis.com/v1/projects/mosaic-portal/apiKeys  
+ Mon Dec 25 2017 19:07:09 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:07:11.014Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:07:11.118Z] <<< HTTP RESPONSE 200
+[info] i  functions: preparing functions directory for uploading...
+[debug] [2017-12-25T06:07:14.040Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/mosaic-portal/configs  
+ Mon Dec 25 2017 19:07:14 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:07:14.905Z] <<< HTTP RESPONSE 200
+[info] i  functions: packaged functions (7.39 KB) for uploading
+[debug] [2017-12-25T06:07:18.328Z] >>> HTTP REQUEST GET https://www.googleapis.com/storage/v1/b/staging.mosaic-portal.appspot.com  
+ Mon Dec 25 2017 19:07:18 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:07:19.104Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:07:19.105Z] >>> HTTP REQUEST POST https://www.googleapis.com/upload/storage/v1/b/staging.mosaic-portal.appspot.com/o?uploadType=media&name=firebase-functions-source ReadStream {
+  _readableState: 
+   ReadableState {
+     objectMode: false,
+     highWaterMark: 65536,
+     buffer: BufferList { head: [Object], tail: [Object], length: 1 },
+     length: 7565,
+     pipes: null,
+     pipesCount: 0,
+     flowing: null,
+     ended: true,
+     endEmitted: false,
+     reading: false,
+     sync: false,
+     needReadable: false,
+     emittedReadable: true,
+     readableListening: false,
+     resumeScheduled: false,
+     defaultEncoding: 'utf8',
+     ranOut: false,
+     awaitDrain: 0,
+     readingMore: false,
+     decoder: null,
+     encoding: null },
+  readable: true,
+  domain: null,
+  _events: { end: [Function] },
+  _eventsCount: 1,
+  _maxListeners: undefined,
+  path: '/var/folders/mr/wbk9tgzx4_l7p47_zz62qdp40000gp/T/firebase-functions-14537PBlZlAFES4Sv.zip',
+  fd: 19,
+  flags: 'r',
+  mode: 438,
+  start: undefined,
+  end: undefined,
+  autoClose: true,
+  pos: undefined,
+  bytesRead: 7565 } 
+ Mon Dec 25 2017 19:07:19 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:07:20.128Z] <<< HTTP RESPONSE 200
+[info] ✔  functions: functions folder uploaded successfully
+[info] i  hosting: preparing public directory for upload...
+[warn] ⚠  Warning: Public directory does not contain index.html
+[debug] [2017-12-25T06:07:20.375Z] >>> HTTP REQUEST PUT https://deploy.firebase.com/v1/hosting/mosaic-portal/uploads/-L1BH2NjIY47O8ZYAJfs?fileCount=6&message=  
+ Mon Dec 25 2017 19:07:20 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:07:29.958Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:07:29.959Z] [hosting] .tgz uploaded successfully, waiting for extraction
+[info] ✔  hosting: 6 files uploaded successfully
+[info] i  starting release process (may take several minutes)...
+[debug] [2017-12-25T06:07:30.776Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/projects/mosaic-portal/locations/us-central1/functions  
+ Mon Dec 25 2017 19:07:30 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:07:32.315Z] <<< HTTP RESPONSE 200
+[info] i  functions: updating function mosaic...
+[debug] [2017-12-25T06:07:32.320Z] Trigger is: 
+[debug] [2017-12-25T06:07:32.321Z] >>> HTTP REQUEST PUT https://cloudfunctions.googleapis.com/v1beta2/projects/mosaic-portal/locations/us-central1/functions/mosaic { sourceArchiveUrl: 'gs://staging.mosaic-portal.appspot.com/firebase-functions-source',
+  name: 'projects/mosaic-portal/locations/us-central1/functions/mosaic',
+  entryPoint: 'mosaic',
+  timeout: '60s',
+  availableMemoryMb: 256,
+  httpsTrigger: {} } 
+ Mon Dec 25 2017 19:07:32 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:07:33.645Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:07:33.648Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/projects/mosaic-portal/locations/us-central1/functions  
+ Mon Dec 25 2017 19:07:33 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:07:33.650Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:07:33 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:07:34.873Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:07:34.877Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:07:34.878Z] [functions] operation poll: mosaic: update operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA is not done.
+[debug] [2017-12-25T06:07:39.880Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:07:39 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:07:40.505Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:07:40.506Z] [functions] operation poll: mosaic: update operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA is not done.
+[debug] [2017-12-25T06:07:45.511Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:07:45 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:07:46.137Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:07:46.138Z] [functions] operation poll: mosaic: update operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA is not done.
+[debug] [2017-12-25T06:07:51.140Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:07:51 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:07:51.871Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:07:51.872Z] [functions] operation poll: mosaic: update operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA is not done.
+[debug] [2017-12-25T06:07:56.878Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:07:56 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:07:57.504Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:07:57.504Z] [functions] operation poll: mosaic: update operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA is not done.
+[debug] [2017-12-25T06:08:02.512Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:08:02 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:08:03.129Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:08:03.130Z] [functions] operation poll: mosaic: update operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA is not done.
+[debug] [2017-12-25T06:08:08.133Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:08:08 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:08:08.769Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:08:08.769Z] [functions] operation poll: mosaic: update operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA is not done.
+[debug] [2017-12-25T06:08:13.775Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:08:13 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:08:14.505Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:08:14.505Z] [functions] operation poll: mosaic: update operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA is not done.
+[debug] [2017-12-25T06:08:19.511Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:08:19 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:08:20.135Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:08:20.135Z] [functions] operation poll: mosaic: update operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA is not done.
+[debug] [2017-12-25T06:08:25.139Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:08:25 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:08:25.767Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:08:25.768Z] [functions] operation poll: mosaic: update operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA is not done.
+[debug] [2017-12-25T06:08:30.774Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:08:30 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:08:31.399Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:08:31.400Z] [functions] operation poll: mosaic: update operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA is not done.
+[debug] [2017-12-25T06:08:36.406Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:08:36 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:08:37.031Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:08:37.031Z] [functions] operation poll: mosaic: update operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA is not done.
+[debug] [2017-12-25T06:08:42.031Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:08:42 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:08:42.672Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:08:42.673Z] [functions] operation poll: mosaic: update operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA is not done.
+[debug] [2017-12-25T06:08:47.677Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:08:47 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:08:48.295Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:08:48.296Z] [functions] operation poll: mosaic: update operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA is not done.
+[debug] [2017-12-25T06:08:53.298Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:08:53 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:08:53.884Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:08:53.885Z] [functions] operation poll: mosaic: update operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA is not done.
+[debug] [2017-12-25T06:08:58.890Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:08:58 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:08:59.559Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:08:59.560Z] [functions] operation poll: mosaic: update operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA is not done.
+[debug] [2017-12-25T06:09:04.565Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:09:04 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:09:05.293Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:09:05.293Z] [functions] operation poll: mosaic: update operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA is not done.
+[debug] [2017-12-25T06:09:10.297Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:09:10 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:09:10.925Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:09:10.927Z] [functions] operation poll: mosaic: update operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA is not done.
+[debug] [2017-12-25T06:09:15.929Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:09:15 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:09:16.672Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:09:16.674Z] [functions] operation poll: mosaic: update operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA is not done.
+[debug] [2017-12-25T06:09:21.676Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:09:21 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:09:22.394Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:09:22.395Z] [functions] operation poll: mosaic: update operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA is not done.
+[debug] [2017-12-25T06:09:27.396Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:09:27 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:09:28.046Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:09:28.047Z] [functions] operation poll: mosaic: update operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA is not done.
+[debug] [2017-12-25T06:09:33.050Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:09:33 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:09:33.673Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:09:33.674Z] [functions] operation poll: mosaic: update operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA is not done.
+[debug] [2017-12-25T06:09:38.680Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:09:38 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:09:39.309Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:09:39.309Z] [functions] operation poll: mosaic: update operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA is not done.
+[debug] [2017-12-25T06:09:44.311Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:09:44 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:09:45.024Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:09:45.024Z] [functions] operation poll: mosaic: update operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA is not done.
+[debug] [2017-12-25T06:09:50.025Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:09:50 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:09:50.656Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:09:50.658Z] [functions] operation poll: mosaic: update operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA is not done.
+[debug] [2017-12-25T06:09:55.665Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:09:55 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:09:56.288Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:09:56.288Z] [functions] operation poll: mosaic: update operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA is not done.
+[debug] [2017-12-25T06:10:01.288Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:10:01 GMT+1300 (NZDT)
+[debug] [2017-12-25T06:10:01.920Z] <<< HTTP RESPONSE 200
+[debug] [2017-12-25T06:10:01.923Z] [functions] operation poll: mosaic: update operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA is not done.
+[debug] [2017-12-25T06:10:06.929Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1beta2/operations/bW9zYWljLXBvcnRhbC91cy1jZW50cmFsMS9tb3NhaWMvRWI4Y0h0d2Q4STA  
+ Mon Dec 25 2017 19:10:06 GMT+1300 (NZDT)
