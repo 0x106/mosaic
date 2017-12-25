@@ -5,6 +5,7 @@ const engines = require('consolidate');
 
 const auth = require('./api/auth');
 const routes = require('./api/routes');
+// const storage = require('./api/storage');
 
 // ----------------- FIREBASE CONFIG ----------------- //
 // config is now found in config.js:
@@ -36,6 +37,9 @@ app.use('/', routes);
 
 // the authentication route in functions/api/auth/index.js
 app.use('/auth', auth);
+
+// the authentication route in functions/api/auth/index.js
+// app.use('/upload', storage);
 // ----------------------------------------------------- //
 
 exports.mosaic = functions.https.onRequest(app);
