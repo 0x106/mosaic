@@ -20,7 +20,6 @@ router.post('/', function(req, res, next) {
             res.render('dashboard', {username: user.displayName})
           }
         );
-
     }, function(error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -28,21 +27,6 @@ router.post('/', function(req, res, next) {
         // TODO: presumably we can check these errors for things like incorrect formats, duplicates etc?
         res.send('Error creating user:' + error.code + ' --> ' + error.message);
     });
-
-        // user.updateProfile({
-        //     displayName: req.body.username
-        // }).then(function() {
-        //       // Update successful.
-        //
-        //       // get user data from database (everything we need to render the dashboard)
-        //       // i.e. the list of scenes that have been uploaded
-        //       // var userData = {};
-        //       // res.render('dashboard', {userData:, userData})
-        //
-        // }, function(error) {
-        //       res.send('Error retrieving user data');
-        //    });
-
 
     // TODO: send them to the dashboard
     // res.status(200).send("New user created.\n");
@@ -59,8 +43,8 @@ router.post('/login', function(req, res, next) {
     // });
 
     firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then(function(user) {
-        // var user = firebase.auth().currentUser;
-        // getUserDataForDashboard(user); // Optional
+        // TODO: get user info - make sure we have the full set of scenes
+        res.render('dashboard', {username: user.displayName});
     }, function(error) {
         // Handle Errors here.
         var errorCode = error.code;
