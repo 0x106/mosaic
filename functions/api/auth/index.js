@@ -7,7 +7,9 @@ const router = express.Router();
 router.post('/', function(req, res, next) {
     // TODO: check that the password conforms to our specifications
     firebase.auth().createUserWithEmailAndPassword(req.body.email, req.body.password).then(function(user) {
-        user.updateProfile( { displayName: req.body.username } ).then( function() { res.render('dashboard', {username: user.displayName}) } );
+        user.updateProfile( { displayName: req.body.username } ).then( function() {
+          res.render('dashboard', {username: user.displayName})
+        });
     }, function(error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -20,9 +22,8 @@ router.post('/', function(req, res, next) {
 // New user LOG IN
 router.post('/login', function(req, res, next) {
     firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then(function(user) {
-        console.log(req.body.username + ' '  + user.displayName);
-        res.status(200).send(req.body.username + ' '  + user.displayName)
-        // res.render('dashboard', {username: user.displayName});
+        // res.status(200).send(user.displayName)
+        res.render('dashboard', {username: user.displayName})
     }, function(error) {
         var errorCode = error.code;
         var errorMessage = error.message;
