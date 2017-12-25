@@ -1,8 +1,18 @@
 
 const express = require('express');
 const bcrypt = require('bcrypt');
-const admin = require('firebase-admin');
-const firebase = require('firebase')
+// const admin = require('firebase-admin');
+
+const firebase = require('firebase');
+var config = {
+    apiKey: "AIzaSyBI9kkVq2jZNpTKjaX79BqgcepavI9wzQs",
+    authDomain: "mosaic-portal.firebaseapp.com",
+    databaseURL: "https://mosaic-portal.firebaseio.com",
+    projectId: "mosaic-portal",
+    storageBucket: "mosaic-portal.appspot.com",
+    messagingSenderId: "958527622038"
+  };
+firebase.initializeApp(config);
 
 const router = express.Router();
 
@@ -21,7 +31,7 @@ router.post('/', function(req, res, next) {
 
     // hash the password provided
     // TODO: check that the hash was succesfull
-    let hash_password = bcrypt.hashSync(req.body.password, 10);
+    // let hash_password = bcrypt.hashSync(req.body.password, 10);
 
     // TODO: check if we already have an entry for this user
 
@@ -34,21 +44,27 @@ router.post('/', function(req, res, next) {
     //   displayName: req.body.username,
     // });
 
-    admin.auth().createUser({
-      email: req.body.email,
-      emailVerified: false,
-      password: hash_password,
-      displayName: req.body.username,
-      disabled: false
-    })
-      .then(function(userRecord) {
-        // See the UserRecord reference doc for the contents of userRecord.
-        console.log("Successfully created new user:", userRecord.uid);
-        // res.status(200).send("New user: " + userRecord.uid + " created.\n");
-      })
-      .catch(function(error) {
-        console.log("Error creating new user:", error);
-      });
+    // admin.auth().createUser({
+    //   email: req.body.email,
+    //   emailVerified: false,
+    //   password: req.body.password,
+    //   displayName: req.body.username,
+    //   disabled: false
+    // })
+    //   .then(function(userRecord) {
+    //     // See the UserRecord reference doc for the contents of userRecord.
+    //     console.log("Successfully created new user:", userRecord.uid);
+    //     // res.status(200).send("New user: " + userRecord.uid + " created.\n");
+    //   })
+    //   .catch(function(error) {
+    //     console.log("Error creating new user:", error);
+    //   });
+
+    firebase.auth().createUserWithEmailAndPassword(req.body.email, req.body.password).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+    });
 
     // TODO: send them to the dashboard
     res.status(200).send("New user created.\n");
@@ -63,7 +79,7 @@ router.post('/login', function(req, res, next) {
 
     // hash the password provided
     // TODO: check that the hash was succesfull
-    let hash_password = bcrypt.hashSync(req.body.password, 10);
+    // let hash_password = bcrypt.hashSync(req.body.password, 10);
 
     // TODO: check if we already have an entry for this user
 
@@ -76,18 +92,24 @@ router.post('/login', function(req, res, next) {
     //   displayName: req.body.username,
     // });
 
-    firebase.auth().signInWithEmailAndPassword({
-      email: req.body.email,
-      password: hash_password,
-    })
-      .then(function(userRecord) {
-        // See the UserRecord reference doc for the contents of userRecord.
-        console.log("Successfully logged in user:", userRecord.uid);
-        res.status(200).send("User: " + userRecord.uid + "successfully logged in");
-      })
-      .catch(function(error) {
-        console.log("Error logging in user:", error);
-      });
+    // firebase.auth().signInWithEmailAndPassword({
+    //   email: req.body.email,
+    //   password: req.body.password,
+    // })
+    //   .then(function(userRecord) {
+    //     // See the UserRecord reference doc for the contents of userRecord.
+    //     console.log("Successfully logged in user:", userRecord.uid);
+    //     res.status(200).send("User: " + userRecord.uid + "successfully logged in");
+    //   })
+    //   .catch(function(error) {
+    //     console.log("Error logging in user:", error);
+    //   });
+
+    firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+    });
 
     // TODO: send them to the dashboard
     res.status(200).send("New user signed in.\n");

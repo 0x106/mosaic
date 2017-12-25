@@ -6,15 +6,15 @@ const auth = require('./api/auth');
 
 
 // ----------------- FIREBASE CONFIG ----------------- //
-var admin = require("firebase-admin");
-
-// TODO: test this
-// admin.initializeApp(functions.config().firebase);
-var serviceAccount = require("./key.json");
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://mosaic-portal.firebaseio.com"
-});
+// var admin = require("firebase-admin");
+//
+// // TODO: test this
+// // admin.initializeApp(functions.config().firebase);
+// var serviceAccount = require("./key.json");
+// admin.initializeApp({
+//   credential: admin.credential.cert(serviceAccount),
+//   databaseURL: "https://mosaic-portal.firebaseio.com"
+// });
 // ---------------------------------------------------- //
 
 const app = express();
