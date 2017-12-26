@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
       if(user) { // if there is a currently signed in user
         res.render('dashboard', {username: 'logged in (index)'});
       } else {
-         res.render('index');
+         res.render('signup');
       }
   });
 });
