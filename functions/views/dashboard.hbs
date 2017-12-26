@@ -11,50 +11,50 @@
     <!-- defines the firebase library -->
     <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
     <script>
-        var config = {
-            apiKey: "AIzaSyBI9kkVq2jZNpTKjaX79BqgcepavI9wzQs",
-            authDomain: "mosaic-portal.firebaseapp.com",
-            projectId: "mosaic-portal",
-            storageBucket: "mosaic-portal.appspot.com",
-        };
-        // cF2SedCeMFWTmEP4evpFcogOONH3 <-- cianna@mariecanning.com uid
-        firebase.initializeApp(config);
+        // var config = {
+        //     apiKey: "AIzaSyBI9kkVq2jZNpTKjaX79BqgcepavI9wzQs",
+        //     authDomain: "mosaic-portal.firebaseapp.com",
+        //     projectId: "mosaic-portal",
+        //     storageBucket: "mosaic-portal.appspot.com",
+        // };
+        // // cF2SedCeMFWTmEP4evpFcogOONH3 <-- cianna@mariecanning.com uid
+        // firebase.initializeApp(config);
 
-        window.onload = function initApp() {
-
-          console.log("here");
-
-            // Listening for auth state changes.
-          // [START authstatelistener]
-          firebase.auth().onAuthStateChanged(function(user) {
-            // [START_EXCLUDE silent]
-            // [END_EXCLUDE]
-            if (user) {
-              // User is signed in.
-              var displayName = user.displayName;
-              var email = user.email;
-              var emailVerified = user.emailVerified;
-              var photoURL = user.photoURL;
-              var isAnonymous = user.isAnonymous;
-              var uid = user.uid;
-              var providerData = user.providerData;
-
-              console.log(displayName + ' '  + email);
-
-              if (!emailVerified) {
-              }
-              // [END_EXCLUDE]
-            } else {
-              console.log("why are we here");
-              // User is signed out.
-              // [START_EXCLUDE]
-              // [END_EXCLUDE]
-            }
-            // [START_EXCLUDE silent]
-            // [END_EXCLUDE]
-          });
-          // [END authstatelistener]
-        }
+        // window.onload = function initApp() {
+        //
+        //   console.log("here");
+        //
+        //     // Listening for auth state changes.
+        //   // [START authstatelistener]
+        //   firebase.auth().onAuthStateChanged(function(user) {
+        //     // [START_EXCLUDE silent]
+        //     // [END_EXCLUDE]
+        //     if (user) {
+        //       // User is signed in.
+        //       var displayName = user.displayName;
+        //       var email = user.email;
+        //       var emailVerified = user.emailVerified;
+        //       var photoURL = user.photoURL;
+        //       var isAnonymous = user.isAnonymous;
+        //       var uid = user.uid;
+        //       var providerData = user.providerData;
+        //
+        //       console.log(displayName + ' '  + email);
+        //
+        //       if (!emailVerified) {
+        //       }
+        //       // [END_EXCLUDE]
+        //     } else {
+        //       console.log("why are we here");
+        //       // User is signed out.
+        //       // [START_EXCLUDE]
+        //       // [END_EXCLUDE]
+        //     }
+        //     // [START_EXCLUDE silent]
+        //     // [END_EXCLUDE]
+        //   });
+        //   // [END authstatelistener]
+        // }
     </script>
   </head>
   <body>
@@ -84,9 +84,6 @@
                     //   if (file.type)
                     //     console.log("It has type", file.type);
                     // }
-
-                    // const firebase = require('firebase');
-
                     var storage = firebase.storage();
 
                     if (fileUploadButton.files.length > 0) {
@@ -98,17 +95,21 @@
                       // };
 
                       // uploadfile and then re-render this page with the new user data
-                      var uploadTask = storageRef.put(file).then(function(){
+                      var uploadTask = storageRef.put(file);//.then(function(){
                         // $.get("https://www.atlasreality.xyz/auth/dashboard")
-                        location.reload(true); // when `true` is set it will reload from the server
-                      });
-
-                      // // Listen for state changes, errors, and completion of the upload.
-                      // uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-                      //    function() {
-                      //   // Upload completed successfully, now we can get the download URL
-                      //   var downloadURL = uploadTask.snapshot.downloadURL;
+                        // location.reload(true); // when `true` is set it will reload from the server
                       // });
+
+                      // Listen for state changes, errors, and completion of the upload.
+                      uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+                         function() {
+
+                           // write the scene name to the database
+
+                           location.reload(true); // when `true` is set it will reload from the server
+                        // Upload completed successfully, now we can get the download URL
+                            // var downloadURL = uploadTask.snapshot.downloadURL;
+                      });
                     }
                   });
                 </script>
