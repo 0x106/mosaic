@@ -1,8 +1,17 @@
 const express = require('express');
+const firebase = require('../config.js');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.render('index');
+  // check if the user is logged in and if so then redirect to the dashboard
+
+  firebase.auth().onAuthStateChanged(function(user) {
+      if(user) { // if there is a currently signed in user
+        res.render('dashboard', {username: 'logged in (index)'});
+      } else {
+         res.render('index');
+      }
+  });
 });
 
 // TODO: move this into its own file (routes.js?)

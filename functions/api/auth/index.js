@@ -62,7 +62,7 @@ router.get('/dashboard', cors(corsOptions), (req, res) => {
 
   firebase.auth().onAuthStateChanged(function(user) {
       if(user) { // if there is a currently signed in user
-        res.render('dashboard', {username: 'logged in'});
+        res.render('dashboard', {username: 'logged in (get dash)'});
       } else {
          res.render('signup');
       }
