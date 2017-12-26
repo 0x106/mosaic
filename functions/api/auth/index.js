@@ -1,6 +1,13 @@
 const express = require('express');
 const firebase = require('../../config.js');
 
+// https://stackoverflow.com/a/39180855/7098234
+const cors = require('cors');
+var corsOptions = {
+  origin: 'https://www.atlasreality.xyz/', // only allow requests from this domain (client-side)
+  optionsSuccessStatus: 200
+};
+
 const router = express.Router();
 
 // New user SIGN UP
@@ -48,7 +55,7 @@ router.get('/logout', function(req, res, next) {
 });
 
 // TODO: move this into its own file (users.js?)
-router.get('/dashboard', (req, res) => {
+router.get('/dashboard', cors(corsOptions), (req, res) => {
 
   // get the currently signed in user and then render their data
   // if no user is currently signed in then send them to the login page res.render('signup')
