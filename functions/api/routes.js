@@ -32,7 +32,7 @@ router.get('/dashboard', (req, res) => {
       } else {
          res.render('signup');
       }
-  }
+  });
   // res.render('dashboard');
 });
 
