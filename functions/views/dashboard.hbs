@@ -11,14 +11,14 @@
     <!-- defines the firebase library -->
     <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
     <script>
-        // var config = {
-        //     apiKey: "AIzaSyBI9kkVq2jZNpTKjaX79BqgcepavI9wzQs",
-        //     authDomain: "mosaic-portal.firebaseapp.com",
-        //     projectId: "mosaic-portal",
-        //     storageBucket: "mosaic-portal.appspot.com",
-        // };
-        // // cF2SedCeMFWTmEP4evpFcogOONH3 <-- cianna@mariecanning.com uid
-        // firebase.initializeApp(config);
+        var config = {
+            apiKey: "AIzaSyBI9kkVq2jZNpTKjaX79BqgcepavI9wzQs",
+            authDomain: "mosaic-portal.firebaseapp.com",
+            projectId: "mosaic-portal",
+            storageBucket: "mosaic-portal.appspot.com",
+        };
+        // cF2SedCeMFWTmEP4evpFcogOONH3 <-- cianna@mariecanning.com uid
+        firebase.initializeApp(config);
 
         // window.onload = function initApp() {
         //
@@ -78,6 +78,10 @@
                   // https://eloquentjavascript.net/18_forms.html
                   var fileUploadButton = document.querySelector('input');
                   fileUploadButton.addEventListener("change", function() {
+
+                    var userID = "{{uid}}";
+                    console.log('uid: ' + userID);
+
                     // if (input.files.length > 0) {
                     //   var file = input.files[0];
                     //   console.log("You chose", file.name);
@@ -88,7 +92,7 @@
 
                     if (fileUploadButton.files.length > 0) {
                       var file = fileUploadButton.files[0];
-                      var storageRef = storage.ref().child('users/cF2SedCeMFWTmEP4evpFcogOONH3/scene1.png');
+                      var storageRef = storage.ref().child('users/'+userID+'/scene1.png');
 
                       // var metadata = {
                       //   contentType: 'image/jpeg'

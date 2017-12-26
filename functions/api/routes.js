@@ -5,15 +5,17 @@ const router = express.Router();
 router.get('/', (req, res) => {
   // check if the user is logged in and if so then redirect to the dashboard
 
+  res.render('index');
+
   // TODO: this won't do anything at the moment until we set the persistence level
-  firebase.auth().onAuthStateChanged(function(user) {
-      if(user) { // if there is a currently signed in user
-        // res.render('dashboard', {username: 'logged in (index)'});
-        res.redirect('https://www.atlasreality.xyz/auth/dashboard')
-      } else {
-         res.render('index');
-      }
-  });
+  // firebase.auth().onAuthStateChanged(function(user) {
+  //     if(user) { // if there is a currently signed in user
+  //       // res.render('dashboard', {username: 'logged in (index)'});
+  //       res.redirect('https://www.atlasreality.xyz/auth/dashboard')
+  //     } else {
+  //        res.render('index');
+  //     }
+  // });
 });
 
 // TODO: move this into its own file (routes.js?)

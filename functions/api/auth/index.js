@@ -80,10 +80,7 @@ router.get('/dashboard', (req, res) => {
   // if no user is currently signed in then send them to the login page res.render('signup')
   firebase.auth().onAuthStateChanged(function(user) {
       if(user) { // if there is a currently signed in user
-
-        // get database connection
-
-        res.render('dashboard', {username: 'logged in (GET dashboard [server])', firebase: firebase});
+        res.render('dashboard', {username: user.uid, uid: user.uid});
       } else {
          res.redirect('http://www.atlasreality.xyz/signup');
       }
