@@ -20,22 +20,6 @@ router.get('/faq', (req, res) => {
     - William Gibson, Neuromancer.')
 });
 
-// TODO: move this into its own file (users.js?)
-router.get('/dashboard', (req, res) => {
-
-  // get the currently signed in user and then render their data
-  // if no user is currently signed in then send them to the login page res.render('signup')
-
-  firebase.auth().onAuthStateChanged(function(user) {
-      if(user) { // if there is a currently signed in user
-        res.render('dashboard', {username: 'logged in'});
-      } else {
-         res.render('signup');
-      }
-  });
-  // res.render('dashboard');
-});
-
 router.get('/newScene', (req, res) => {
   res.render('newScene');
 });
