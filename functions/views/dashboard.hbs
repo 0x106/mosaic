@@ -49,36 +49,28 @@
                     var storage = firebase.storage();
                     var database = firebase.database();
 
+                    console.log('1. init');
+
                     if (fileUploadButton.files.length > 0) {
                       var file = fileUploadButton.files[0];
                       var storageRef = storage.ref().child(`users/${userID}/${file.name}`);
                       var databaseRef = database.ref(`users/${userID}/scenes/`);
 
+                      console.log('2. references created');
+
                       databaseRef.push().set({
                         aid: file.name,
+                        console.log('3. data pushed');
+                      }).then(function() {
+                        var uploadTask = storageRef.put(file);
+                        console.log('4. upload task');
+                        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+                           function() {
+                             console.log('5. reloading page');
+                             location.reload(true); // when `true` is set it will reload from the server
+                        });
                       });
-
-                      // var metadata = {
-                      //   contentType: 'image/jpeg'
-                      // };
-
-                      // uploadfile and then re-render this page with the new user data
-                      var uploadTask = storageRef.put(file);//.then(function(){
-                        // $.get("https://www.atlasreality.xyz/auth/dashboard")
-                        // location.reload(true); // when `true` is set it will reload from the server
-                      // });
-
-                      // Listen for state changes, errors, and completion of the upload.
-                      uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-                         function() {
-
-                           // write the scene name to the database
-
-                           location.reload(true); // when `true` is set it will reload from the server
-                        // Upload completed successfully, now we can get the download URL
-                            // var downloadURL = uploadTask.snapshot.downloadURL;
-                      });
-                    }
+                    } // end if
                   });
                 </script>
             </label>
