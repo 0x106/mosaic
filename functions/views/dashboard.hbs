@@ -11,18 +11,20 @@
     <!-- defines the firebase library -->
     <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
     <script>
-
         var config = {
             apiKey: "AIzaSyBI9kkVq2jZNpTKjaX79BqgcepavI9wzQs",
             authDomain: "mosaic-portal.firebaseapp.com",
             projectId: "mosaic-portal",
             storageBucket: "mosaic-portal.appspot.com",
         };
-        // cF2SedCeMFWTmEP4evpFcogOONH3
+        // cF2SedCeMFWTmEP4evpFcogOONH3 <-- cianna@mariecanning.com uid
         firebase.initializeApp(config);
 
         window.onload = function initApp() {
-          // Listening for auth state changes.
+
+          console.log("here");
+
+            // Listening for auth state changes.
           // [START authstatelistener]
           firebase.auth().onAuthStateChanged(function(user) {
             // [START_EXCLUDE silent]
@@ -43,6 +45,7 @@
               }
               // [END_EXCLUDE]
             } else {
+              console.log("why are we here");
               // User is signed out.
               // [START_EXCLUDE]
               // [END_EXCLUDE]
