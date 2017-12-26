@@ -22,7 +22,13 @@ router.post('/', function(req, res, next) {
 // New user LOG IN
 router.post('/login', function(req, res, next) {
     firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then(function(user) {
-        res.render('dashboard', {username: user.displayName})
+      firebase.auth().onAuthStateChanged(function(user) {
+        if(user) {
+          res.render('dashboard', {username: 'logged in'})
+        } else {
+          res.render('dashboard', {username: 'not logged in'})
+        }
+      });
     }, function(error) {
         var errorCode = error.code;
         var errorMessage = error.message;
