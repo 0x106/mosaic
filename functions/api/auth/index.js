@@ -80,7 +80,13 @@ router.get('/dashboard', (req, res) => {
   // if no user is currently signed in then send them to the login page res.render('signup')
   firebase.auth().onAuthStateChanged(function(user) {
       if(user) { // if there is a currently signed in user
-        res.render('dashboard', {username: user.uid, uid: user.uid});
+
+        firebase.database().ref(`/users/${user.uid}/scenes/`).once('value').then(function(snapshot) {
+          var scenes = snapshot.val();
+          res.render('dashboard', {username: user.displayName, uid: user.uid, scenes: scenes});
+        });
+
+
       } else {
          res.redirect('http://www.atlasreality.xyz/signup');
       }

@@ -80,19 +80,18 @@
                   fileUploadButton.addEventListener("change", function() {
 
                     var userID = "{{uid}}";
-                    console.log('uid: ' + userID);
 
-                    // if (input.files.length > 0) {
-                    //   var file = input.files[0];
-                    //   console.log("You chose", file.name);
-                    //   if (file.type)
-                    //     console.log("It has type", file.type);
-                    // }
                     var storage = firebase.storage();
+                    var database = firebase.database();
 
                     if (fileUploadButton.files.length > 0) {
                       var file = fileUploadButton.files[0];
-                      var storageRef = storage.ref().child('users/'+userID+'/scene1.png');
+                      var storageRef = storage.ref().child(`users/${userID}/${file.name}`);
+                      var databaseRef = database.ref(`users/${userID}/scenes/`);
+
+                      databaseRef.push().set({
+                        aid: file.name,
+                      });
 
                       // var metadata = {
                       //   contentType: 'image/jpeg'
@@ -121,6 +120,9 @@
         </div>
         <p>Add New Scene</p>
       </div>
+
+
+      <p>{{scenes}}</p>
 
       <!-- Add all the scenes in a loop below -->
 
