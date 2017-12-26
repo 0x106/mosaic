@@ -7,6 +7,51 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://www.atlasreality.xyz/style.css" />
+
+
+      <script>
+
+          var config = {
+              apiKey: "AIzaSyBI9kkVq2jZNpTKjaX79BqgcepavI9wzQs",
+              authDomain: "mosaic-portal.firebaseapp.com",
+              projectId: "mosaic-portal",
+              storageBucket: "mosaic-portal.appspot.com",
+          };
+          // cF2SedCeMFWTmEP4evpFcogOONH3
+          firebase.initializeApp(config);
+
+          window.onload = function initApp() {
+            // Listening for auth state changes.
+            // [START authstatelistener]
+            firebase.auth().onAuthStateChanged(function(user) {
+              // [START_EXCLUDE silent]
+              // [END_EXCLUDE]
+              if (user) {
+                // User is signed in.
+                var displayName = user.displayName;
+                var email = user.email;
+                var emailVerified = user.emailVerified;
+                var photoURL = user.photoURL;
+                var isAnonymous = user.isAnonymous;
+                var uid = user.uid;
+                var providerData = user.providerData;
+
+                console.log(displayName + ' '  + email);
+
+                if (!emailVerified) {
+                }
+                // [END_EXCLUDE]
+              } else {
+                // User is signed out.
+                // [START_EXCLUDE]
+                // [END_EXCLUDE]
+              }
+              // [START_EXCLUDE silent]
+              // [END_EXCLUDE]
+            });
+            // [END authstatelistener]
+          }
+      </script>
   </head>
   <body>
 
@@ -38,15 +83,6 @@
                     // }
 
                     // const firebase = require('firebase');
-
-                    var config = {
-                        apiKey: "AIzaSyBI9kkVq2jZNpTKjaX79BqgcepavI9wzQs",
-                        authDomain: "mosaic-portal.firebaseapp.com",
-                        projectId: "mosaic-portal",
-                        storageBucket: "mosaic-portal.appspot.com",
-                    };
-                    // cF2SedCeMFWTmEP4evpFcogOONH3
-                    firebase.initializeApp(config);
 
                     var storage = firebase.storage();
 
