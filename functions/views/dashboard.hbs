@@ -97,9 +97,10 @@
                       //   contentType: 'image/jpeg'
                       // };
 
-                      var uploadTask = storageRef.put(file);
-
-                      console.log(storageRef);
+                      // uploadfile and then re-render this page with the new user data
+                      var uploadTask = storageRef.put(file).then(function(){
+                        $.get("https://www.google.com")
+                      });
 
                       // // Listen for state changes, errors, and completion of the upload.
                       // uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
