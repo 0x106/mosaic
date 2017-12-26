@@ -59,9 +59,9 @@
                       console.log('2. references created');
 
                       databaseRef.push().set({
-                        aid: file.name,
-                        console.log('3. data pushed');
+                        aid: file.name
                       }).then(function() {
+                        console.log('3. data pushed');
                         var uploadTask = storageRef.put(file);
                         console.log('4. upload task');
                         uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
