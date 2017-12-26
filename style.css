@@ -350,9 +350,9 @@ li:hover {
     display: inline-block;
     /* padding: 8px 8px; */
     cursor: pointer;
-    display: none;
+    /* display: none; */
 }
 
-/* input[type="file"] {
+input[type="file"] {
     display: none;
-} */
+}
