@@ -56,7 +56,7 @@ router.get('/logout', function(req, res, next) {
 
 // TODO: move this into its own file (users.js?)
 // router.get('/dashboard', cors(corsOptions), (req, res) => {
-router.get('/dashboard', cors(corsOptions), (req, res) => {
+router.get('/dashboard', (req, res) => {
 
   // get the currently signed in user and then render their data
   // if no user is currently signed in then send them to the login page res.render('signup')
