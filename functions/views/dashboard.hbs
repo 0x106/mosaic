@@ -99,7 +99,8 @@
 
                       // uploadfile and then re-render this page with the new user data
                       var uploadTask = storageRef.put(file).then(function(){
-                        $.get("https://www.atlasreality.xyz/auth/dashboard")
+                        // $.get("https://www.atlasreality.xyz/auth/dashboard")
+                        location.reload(true); // when `true` is set it will reload from the server
                       });
 
                       // // Listen for state changes, errors, and completion of the upload.

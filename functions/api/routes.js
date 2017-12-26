@@ -5,11 +5,12 @@ const router = express.Router();
 router.get('/', (req, res) => {
   // check if the user is logged in and if so then redirect to the dashboard
 
+  // TODO: this won't do anything at the moment until we set the persistence level
   firebase.auth().onAuthStateChanged(function(user) {
       if(user) { // if there is a currently signed in user
         res.render('dashboard', {username: 'logged in (index)'});
       } else {
-         res.render('signup');
+         res.render('index');
       }
   });
 });

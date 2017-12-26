@@ -59,10 +59,9 @@ router.get('/dashboard', cors(corsOptions), (req, res) => {
 
   // get the currently signed in user and then render their data
   // if no user is currently signed in then send them to the login page res.render('signup')
-
   firebase.auth().onAuthStateChanged(function(user) {
       if(user) { // if there is a currently signed in user
-        res.render('dashboard', {username: 'logged in (get dash)'});
+        res.render('dashboard', {username: 'logged in (GET dashboard [server])'});
       } else {
          res.render('signup');
       }
