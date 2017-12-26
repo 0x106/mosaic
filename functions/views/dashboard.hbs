@@ -8,50 +8,51 @@
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://www.atlasreality.xyz/style.css" />
 
+    <!-- defines the firebase library -->
+    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+    <script>
 
-      <script>
+        var config = {
+            apiKey: "AIzaSyBI9kkVq2jZNpTKjaX79BqgcepavI9wzQs",
+            authDomain: "mosaic-portal.firebaseapp.com",
+            projectId: "mosaic-portal",
+            storageBucket: "mosaic-portal.appspot.com",
+        };
+        // cF2SedCeMFWTmEP4evpFcogOONH3
+        firebase.initializeApp(config);
 
-          var config = {
-              apiKey: "AIzaSyBI9kkVq2jZNpTKjaX79BqgcepavI9wzQs",
-              authDomain: "mosaic-portal.firebaseapp.com",
-              projectId: "mosaic-portal",
-              storageBucket: "mosaic-portal.appspot.com",
-          };
-          // cF2SedCeMFWTmEP4evpFcogOONH3
-          firebase.initializeApp(config);
+        window.onload = function initApp() {
+          // Listening for auth state changes.
+          // [START authstatelistener]
+          firebase.auth().onAuthStateChanged(function(user) {
+            // [START_EXCLUDE silent]
+            // [END_EXCLUDE]
+            if (user) {
+              // User is signed in.
+              var displayName = user.displayName;
+              var email = user.email;
+              var emailVerified = user.emailVerified;
+              var photoURL = user.photoURL;
+              var isAnonymous = user.isAnonymous;
+              var uid = user.uid;
+              var providerData = user.providerData;
 
-          window.onload = function initApp() {
-            // Listening for auth state changes.
-            // [START authstatelistener]
-            firebase.auth().onAuthStateChanged(function(user) {
-              // [START_EXCLUDE silent]
-              // [END_EXCLUDE]
-              if (user) {
-                // User is signed in.
-                var displayName = user.displayName;
-                var email = user.email;
-                var emailVerified = user.emailVerified;
-                var photoURL = user.photoURL;
-                var isAnonymous = user.isAnonymous;
-                var uid = user.uid;
-                var providerData = user.providerData;
+              console.log(displayName + ' '  + email);
 
-                console.log(displayName + ' '  + email);
-
-                if (!emailVerified) {
-                }
-                // [END_EXCLUDE]
-              } else {
-                // User is signed out.
-                // [START_EXCLUDE]
-                // [END_EXCLUDE]
+              if (!emailVerified) {
               }
-              // [START_EXCLUDE silent]
               // [END_EXCLUDE]
-            });
-            // [END authstatelistener]
-          }
-      </script>
+            } else {
+              // User is signed out.
+              // [START_EXCLUDE]
+              // [END_EXCLUDE]
+            }
+            // [START_EXCLUDE silent]
+            // [END_EXCLUDE]
+          });
+          // [END authstatelistener]
+        }
+    </script>
   </head>
   <body>
 
@@ -70,7 +71,6 @@
             <label for="file-upload" class="custom-file-upload">
                 <img src="https://www.atlasreality.xyz/addButton.png" alt="Add new scene" height="162" width="162">
                 <input id="file-upload" type="file" name="scene" value="Please upload your scene">
-                <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
                 <script>
                   // https://eloquentjavascript.net/18_forms.html
                   var fileUploadButton = document.querySelector('input');
