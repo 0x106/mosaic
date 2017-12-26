@@ -10,12 +10,23 @@ const firebase = require('../../config.js');
 
 const router = express.Router();
 
+// function renderDashboard() {
+//   firebase.auth().onAuthStateChanged(function(user) {
+//       if(user) { // if there is a currently signed in user
+//         res.render('dashboard', {username: 'logged in (GET dashboard [server])'});
+//       } else {
+//          res.render('signup');
+//       }
+//   });
+// }
+
 // New user SIGN UP
 router.post('/', function(req, res, next) {
     // TODO: check that the password conforms to our specification
     firebase.auth().createUserWithEmailAndPassword(req.body.email, req.body.password).then(function(user) {
         user.updateProfile( { displayName: req.body.username } ).then( function() {
-          res.render('dashboard', {username: user.displayName})
+          // res.render('dashboard', {username: user.displayName})
+          res.redirect('https://www.atlasreality.xyz/auth/dashboard')
         });
     }, function(error) {
         // Handle Errors here.
@@ -29,13 +40,17 @@ router.post('/', function(req, res, next) {
 // New user LOG IN
 router.post('/login', function(req, res, next) {
     firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then(function(user) {
-      firebase.auth().onAuthStateChanged(function(user) {
-        if(user) {
-          res.render('dashboard', {username: user.displayName})
-        } else {
-          res.render('signup');
-        }
-      });
+
+      // renderDashboard();
+      res.redirect('https://www.atlasreality.xyz/auth/dashboard')
+
+      // firebase.auth().onAuthStateChanged(function(user) {
+      //   if(user) {
+      //     res.render('dashboard', {username: user.displayName})
+      //   } else {
+      //     res.render('signup');
+      //   }
+      // });
     }, function(error) {
         var errorCode = error.code;
         var errorMessage = error.message;
@@ -48,7 +63,8 @@ router.post('/login', function(req, res, next) {
 router.get('/logout', function(req, res, next) {
   firebase.auth().signOut().then(function() {
       // renderIndex(res);
-      res.render('index');
+      // res.render('index');
+      res.redirect('http://www.atlasreality.xyz/')
     }, function(error) {
       res.send('Error:' + error)
   });
@@ -58,13 +74,15 @@ router.get('/logout', function(req, res, next) {
 // router.get('/dashboard', cors(corsOptions), (req, res) => {
 router.get('/dashboard', (req, res) => {
 
+  // renderDashboard();
+
   // get the currently signed in user and then render their data
   // if no user is currently signed in then send them to the login page res.render('signup')
   firebase.auth().onAuthStateChanged(function(user) {
       if(user) { // if there is a currently signed in user
         res.render('dashboard', {username: 'logged in (GET dashboard [server])'});
       } else {
-         res.render('signup');
+         res.redirect('http://www.atlasreality.xyz/signup');
       }
   });
   // res.render('dashboard');

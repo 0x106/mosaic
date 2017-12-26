@@ -8,7 +8,8 @@ router.get('/', (req, res) => {
   // TODO: this won't do anything at the moment until we set the persistence level
   firebase.auth().onAuthStateChanged(function(user) {
       if(user) { // if there is a currently signed in user
-        res.render('dashboard', {username: 'logged in (index)'});
+        // res.render('dashboard', {username: 'logged in (index)'});
+        res.redirect('https://www.atlasreality.xyz/auth/dashboard')
       } else {
          res.render('index');
       }
@@ -29,8 +30,8 @@ router.get('/faq', (req, res) => {
     - William Gibson, Neuromancer.')
 });
 
-router.get('/newScene', (req, res) => {
-  res.render('newScene');
-});
+// router.get('/newScene', (req, res) => {
+//   res.render('newScene');
+// });
 
 module.exports = router;
