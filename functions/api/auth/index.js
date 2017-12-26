@@ -24,9 +24,9 @@ router.post('/login', function(req, res, next) {
     firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then(function(user) {
       firebase.auth().onAuthStateChanged(function(user) {
         if(user) {
-          res.render('dashboard', {username: 'logged in'})
+          res.render('dashboard', {username: user.displayName})
         } else {
-          res.render('dashboard', {username: 'not logged in'})
+          res.render('signup');
         }
       });
     }, function(error) {
