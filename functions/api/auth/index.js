@@ -21,7 +21,7 @@ router.post('/', function(req, res, next) {
           // TODO: after we update the profile we need to update the database to add the `users/${userID}/scenes` field
           // otherwise this returns null and i think generates an error
           user.updateProfile( { displayName: username } ).then( function() {
-              var databaseRef = firebase.database().ref(`users/${username}/scenes/`);
+              var databaseRef = firebase.database().ref(`users/${user.uid}/scenes/`);
               databaseRef.push().set({});
             }).then(function() {
               // res.redirect('https://www.atlasreality.xyz/auth/dashboard');

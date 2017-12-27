@@ -1,16 +1,18 @@
 # mosaic
 
-General:
+#### General:
 
 - [ ] Refactor style.css
+- [ ] Go through this directory and make note of all the TODO tags.
+- [ ] delete previous deploys
 
-Home:
+#### Home:
 
 - [ ] menu (contact, FAQ)
 - [ ] video
 - [ ] text
 
-Signup
+#### Signup:
 
 - [ ] text ("make your ..." etc)
 - [x] password reentry field!
@@ -20,7 +22,7 @@ Signup
 - [ ] change password option
 - [ ] login persistence option
 
-Dashboard
+#### Dashboard:
 
 - [x] Capitalise profile name
 - [x] Add new scene button in navbar
@@ -30,12 +32,12 @@ Dashboard
 - [ ] delete scene option
 - [ ] SDK link (to Github)
 
-Profile
+#### Profile:
 
 - [ ] Delete account option
 - [ ] Change details - password, name, etc
 
 
-SDK
+#### SDK:
 
 - [ ] general outline + review previous notes in `~/ezagutza/cocoapods.md` and `~/ezagutza/swift.md`
