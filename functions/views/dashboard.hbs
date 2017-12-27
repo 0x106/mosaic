@@ -75,7 +75,17 @@
       </ul>
     </div>
 
-    <div class="wrapper">
+    <div>
+      <ul>
+        {{#each scenes}}
+        <li>
+            {{@key}}: {{@value}}
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+
+    <!-- <div class="wrapper"> -->
       <!-- <div class="grid-item"> -->
         <!-- <div>
             <label for="file-upload" class="custom-file-upload">
@@ -121,7 +131,7 @@
       <!-- </div> -->
 
 
-      <p>{{scenes}}</p>
+      <!-- <p>{{scenes}}</p> -->
 
       <!-- Add all the scenes in a loop below -->
 
@@ -131,7 +141,7 @@
       <!-- <div class="grid-item"><img src="" alt="" height="162" width="91"><p>Scene</p></div> -->
       <!-- <div class="grid-item"><img src="" alt="" height="162" width="91"><p>Scene</p></div> -->
       <!-- <div class="grid-item"><img src="" alt="" height="162" width="91"><p>Scene</p></div> -->
-    </div>
+    <!-- </div> -->
 
   </body>
 </html>

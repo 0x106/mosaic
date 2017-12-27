@@ -31,7 +31,7 @@ router.post('/login', function(req, res, next) {
     firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then(function(user) {
 
       // renderDashboard();
-      res.redirect('https://www.atlasreality.xyz/auth/dashboard')
+      res.redirect('https://www.atlasreality.xyz/auth/dashboard');
       return;
     }, function(error) {
         var errorCode = error.code;
