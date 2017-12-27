@@ -76,10 +76,13 @@
     </div>
 
     <div>
+
+      <h3>Your Scenes:</h3>
+
       <ul>
-        {{#each scenes}}
+				{{#each this}}
         <li>
-            {{@key}}: {{this}}
+           {{this.aid}}
         </li>
         {{/each}}
       </ul>

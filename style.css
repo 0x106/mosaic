@@ -106,7 +106,7 @@ p {
 
 }
 
-ul {
+.ulnavbar {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -171,6 +171,27 @@ ul {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+}
+
+.addbuttonnav {
+  float: right;
+  /* float: left; */
+  display: block;
+  /* color: white; */
+  /* color: #42718A; */
+  text-align: center;
+  padding: 8px 16px;
+  text-decoration: none;
+
+  /* border: 5px solid red; */
+  /* border-width: 2px 2px 2px 2px; */
+  /* border-color: #81B29A; */
+  /* border-color: #FB887C; */
+  /* border-color: #81B29A; */
+  /* border-color: #FB887C; */
+  /* border-radius: 6px; */
+  /* position: relative; */
+  /* padding-bottom: 14px; */
 }
 
 .videocontainer {
