@@ -32,8 +32,4 @@ router.get('/faq', (req, res) => {
     - William Gibson, Neuromancer.')
 });
 
-// router.get('/newScene', (req, res) => {
-//   res.render('newScene');
-// });
-
 module.exports = router;

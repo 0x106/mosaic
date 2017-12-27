@@ -19,8 +19,8 @@ Signup
 
 Dashboard
 
-- [ ] Capitalise profile name
-- [ ] Add new scene button image
+- [x] Capitalise profile name
+- [x] Add new scene button in navbar
 - [ ] Upload progress bar
 - [ ] show list of scenes
 - [ ] delete scene option
