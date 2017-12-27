@@ -22,10 +22,12 @@ router.post('/', function(req, res, next) {
           // otherwise this returns null and i think generates an error
           user.updateProfile( { displayName: username } ).then( function() {
               var databaseRef = firebase.database().ref(`users/${user.uid}/scenes/`);
-              databaseRef.push().set({});
+              databaseRef.push().set({
+                aid: 'No scenes uploaded yet.'
+              });
             }).then(function() {
-              // res.redirect('https://www.atlasreality.xyz/auth/dashboard');
-              res.redirect('https://www.atlasreality.xyz/'); // for now
+              res.redirect('https://www.atlasreality.xyz/auth/dashboard');
+              // res.redirect('https://www.atlasreality.xyz/'); // for now
               return;
           });
       }, function(error) {

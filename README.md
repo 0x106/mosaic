@@ -21,6 +21,7 @@
 - [ ] email verification?
 - [ ] change password option
 - [ ] login persistence option
+- [ ] highlight colour of input fields for previous entered value (the yellow)
 
 #### Dashboard:
 
