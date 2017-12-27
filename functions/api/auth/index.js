@@ -15,6 +15,7 @@ router.post('/', function(req, res, next) {
         var username = capitaliseFirstLetter(req.body.username)
         user.updateProfile( { displayName: username } ).then( function() {
           res.redirect('https://www.atlasreality.xyz/auth/dashboard')
+          return;
         });
     }, function(error) {
         // Handle Errors here.
@@ -31,6 +32,7 @@ router.post('/login', function(req, res, next) {
 
       // renderDashboard();
       res.redirect('https://www.atlasreality.xyz/auth/dashboard')
+      return;
     }, function(error) {
         var errorCode = error.code;
         var errorMessage = error.message;
@@ -43,6 +45,7 @@ router.post('/login', function(req, res, next) {
 router.get('/logout', function(req, res, next) {
   firebase.auth().signOut().then(function() {
       res.redirect('http://www.atlasreality.xyz/')
+      return;
     }, function(error) {
       res.send('Error:' + error)
   });
@@ -62,6 +65,7 @@ router.get('/dashboard', (req, res) => {
         });
       } else {
          res.redirect('http://www.atlasreality.xyz/signup');
+         return;
       }
   });
 });
