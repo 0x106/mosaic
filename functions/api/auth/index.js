@@ -11,19 +11,27 @@ function capitaliseFirstLetter(string)
 // New user SIGN UP
 router.post('/', function(req, res, next) {
     // TODO: check that the password conforms to our specification
-    firebase.auth().createUserWithEmailAndPassword(req.body.email, req.body.password).then(function(user) {
-        var username = capitaliseFirstLetter(req.body.username)
-        user.updateProfile( { displayName: username } ).then( function() {
-          res.redirect('https://www.atlasreality.xyz/auth/dashboard')
-          return;
-        });
-    }, function(error) {
-        // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // TODO: render errors appropriately
-        res.send('Error creating user:' + error.code + ' --> ' + error.message);
-    });
+
+    // first check that the passwords match?
+    // TODO: indicate to the user whether they match while they are typing
+    if (req.body.password == req.body.password_confirm) {
+
+      firebase.auth().createUserWithEmailAndPassword(req.body.email, req.body.password).then(function(user) {
+          var username = capitaliseFirstLetter(req.body.username)
+          user.updateProfile( { displayName: username } ).then( function() {
+            res.redirect('https://www.atlasreality.xyz/auth/dashboard')
+            return;
+          });
+      }, function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // TODO: render errors appropriately
+          res.send('Error creating user:' + error.code + ' --> ' + error.message);
+      });
+    } else {
+      res.send("Error: Passwords do not match");
+    }
 });
 
 // New user LOG IN
