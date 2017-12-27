@@ -18,9 +18,15 @@ router.post('/', function(req, res, next) {
 
       firebase.auth().createUserWithEmailAndPassword(req.body.email, req.body.password).then(function(user) {
           var username = capitaliseFirstLetter(req.body.username)
+          // TODO: after we update the profile we need to update the database to add the `users/${userID}/scenes` field
+          // otherwise this returns null and i think generates an error
           user.updateProfile( { displayName: username } ).then( function() {
-            res.redirect('https://www.atlasreality.xyz/auth/dashboard')
-            return;
+              var databaseRef = firebase.database().ref(`users/${username}/scenes/`);
+              databaseRef.push().set({});
+            }).then(function() {
+              // res.redirect('https://www.atlasreality.xyz/auth/dashboard');
+              res.redirect('https://www.atlasreality.xyz/'); // for now
+              return;
           });
       }, function(error) {
           // Handle Errors here.

@@ -53,7 +53,7 @@
                     var databaseRef = database.ref(`users/${userID}/scenes/`);
 
                     console.log('2. references created');
-
+                    // TODO: IMPORTANT Check that BOTH the database reference AND the storage have completed - only create db ref after storage
                     databaseRef.push().set({
                       aid: file.name
                     }).then(function() {
