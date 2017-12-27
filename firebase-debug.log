@@ -1,0 +1,58 @@
+[debug] [2017-12-27T08:06:13.137Z] ----------------------------------------------------------------------
+[debug] [2017-12-27T08:06:13.140Z] Command:       /Users/jordancampbell/.nvm/versions/node/v6.9.1/bin/node /usr/local/bin/firebase deploy
+[debug] [2017-12-27T08:06:13.140Z] CLI Version:   3.12.0
+[debug] [2017-12-27T08:06:13.140Z] Platform:      darwin
+[debug] [2017-12-27T08:06:13.140Z] Node Version:  v6.9.1
+[debug] [2017-12-27T08:06:13.141Z] Time:          Wed Dec 27 2017 21:06:13 GMT+1300 (NZDT)
+[debug] [2017-12-27T08:06:13.141Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-12-27T08:06:13.155Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-12-27T08:06:13.155Z] > authorizing via signed-in user
+[debug] [2017-12-27T08:06:13.158Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/mosaic-portal  
+ Wed Dec 27 2017 21:06:13 GMT+1300 (NZDT)
+[debug] [2017-12-27T08:06:34.663Z] <<< HTTP RESPONSE 500
+[debug] [2017-12-27T08:06:34.663Z] <<< HTTP RESPONSE BODY
+[error] 
+[error] Error: HTTP Error: 500, An unknown error occurred. Please contact support.
+[debug] [2017-12-27T08:06:35.294Z] Error Context: {
+  "body": {
+    "error": {
+      "code": "UNKNOWN_ERROR",
+      "message": "An unknown error occurred. Please contact support."
+    }
+  },
+  "response": {
+    "statusCode": 500,
+    "body": {
+      "error": {
+        "code": "UNKNOWN_ERROR",
+        "message": "An unknown error occurred. Please contact support."
+      }
+    },
+    "headers": {
+      "server": "nginx",
+      "date": "Wed, 27 Dec 2017 08:06:34 GMT",
+      "content-type": "application/json; charset=utf-8",
+      "content-length": "97",
+      "connection": "close",
+      "x-content-type-options": "nosniff"
+    },
+    "request": {
+      "uri": {
+        "protocol": "https:",
+        "slashes": true,
+        "auth": null,
+        "host": "admin.firebase.com",
+        "port": 443,
+        "hostname": "admin.firebase.com",
+        "hash": null,
+        "search": null,
+        "query": null,
+        "pathname": "/v1/projects/mosaic-portal",
+        "path": "/v1/projects/mosaic-portal",
+        "href": "https://admin.firebase.com/v1/projects/mosaic-portal"
+      },
+      "method": "GET"
+    }
+  }
+}
