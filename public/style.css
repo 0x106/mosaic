@@ -268,7 +268,8 @@ form input {
   /* float: center; */
   /* grid-area: a; */
   /* align-self: center; */
-  justify-self: center;
+  /* justify-self: center; */
+
   text-align: center;
   /* width: 200px; */
   /* height: 200px; */
@@ -283,8 +284,11 @@ form input {
     ". a b c ."
     ". a b c ."; */
 
-    /* TODO: check this is needed (it was migrated from dev) */
-    padding-top: 100px;
+  /* TODO: check if this padding is necessary (it was migrated from dev) */
+  padding-top: 100px;
+  
+  justify-items: center;
+  align-items: center;
 }
 
 .dashnavbar {
@@ -378,7 +382,11 @@ input[type="file"] {
     display: none;
 }
 
-
 .ldBar-label {
   display: none!important;
+}
+
+
+#boltFillText {
+  color: #FFFFFF;
 }
