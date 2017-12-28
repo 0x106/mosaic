@@ -17,26 +17,34 @@ router.post('/', function(req, res, next) {
     if (req.body.password == req.body.password_confirm) {
 
       firebase.auth().createUserWithEmailAndPassword(req.body.email, req.body.password).then(function(user) {
-          var username = capitaliseFirstLetter(req.body.username)
-          // TODO: after we update the profile we need to update the database to add the `users/${userID}/scenes` field
-          // otherwise this returns null and i think generates an error
-          user.updateProfile( { displayName: username } ).then( function() {
-              var databaseRef = firebase.database().ref(`users/${user.uid}/scenes/`);
-              databaseRef.push().set({
-                aid: 'No scenes uploaded yet.'
+          firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL) .then(function() {
+              var username = capitaliseFirstLetter(req.body.username)
+              // TODO: after we update the profile we need to update the database to add the `users/${userID}/scenes` field
+              // otherwise this returns null and i think generates an error
+              user.updateProfile( { displayName: username } ).then( function() {
+                  var databaseRef = firebase.database().ref(`users/${user.uid}/scenes/`);
+                  databaseRef.push().set({
+                    aid: 'No scenes uploaded yet.'
+                  });
+                }).then(function() {
+                  res.redirect('https://www.atlasreality.xyz/auth/dashboard');
+                  // res.redirect('https://www.atlasreality.xyz/'); // for now
+                  return;
               });
-            }).then(function() {
-              res.redirect('https://www.atlasreality.xyz/auth/dashboard');
-              // res.redirect('https://www.atlasreality.xyz/'); // for now
-              return;
+          }, function(error) {
+              // Handle Errors here.
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              // TODO: render errors appropriately
+              res.send('Error creating user:' + error.code + ' --> ' + error.message);
           });
-      }, function(error) {
+
+        }).catch(function(error) {  // persistence error
           // Handle Errors here.
           var errorCode = error.code;
           var errorMessage = error.message;
-          // TODO: render errors appropriately
-          res.send('Error creating user:' + error.code + ' --> ' + error.message);
-      });
+        });
+
     } else {
       res.send("Error: Passwords do not match");
     }

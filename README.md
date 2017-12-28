@@ -15,7 +15,7 @@
 #### Signup:
 
 - [ ] text ("make your ..." etc)
-- [x] password reentry field!
+- [x] password reentry field
 - [ ] error handling - incorrect password etc
 - [ ] signal to user in realtime if passwords don't match
 - [ ] email verification?
@@ -29,7 +29,7 @@
 - [x] Add new scene button in navbar
 - [ ] Upload progress bar (animate navbar border)
 - [x] show list of scenes
-- [ ] scene list styling
+- [x] scene list styling
 - [ ] delete scene option
 - [ ] SDK link (to Github)
 
