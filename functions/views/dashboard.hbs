@@ -18,7 +18,6 @@
             storageBucket: "mosaic-portal.appspot.com",
             databaseURL: "https://mosaic-portal.firebaseio.com"
         };
-        // cF2SedCeMFWTmEP4evpFcogOONH3 <-- cianna@mariecanning.com uid
         firebase.initializeApp(config);
     </script>
   </head>
@@ -33,7 +32,7 @@
 
         <li class="addbuttonnav" title="Add Scene">
           <label for="file-upload" class="custom-file-upload">
-              <img src="https://www.atlasreality.xyz/addButton3.png" alt="Add new scene" height="32" width="32">
+              <img src="https://www.atlasreality.xyz/addButton4.svg" alt="Add new scene" height="32" width="32">
               <input id="file-upload" type="file" name="scene" value="Please upload your scene">
               <script>
                 // https://eloquentjavascript.net/18_forms.html
@@ -71,80 +70,17 @@
               </script>
           </label>
         </li>
-
       </ul>
     </div>
 
-    <div>
-
-      <h3>Your Scenes:</h3>
-
-      <ul>
-				{{#each scenes}}
-        <li>
-           {{this.aid}}
-        </li>
+    <div class="wrapper">
+        {{#each scenes}}
+            <div class="grid-item">
+                <img src="https://www.atlasreality.xyz/bolt.svg" alt={{this.aid}} height="48" width="48">
+                <p class="sceneTitle">{{this.aid}}</p>
+            </div>
         {{/each}}
-      </ul>
     </div>
-
-    <!-- <div class="wrapper"> -->
-      <!-- <div class="grid-item"> -->
-        <!-- <div>
-            <label for="file-upload" class="custom-file-upload">
-                <img src="https://www.atlasreality.xyz/addButton.png" alt="Add new scene" height="162" width="162">
-                <input id="file-upload" type="file" name="scene" value="Please upload your scene">
-                <script>
-                  // https://eloquentjavascript.net/18_forms.html
-                  var fileUploadButton = document.querySelector('input');
-                  fileUploadButton.addEventListener("change", function() {
-
-                    var userID = "{{uid}}";
-
-                    var storage = firebase.storage();
-                    var database = firebase.database();
-
-                    console.log('1. init');
-
-                    if (fileUploadButton.files.length > 0) {
-                      var file = fileUploadButton.files[0];
-                      var storageRef = storage.ref().child(`users/${userID}/${file.name}`);
-                      var databaseRef = database.ref(`users/${userID}/scenes/`);
-
-                      console.log('2. references created');
-
-                      databaseRef.push().set({
-                        aid: file.name
-                      }).then(function() {
-                        console.log('3. data pushed');
-                        var uploadTask = storageRef.put(file);
-                        console.log('4. upload task');
-                        uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-                           function() {
-                             console.log('5. reloading page');
-                             location.reload(true); // when `true` is set it will reload from the server
-                        });
-                      });
-                    } // end if
-                  });
-                </script>
-            </label>
-        </div> -->
-        <!-- <p>Add New Scene</p> -->
-      <!-- </div> -->
-
-
-      <!-- <p>{{scenes}}</p> -->
-
-      <!-- Add all the scenes in a loop below -->
-
-      <!-- <div class="grid-item"><img src="" alt="" height="162" width="91"><p>Scene</p></div> -->
-      <!-- <div class="grid-item"><img src="" alt="" height="162" width="91"><p>Scene</p></div> -->
-      <!-- <div class="grid-item"><img src="" alt="" height="162" width="91"><p>Scene</p></div> -->
-      <!-- <div class="grid-item"><img src="" alt="" height="162" width="91"><p>Scene</p></div> -->
-      <!-- <div class="grid-item"><img src="" alt="" height="162" width="91"><p>Scene</p></div> -->
-      <!-- <div class="grid-item"><img src="" alt="" height="162" width="91"><p>Scene</p></div> -->
-    <!-- </div> -->
 
   </body>
 </html>
