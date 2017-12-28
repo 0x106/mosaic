@@ -51,20 +51,76 @@
                     var storageRef = storage.ref().child(`users/${userID}/${file.name}`);
                     var databaseRef = database.ref(`users/${userID}/scenes/`);
 
-                    console.log('2. references created');
-                    // TODO: IMPORTANT Check that BOTH the database reference AND the storage have completed - only create db ref after storage
-                    databaseRef.push().set({
-                      aid: file.name
-                    }).then(function() {
-                      console.log('3. data pushed');
-                      var uploadTask = storageRef.put(file);
-                      console.log('4. upload task');
-                      uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-                         function() {
-                           console.log('5. reloading page');
-                           location.reload(true); // when `true` is set it will reload from the server
-                      });
+
+                    var uploadTask = storageRef.put(file);
+                    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function(snapshot) {
+
+                        console.log('2. upload task');
+
+                        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        console.log('Upload is ' + progress + '% done');
+                        switch (snapshot.state) {
+                          case firebase.storage.TaskState.PAUSED: // or 'paused'
+                            console.log('Upload is paused');
+                            break;
+                          case firebase.storage.TaskState.RUNNING: // or 'running'
+                            console.log('Upload is running');
+                            break;
+                        }
+
+                    }, function(error) {
+                          // Handle unsuccessful uploads
+                          console.log('upload was unsuccessful');
+                    }, function() {
+                          // Handle successful uploads on complete
+                          // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+                          console.log('3. upload success.');
+
+                          // TODO: IMPORTANT Check that BOTH the database reference AND the storage have completed - only create db ref after storage
+                          databaseRef.push().set({ aid: file.name }).then(function(), {
+                              console.log('4. database ref pushed');
+                              var downloadURL = uploadTask.snapshot.downloadURL;
+                              console.log('5. reloading page');
+                              location.reload(true); // when `true` is set it will reload from the server rather than locally from cache
+                          });
                     });
+
+                    // can we get here without having updated the database etc?
+                    // TODO: check this - may need some flags
+
+
+                    // console.log('2. references created');
+                    // // TODO: IMPORTANT Check that BOTH the database reference AND the storage have completed - only create db ref after storage
+                    // databaseRef.push().set({
+                    //   aid: file.name
+                    // }).then(function() {
+                    //   console.log('3. database ref pushed');
+                    //   var uploadTask = storageRef.put(file);
+                    //   console.log('4. upload task');
+                    //   uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function(snapshot) {
+                    //
+                    //     var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    //     console.log('Upload is ' + progress + '% done');
+                    //     switch (snapshot.state) {
+                    //       case firebase.storage.TaskState.PAUSED: // or 'paused'
+                    //         console.log('Upload is paused');
+                    //         break;
+                    //       case firebase.storage.TaskState.RUNNING: // or 'running'
+                    //         console.log('Upload is running');
+                    //         break;
+                    //     }
+                    //   }, function(error) {
+                    //     // Handle unsuccessful uploads
+                    //     console.log('upload was unsuccessful');
+                    //   }, function() {
+                    //     // Handle successful uploads on complete
+                    //     // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+                    //     console.log('upload success.');
+                    //     var downloadURL = uploadTask.snapshot.downloadURL;
+                    //     console.log('5. reloading page');
+                    //     location.reload(true); // when `true` is set it will reload from the server
+                    //   });
+                    // });
                   } // end if
                 });
               </script>
