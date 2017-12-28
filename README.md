@@ -20,7 +20,8 @@
 - [ ] signal to user in realtime if passwords don't match
 - [ ] email verification?
 - [ ] change password option
-- [ ] login persistence option
+- [x] login persistence
+- [ ] login persistence radio button
 - [ ] highlight colour of input fields for previous entered value (the yellow)
 
 #### Dashboard:
