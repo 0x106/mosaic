@@ -5,7 +5,8 @@
     <title>Atlas Reality</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
-    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://www.atlasreality.xyz/loading-bar.css"/>
+    <script type="text/javascript" src="https://www.atlasreality.xyz/loading-bar.js"></script>
     <link rel="stylesheet" type="text/css" href="https://www.atlasreality.xyz/style.css" />
 
     <!-- defines the firebase library -->
@@ -50,7 +51,7 @@
                     var file = fileUploadButton.files[0];
                     var storageRef = storage.ref().child(`users/${userID}/${file.name}`);
                     var databaseRef = database.ref(`users/${userID}/scenes/`);
-
+                    var statusBar = new ldBar("#progressBar");
 
                     var uploadTask = storageRef.put(file);
                     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function(snapshot) {
@@ -58,6 +59,7 @@
                         console.log('2. upload task');
 
                         var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        statusBar.set(progress);
                         console.log('Upload is ' + progress + '% done');
                         switch (snapshot.state) {
                           case firebase.storage.TaskState.PAUSED: // or 'paused'
@@ -136,6 +138,15 @@
                 <p class="sceneTitle">{{this.aid}}</p>
             </div>
         {{/each}}
+
+        <div class="grid-item">
+          <div class="ldBar" id="progressBar"
+                  data-value="0" data-type="fill"
+                  data-img="boltFill.svg"
+                  data-fill-background="#FFFFFF"
+                  data-img-size="48,48">
+          </div>
+        </div>
     </div>
 
   </body>

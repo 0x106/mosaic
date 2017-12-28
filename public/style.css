@@ -377,3 +377,8 @@ li:hover {
 input[type="file"] {
     display: none;
 }
+
+
+.ldBar-label {
+  display: none!important;
+}

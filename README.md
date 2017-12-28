@@ -33,6 +33,8 @@
 - [x] scene list styling
 - [ ] delete scene option
 - [ ] SDK link (to Github)
+- [ ] Remove the 'no scenes uploaded yet' item
+- [ ] animated progress bar
 
 #### Profile:
 
