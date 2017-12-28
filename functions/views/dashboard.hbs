@@ -37,49 +37,50 @@
               <input id="file-upload" type="file" name="scene" value="Please upload your scene">
               <script>
                 // https://eloquentjavascript.net/18_forms.html
-                var fileUploadButton = document.querySelector('input');
-                fileUploadButton.addEventListener("change", function() {
+                  // function uploadFile() {
+                      var fileUploadButton = document.querySelector('input');
+                      fileUploadButton.addEventListener("change", function() {
 
-                  var userID = "{{uid}}";
+                        var userID = "{{uid}}";
 
-                  var storage = firebase.storage();
-                  var database = firebase.database();
+                        var storage = firebase.storage();
+                        var database = firebase.database();
 
-                  if (fileUploadButton.files.length > 0) {
-                    var file = fileUploadButton.files[0];
-                    var storageRef = storage.ref().child(`users/${userID}/${file.name}`);
-                    var databaseRef = database.ref(`users/${userID}/scenes/`);
-                    var statusBar = new ldBar("#progressBar");
+                        if (fileUploadButton.files.length > 0) {
+                          var file = fileUploadButton.files[0];
+                          var storageRef = storage.ref().child(`users/${userID}/${file.name}`);
+                          var databaseRef = database.ref(`users/${userID}/scenes/`);
 
-                    var uploadTask = storageRef.put(file);
-                    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function(snapshot) {
+                          var uploadTask = storageRef.put(file);
+                          uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function(snapshot) {
 
-                        var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                        statusBar.set(progress);
+                              var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                              statusBar.set(progress);
 
-                        switch (snapshot.state) {
-                          case firebase.storage.TaskState.PAUSED: // or 'paused'
-                            console.log('Upload is paused');
-                            break;
-                          case firebase.storage.TaskState.RUNNING: // or 'running'
-                            console.log('Upload is running');
-                            break;
-                        }
+                              switch (snapshot.state) {
+                                case firebase.storage.TaskState.PAUSED: // or 'paused'
+                                  console.log('Upload is paused');
+                                  break;
+                                case firebase.storage.TaskState.RUNNING: // or 'running'
+                                  console.log('Upload is running');
+                                  break;
+                              }
 
-                    }, function(error) {
-                          // Handle unsuccessful uploads
-                          console.log('upload was unsuccessful');
-                    }, function() {
-                          // Handle successful uploads on complete
-                          // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-                          // TODO: IMPORTANT Check that BOTH the database reference AND the storage have completed - only create db ref after storage
-                          databaseRef.push().set({ aid: file.name }).then(function() {
-                              var downloadURL = uploadTask.snapshot.downloadURL;
-                              location.reload(true); // when `true` is set it will reload from the server rather than locally from cache
+                          }, function(error) {
+                                // Handle unsuccessful uploads
+                                console.log('upload was unsuccessful');
+                          }, function() {
+                                // Handle successful uploads on complete
+                                // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+                                // TODO: IMPORTANT Check that BOTH the database reference AND the storage have completed - only create db ref after storage
+                                databaseRef.push().set({ aid: file.name }).then(function() {
+                                    var downloadURL = uploadTask.snapshot.downloadURL;
+                                    location.reload(true); // when `true` is set it will reload from the server rather than locally from cache
+                                });
                           });
-                    });
-                  } // end if
-                });
+                        } // end if
+                      });
+                // }
               </script>
           </label>
         </li>
@@ -95,12 +96,19 @@
         {{/each}}
 
         <div class="grid-item">
+          <!-- TODO: when the progress bar is being filled it creates a new element below this one - then fills that. -->
+          <!-- TODO:   this is what is causing it to appear lower than the other bolts. -->
+          <!-- TODO:   to fix, check whether the html is parsed fully before the scripts. -->
           <div class="ldBar" id="progressBar"
                   data-value="0" data-type="fill"
                   data-img="https://www.atlasreality.xyz/boltFill.svg"
                   data-fill-background="#FFFFFF"
                   data-img-size="48,48">
           </div>
+          <script>
+                    var statusBar = new ldBar("#progressBar");
+                    console.log("created progress bar html + js");
+          </script>
           <p class="sceneTitle" id="boltFillText">FooBar</p>
         </div>
     </div>

@@ -45,3 +45,7 @@
 #### SDK:
 
 - [ ] general outline + review previous notes in `~/ezagutza/cocoapods.md` and `~/ezagutza/swift.md`
+
+----
+
+#### Notes:
