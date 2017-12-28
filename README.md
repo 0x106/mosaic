@@ -28,13 +28,13 @@
 
 - [x] Capitalise profile name
 - [x] Add new scene button in navbar
-- [ ] Upload progress bar (animate navbar border)
+- [x] Upload progress bar
+- [x] animate progress bar
 - [x] show list of scenes
 - [x] scene list styling
 - [ ] delete scene option
 - [ ] SDK link (to Github)
 - [ ] Remove the 'no scenes uploaded yet' item
-- [ ] animated progress bar
 
 #### Profile:
 
