@@ -77,7 +77,7 @@
                           console.log('3. upload success.');
 
                           // TODO: IMPORTANT Check that BOTH the database reference AND the storage have completed - only create db ref after storage
-                          databaseRef.push().set({ aid: file.name }).then(function(), {
+                          databaseRef.push().set({ aid: file.name }).then(function() {
                               console.log('4. database ref pushed');
                               var downloadURL = uploadTask.snapshot.downloadURL;
                               console.log('5. reloading page');
