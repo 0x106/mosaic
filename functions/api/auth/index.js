@@ -1,10 +1,8 @@
 const express = require('express');
 const firebase = require('../../config.js');
-
 const router = express.Router();
 
-function capitaliseFirstLetter(string)
-{
+function capitaliseFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
@@ -12,42 +10,34 @@ function capitaliseFirstLetter(string)
 router.post('/', function(req, res, next) {
     // TODO: check that the password conforms to our specification
 
-    // first check that the passwords match?
     // TODO: indicate to the user whether they match while they are typing
     if (req.body.password == req.body.password_confirm) {
 
-      firebase.auth().createUserWithEmailAndPassword(req.body.email, req.body.password).then(function(user) {
-          firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(function() {
-              var username = capitaliseFirstLetter(req.body.username)
-              // TODO: after we update the profile we need to update the database to add the `users/${userID}/scenes` field
-              // otherwise this returns null and i think generates an error
-              user.updateProfile( { displayName: username } ).then( function() {
-                  var databaseRef = firebase.database().ref(`users/${user.uid}/scenes/`);
-                  databaseRef.push().set({
-                    aid: 'No scenes uploaded yet.'
-                  });
-                }).then(function() {
-                  res.redirect('https://www.atlasreality.xyz/auth/dashboard');
-                  // res.redirect('https://www.atlasreality.xyz/'); // for now
-                  return;
-              });
-          }, function(error) {
-              // Handle Errors here.
-              var errorCode = error.code;
-              var errorMessage = error.message;
-              // TODO: render errors appropriately
-              res.send('Error creating user:' + error.code + ' --> ' + error.message);
+      // TODO: investigate why persistence isn't working
+      firebase.auth().createUserWithEmailAndPassword(req.body.email, req.body.password).then(
+
+        function(user) {
+
+          var username = capitaliseFirstLetter(req.body.username)
+          user.updateProfile( { displayName: username } ).then(
+            function() {
+              var databaseRef = firebase.database().ref(`users/${user.uid}/scenes/`);
+              databaseRef.push().set({aid: 'No scenes uploaded yet.'});
+            }).then(function() {
+              res.redirect('https://www.atlasreality.xyz/auth/dashboard');
+              return;
           });
 
-        }).catch(function(error) {  // persistence error
-          // Handle Errors here.
+        }, function(error) {
           var errorCode = error.code;
           var errorMessage = error.message;
-        });
+          res.send('Error creating user:' + error.code + ' --> ' + error.message); // TODO: render errors appropriately
+         });
 
     } else {
       res.send("Error: Passwords do not match");
     }
+
 });
 
 // New user LOG IN
@@ -104,7 +94,7 @@ module.exports = router;
 
 
 // firebase.auth().createUserWithEmailAndPassword(req.body.email, req.body.password).then(function(user) {
-//     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL) .then(function() {
+//     firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(function() {
 //         var username = capitaliseFirstLetter(req.body.username)
 //         // TODO: after we update the profile we need to update the database to add the `users/${userID}/scenes` field
 //         // otherwise this returns null and i think generates an error
