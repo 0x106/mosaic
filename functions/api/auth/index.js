@@ -39,7 +39,7 @@ router.post('/', function(req, res, next) {
               // });
 
               // res.redirect('http://www.atlasreality.xyz/auth/dashboard');
-              res.redirect('dashboard');
+              res.redirect('/auth/dashboard');
               return;
             });
 
