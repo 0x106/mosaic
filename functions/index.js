@@ -2,6 +2,7 @@ const functions = require('firebase-functions');
 const express = require('express');
 const bodyParser = require('body-parser');
 const engines = require('consolidate');
+var cookieParser = require('cookie-parser');
 const session = require('client-sessions');
 // const firebase = require('./config.js');
 
@@ -43,6 +44,7 @@ app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
+app.use(cookieParser());
 // ----------------------------------------------------- //
 
 // --------------------- SESSIONS --------------------- //
