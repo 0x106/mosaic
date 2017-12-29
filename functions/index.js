@@ -2,6 +2,8 @@ const functions = require('firebase-functions');
 const express = require('express');
 const bodyParser = require('body-parser');
 const engines = require('consolidate');
+const session = require('client-sessions');
+// const firebase = require('./config.js');
 
 const auth = require('./api/auth');
 const routes = require('./api/routes');
@@ -12,6 +14,18 @@ const routes = require('./api/routes');
 // ---------------------------------------------------- //
 
 const app = express();
+
+// configure the session middleware as per:
+//      - https://stormpath.com/blog/everything-you-ever-wanted-to-know-about-node-dot-js-sessions
+app.use(session({
+  cookieName: 'session',
+  secret: 'c374h(&hdhdvnPH9&CGdhpdifvnjn^%$*&GCD',
+  duration: 30 * 60 * 1000,
+  activeDuration: 5 * 60 * 1000,
+  httpOnly: true,
+  secure: true,
+  ephemeral: true
+}));
 
 // https://expressjs.com/en/advanced/best-practice-security.html#at-a-minimum-disable-x-powered-by-header
 // https://medium.com/@atbe/firebase-functions-true-routing-2cb17a5cd288
@@ -29,6 +43,9 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 }));
 // ----------------------------------------------------- //
+
+// --------------------- SESSIONS --------------------- //
+// ---------------------------------------------------- //
 
 // ------------------------ API ------------------------ //
 // general calls
