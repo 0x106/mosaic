@@ -24,9 +24,9 @@ router.post('/', function(req, res, next) {
 
           user.updateProfile( { displayName: username } ).then( function() {
 
-              req.session.user = user;
+              req.cookie.user = user;
 
-              console.log('first setting user session' + req.session.user);
+              console.log('first setting user session' + req.cookie.user);
 
               var databaseRef = firebase.database().ref(`users/${user.uid}/scenes/`);
               databaseRef.push().set({aid: 'No scenes uploaded yet.'});
@@ -38,7 +38,8 @@ router.post('/', function(req, res, next) {
               //   res.render('dashboard', {username: user.displayName, uid: user.uid, scenes: scenes});
               // });
 
-              res.redirect('http://www.atlasreality.xyz/auth/dashboard?uid='+user.uid);
+              // res.redirect('http://www.atlasreality.xyz/auth/dashboard');
+              res.redirect('./dashboard');
               return;
             });
 
@@ -56,8 +57,8 @@ router.post('/', function(req, res, next) {
 router.post('/login', function(req, res, next) {
     firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then( function(user) {
 
-        req.session.user = user;
-        console.log(req.session.user);
+        req.cookie.user = user;
+        console.log(req.cookie.user);
         res.redirect('http://www.atlasreality.xyz/auth/dashboard');
         // res.redirect('http://www.atlasreality.xyz/auth/dashboard?uid='+user.uid);
         // firebase.database().ref(`/users/${user.uid}/scenes/`).once('value').then(function(snapshot) {
@@ -92,12 +93,13 @@ router.get('/dashboard',
   function(req, res, next) {
 
     // we presume we have a user (i.e that they are signed in and a session is stored)
-    // var user = req.session_state.user;
-    if (req.session.user) {
-      console.log('session stored' + req.session.user);
+    // var user = req.cookie_state.user;
+    if (req.cookie.user) {
+      console.log('session stored' + req.cookie.user);
     } else {
       console.log('no session stored');
     }
+    res.render('dashboard');
     // console.log(`Cookie: ${user.uid} | ${user.username} | ${user.email}`);
 
     // var uid = req.query.uid;
