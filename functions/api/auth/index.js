@@ -57,6 +57,7 @@ router.post('/login', function(req, res, next) {
     firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then( function(user) {
 
         req.session_state.user = user;
+        console.log(req.session_state.user);
         // res.redirect('http://www.atlasreality.xyz/auth/dashboard');
         res.redirect('http://www.atlasreality.xyz/auth/dashboard?uid='+user.uid);
         // firebase.database().ref(`/users/${user.uid}/scenes/`).once('value').then(function(snapshot) {
