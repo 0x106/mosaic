@@ -46,19 +46,18 @@ router.post('/', function(req, res, next) {
 });
 
 router.post('/login', function(req, res, next) {
+    firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then( function(user) {
 
-        firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then( function(user) {
+        req.session.user = user;
+        res.redirect('/dashboard');
+        return;
 
-            req.session.user = user;
-            res.redirect('/dashboard');
-            return;
-
-        }, function(error) {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // TODO: render errors appropriately
-            res.send('Error signing in user:' + error.code + ' --> ' + error.message);
-        });
+    }, function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // TODO: render errors appropriately
+        res.send('Error signing in user:' + error.code + ' --> ' + error.message);
+    });
 });
 
 // User requested LOGOUT
