@@ -40,20 +40,60 @@ router.post('/', function(req, res, next) {
 
 });
 
-// New user LOG IN
-router.post('/login', function(req, res, next) {
-    firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then(function(user) {
+// var userLogIn = function(req, res, next) {
+  // firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password)
+  //     .then(function(user) {
+  //       req.body.current_uid = user.uid;
+  //       next();
+  //     }, function(error) {
+  //         var errorCode = error.code;
+  //         var errorMessage = error.message;
+  //         // TODO: render errors appropriately
+  //         res.send('Error signing in user:' + error.code + ' --> ' + error.message);
+  //     });
+// }
 
-      // renderDashboard();
-      res.redirect('https://www.atlasreality.xyz/auth/dashboard');
-      return;
-    }, function(error) {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        // TODO: render errors appropriately
-        res.send('Error signing in user:' + error.code + ' --> ' + error.message);
-    });
+// New user LOG IN
+// router.post('/login',
+//
+//     (req, res, next) => userLogIn(req, res, next),
+//
+//     function(req, res, next) {
+//         // renderDashboard();
+//         var string = encodeURIComponent(req.body.current_uid);
+//         res.redirect('/dashboard?valid=' + string);
+//         // res.redirect('https://www.atlasreality.xyz/auth/dashboard');
+//         return;
+//       }
+// });
+
+router.post('/login', function(req, res, next) {
+
+        firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then(function(user) {
+
+            console.log(`user (1): ${user.uid}`);
+
+            firebase.database().ref(`/users/${user.uid}/scenes/`).once('value').then(function(snapshot) {
+              var scenes = snapshot.val();
+              res.render('dashboard', {username: user.displayName, uid: user.uid, scenes: scenes});
+            });
+
+              // req.body.current_uid = user.uid;
+
+              // var string = encodeURIComponent(req.body.current_uid);
+              // res.redirect('/dashboard?valid=' + string);
+              // res.redirect('https://www.atlasreality.xyz/auth/dashboard');
+              // return;
+
+            }, function(error) {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // TODO: render errors appropriately
+                res.send('Error signing in user:' + error.code + ' --> ' + error.message);
+            });
 });
+
+
 
 // User requested LOGOUT
 router.get('/logout', function(req, res, next) {
@@ -70,18 +110,30 @@ router.get('/dashboard', (req, res) => {
 
   // get the currently signed in user and then render their data
   // if no user is currently signed in then send them to the login page res.render('signup')
-  firebase.auth().onAuthStateChanged(function(user) {
-      if(user) { // if there is a currently signed in user
-        firebase.database().ref(`/users/${user.uid}/scenes/`).once('value').then(function(snapshot) {
-          var scenes = snapshot.val();
-          console.log(scenes);
-          res.render('dashboard', {username: user.displayName, uid: user.uid, scenes: scenes});
-        });
-      } else {
-         res.redirect('http://www.atlasreality.xyz/signup');
-         return;
-      }
-  });
+  // firebase.auth().onAuthStateChanged(function(user) {
+  //     console.log(`user: ${user.uid}`);
+  //     if(user) { // if there is a currently signed in user
+        // firebase.database().ref(`/users/${user.uid}/scenes/`).once('value').then(function(snapshot) {
+        //   var scenes = snapshot.val();
+        //   res.render('dashboard', {username: user.displayName, uid: user.uid, scenes: scenes});
+        // });
+  //     } else {
+  //        res.redirect('http://www.atlasreality.xyz/signup');
+  //        return;
+  //     }
+  // });
+
+      console.log(`user: ${req.query.valid}`);
+  //     if(user) { // if there is a currently signed in user
+  //       firebase.database().ref(`/users/${user.uid}/scenes/`).once('value').then(function(snapshot) {
+  //         var scenes = snapshot.val();
+  //         res.render('dashboard', {username: user.displayName, uid: user.uid, scenes: scenes});
+  //       });
+  //     } else {
+  //        res.redirect('http://www.atlasreality.xyz/signup');
+  //        return;
+  //     }
+  // });
 });
 
 
