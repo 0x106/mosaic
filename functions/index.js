@@ -17,14 +17,15 @@ const app = express();
 
 // configure the session middleware as per:
 //      - https://stormpath.com/blog/everything-you-ever-wanted-to-know-about-node-dot-js-sessions
+//      - https://github.com/fmarier/node-client-sessions-sample/blob/master/demo.js
 app.use(session({
-  cookieName: 'session',
-  secret: 'c374h(&hdhdvnPH9&CGdhpdifvnjn^%$*&GCD',
-  duration: 30 * 60 * 1000,
-  activeDuration: 5 * 60 * 1000,
-  httpOnly: true,
-  secure: true,
-  ephemeral: true
+  // cookieName: 'session',
+  secret: 'lhsdlfvlsdkfjnvslkjdfnvsjdfnvjdfnow',
+  // duration: 30 * 60 * 1000,
+  // activeDuration: 5 * 60 * 1000,
+  // httpOnly: true,
+  // secure: true,
+  // ephemeral: true
 }));
 
 // https://expressjs.com/en/advanced/best-practice-security.html#at-a-minimum-disable-x-powered-by-header

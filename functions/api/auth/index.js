@@ -1,6 +1,6 @@
 const express = require('express');
 const firebase = require('../../config.js');
-const session = require('client-sessions');
+// const session = require('client-sessions');
 
 const router = express.Router();
 
@@ -92,11 +92,16 @@ router.get('/dashboard',
 
     // we presume we have a user (i.e that they are signed in and a session is stored)
     // var user = req.session.user;
-
+    if (req.session.user) {
+      console.log('session stored' + req.session.user);
+    } else {
+      console.log('no session stored');
+    }
     // console.log(`Cookie: ${user.uid} | ${user.username} | ${user.email}`);
 
     var uid = req.query.uid;
-
+    // TODO: HANDLE SESSIONS
+    // TODO: get username from database
     firebase.database().ref(`/users/${uid}/scenes/`).once('value').then(function(snapshot) {
       var scenes = snapshot.val();
       res.render('dashboard', {username: uid, uid: uid, scenes: scenes});
