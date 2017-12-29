@@ -24,9 +24,9 @@ router.post('/', function(req, res, next) {
 
           user.updateProfile( { displayName: username } ).then( function() {
 
-              req.session.user = user;
+              req.session_state.user = user;
 
-              console.log('first setting user session' + req.session.user);
+              console.log('first setting user session' + req.session_state.user);
 
               var databaseRef = firebase.database().ref(`users/${user.uid}/scenes/`);
               databaseRef.push().set({aid: 'No scenes uploaded yet.'});
@@ -56,7 +56,7 @@ router.post('/', function(req, res, next) {
 router.post('/login', function(req, res, next) {
     firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then( function(user) {
 
-        req.session.user = user;
+        req.session_state.user = user;
         // res.redirect('http://www.atlasreality.xyz/auth/dashboard');
         res.redirect('http://www.atlasreality.xyz/auth/dashboard?uid='+user.uid);
         // firebase.database().ref(`/users/${user.uid}/scenes/`).once('value').then(function(snapshot) {
@@ -91,9 +91,9 @@ router.get('/dashboard',
   function(req, res, next) {
 
     // we presume we have a user (i.e that they are signed in and a session is stored)
-    // var user = req.session.user;
-    if (req.session.user) {
-      console.log('session stored' + req.session.user);
+    // var user = req.session_state.user;
+    if (req.session_state.user) {
+      console.log('session stored' + req.session_state.user);
     } else {
       console.log('no session stored');
     }
