@@ -19,7 +19,7 @@ const app = express();
 //      - https://stormpath.com/blog/everything-you-ever-wanted-to-know-about-node-dot-js-sessions
 //      - https://github.com/fmarier/node-client-sessions-sample/blob/master/demo.js
 app.use(session({
-  // cookieName: 'session',
+  cookieName: 'session',
   secret: 'lhsdlfvlsdkfjnvslkjdfnvsjdfnvjdfnow',
   // duration: 30 * 60 * 1000,
   // activeDuration: 5 * 60 * 1000,

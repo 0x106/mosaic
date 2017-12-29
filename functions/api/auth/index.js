@@ -24,9 +24,9 @@ router.post('/', function(req, res, next) {
 
           user.updateProfile( { displayName: username } ).then( function() {
 
-              req.session_state.user = user;
+              req.session.user = user;
 
-              console.log('first setting user session' + req.session_state.user);
+              console.log('first setting user session' + req.session.user);
 
               var databaseRef = firebase.database().ref(`users/${user.uid}/scenes/`);
               databaseRef.push().set({aid: 'No scenes uploaded yet.'});
@@ -56,10 +56,10 @@ router.post('/', function(req, res, next) {
 router.post('/login', function(req, res, next) {
     firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then( function(user) {
 
-        req.session_state.user = user;
-        console.log(req.session_state.user);
-        // res.redirect('http://www.atlasreality.xyz/auth/dashboard');
-        res.redirect('http://www.atlasreality.xyz/auth/dashboard?uid='+user.uid);
+        req.session.user = user;
+        console.log(req.session.user);
+        res.redirect('http://www.atlasreality.xyz/auth/dashboard');
+        // res.redirect('http://www.atlasreality.xyz/auth/dashboard?uid='+user.uid);
         // firebase.database().ref(`/users/${user.uid}/scenes/`).once('value').then(function(snapshot) {
         //   var scenes = snapshot.val();
         //   res.render('dashboard', {username: user.displayName, uid: user.uid, scenes: scenes});
@@ -93,20 +93,20 @@ router.get('/dashboard',
 
     // we presume we have a user (i.e that they are signed in and a session is stored)
     // var user = req.session_state.user;
-    if (req.session_state.user) {
-      console.log('session stored' + req.session_state.user);
+    if (req.session.user) {
+      console.log('session stored' + req.session.user);
     } else {
       console.log('no session stored');
     }
     // console.log(`Cookie: ${user.uid} | ${user.username} | ${user.email}`);
 
-    var uid = req.query.uid;
-    // TODO: HANDLE SESSIONS
-    // TODO: get username from database
-    firebase.database().ref(`/users/${uid}/scenes/`).once('value').then(function(snapshot) {
-      var scenes = snapshot.val();
-      res.render('dashboard', {username: uid, uid: uid, scenes: scenes});
-    });
+    // var uid = req.query.uid;
+    // // TODO: HANDLE SESSIONS
+    // // TODO: get username from database
+    // firebase.database().ref(`/users/${uid}/scenes/`).once('value').then(function(snapshot) {
+    //   var scenes = snapshot.val();
+    //   res.render('dashboard', {username: uid, uid: uid, scenes: scenes});
+    // });
 });
 
 module.exports = router;
