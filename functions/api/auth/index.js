@@ -26,11 +26,13 @@ router.post('/', function(req, res, next) {
 
               req.session.user = user;
 
+              console.log('first setting user session' + req.session.user);
+
               var databaseRef = firebase.database().ref(`users/${user.uid}/scenes/`);
               databaseRef.push().set({aid: 'No scenes uploaded yet.'});
 
           }).then(function() {
-              res.redirect('/dashboard');
+              res.redirect('http://www.atlasreality.xyz/auth/dashboard');
               return;
             });
 
@@ -49,7 +51,7 @@ router.post('/login', function(req, res, next) {
     firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then( function(user) {
 
         req.session.user = user;
-        res.redirect('/dashboard');
+        res.redirect('http://www.atlasreality.xyz/auth/dashboard');
         return;
 
     }, function(error) {
