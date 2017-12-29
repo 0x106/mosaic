@@ -32,7 +32,13 @@ router.post('/', function(req, res, next) {
               databaseRef.push().set({aid: 'No scenes uploaded yet.'});
 
           }).then(function() {
-              res.redirect('http://www.atlasreality.xyz/auth/dashboard');
+
+              firebase.database().ref(`/users/${user.uid}/scenes/`).once('value').then(function(snapshot) {
+                var scenes = snapshot.val();
+                res.render('dashboard', {username: user.displayName, uid: user.uid, scenes: scenes});
+              });
+
+              // res.redirect('http://www.atlasreality.xyz/auth/dashboard');
               return;
             });
 
@@ -51,7 +57,11 @@ router.post('/login', function(req, res, next) {
     firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then( function(user) {
 
         req.session.user = user;
-        res.redirect('http://www.atlasreality.xyz/auth/dashboard');
+        // res.redirect('http://www.atlasreality.xyz/auth/dashboard');
+        firebase.database().ref(`/users/${user.uid}/scenes/`).once('value').then(function(snapshot) {
+          var scenes = snapshot.val();
+          res.render('dashboard', {username: user.displayName, uid: user.uid, scenes: scenes});
+        });
         return;
 
     }, function(error) {
