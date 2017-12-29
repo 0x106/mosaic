@@ -73,17 +73,21 @@ router.get('/logout', function(req, res, next) {
 });
 
 // TODO: add requireLogin
-router.get('/dashboard', function(req, res, next) {
+router.get('/dashboard',
 
-  // we presume we have a user (i.e that they are signed in and a session is stored)
-  var user = req.session.user;
+  // (req, res, next) => checkSession(req, res, next),
 
-  console.log(`Cookie: ${user.uid} | ${user.username} | ${user.email}`);
+  function(req, res, next) {
 
-  firebase.database().ref(`/users/${user.uid}/scenes/`).once('value').then(function(snapshot) {
-    var scenes = snapshot.val();
-    res.render('dashboard', {username: user.displayName, uid: user.uid, scenes: scenes});
-  });
+    // we presume we have a user (i.e that they are signed in and a session is stored)
+    var user = req.session.user;
+
+    console.log(`Cookie: ${user.uid} | ${user.username} | ${user.email}`);
+
+    firebase.database().ref(`/users/${user.uid}/scenes/`).once('value').then(function(snapshot) {
+      var scenes = snapshot.val();
+      res.render('dashboard', {username: user.displayName, uid: user.uid, scenes: scenes});
+    });
 });
 
 module.exports = router;
