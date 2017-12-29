@@ -18,10 +18,10 @@ const app = express();
 app.use(session({
   cookieName: 'cookie',
   secret: 'lhsdlfvlsdkfjnvslkjdfnvsjdfnvjdfnow',
-  duration: 30 * 60 * 1000,
-  activeDuration: 5 * 60 * 1000
+  // duration: 30 * 60 * 1000,
+  // activeDuration: 5 * 60 * 1000
   // httpOnly: true,
-  // secure: true,
+  secure: true,
   // ephemeral: true
 }));
 
