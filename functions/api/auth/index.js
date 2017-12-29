@@ -95,7 +95,7 @@ router.get('/dashboard',
 
     // console.log(`Cookie: ${user.uid} | ${user.username} | ${user.email}`);
 
-    var uid = req.query.valid;
+    var uid = req.query.uid;
 
     firebase.database().ref(`/users/${uid}/scenes/`).once('value').then(function(snapshot) {
       var scenes = snapshot.val();
