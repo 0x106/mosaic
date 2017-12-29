@@ -33,12 +33,12 @@ router.post('/', function(req, res, next) {
 
           }).then(function() {
 
-              firebase.database().ref(`/users/${user.uid}/scenes/`).once('value').then(function(snapshot) {
-                var scenes = snapshot.val();
-                res.render('dashboard', {username: user.displayName, uid: user.uid, scenes: scenes});
-              });
+              // firebase.database().ref(`/users/${user.uid}/scenes/`).once('value').then(function(snapshot) {
+              //   var scenes = snapshot.val();
+              //   res.render('dashboard', {username: user.displayName, uid: user.uid, scenes: scenes});
+              // });
 
-              // res.redirect('http://www.atlasreality.xyz/auth/dashboard');
+              res.redirect('http://www.atlasreality.xyz/auth/dashboard?uid='+user.uid);
               return;
             });
 
@@ -58,10 +58,11 @@ router.post('/login', function(req, res, next) {
 
         req.session.user = user;
         // res.redirect('http://www.atlasreality.xyz/auth/dashboard');
-        firebase.database().ref(`/users/${user.uid}/scenes/`).once('value').then(function(snapshot) {
-          var scenes = snapshot.val();
-          res.render('dashboard', {username: user.displayName, uid: user.uid, scenes: scenes});
-        });
+        res.redirect('http://www.atlasreality.xyz/auth/dashboard?uid='+user.uid);
+        // firebase.database().ref(`/users/${user.uid}/scenes/`).once('value').then(function(snapshot) {
+        //   var scenes = snapshot.val();
+        //   res.render('dashboard', {username: user.displayName, uid: user.uid, scenes: scenes});
+        // });
         return;
 
     }, function(error) {
@@ -90,13 +91,15 @@ router.get('/dashboard',
   function(req, res, next) {
 
     // we presume we have a user (i.e that they are signed in and a session is stored)
-    var user = req.session.user;
+    // var user = req.session.user;
 
-    console.log(`Cookie: ${user.uid} | ${user.username} | ${user.email}`);
+    // console.log(`Cookie: ${user.uid} | ${user.username} | ${user.email}`);
 
-    firebase.database().ref(`/users/${user.uid}/scenes/`).once('value').then(function(snapshot) {
+    var uid = req.query.valid;
+
+    firebase.database().ref(`/users/${uid}/scenes/`).once('value').then(function(snapshot) {
       var scenes = snapshot.val();
-      res.render('dashboard', {username: user.displayName, uid: user.uid, scenes: scenes});
+      res.render('dashboard', {username: uid, uid: uid, scenes: scenes});
     });
 });
 
