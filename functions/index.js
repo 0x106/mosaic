@@ -5,9 +5,6 @@ const engines = require('consolidate');
 const session = require('client-sessions');
 // const firebase = require('./config.js');
 
-const auth = require('./api/auth');
-const routes = require('./api/routes');
-
 // ----------------- FIREBASE CONFIG ----------------- //
 // config is now found in config.js:
 // 'const firebase = require('./config.js');'
@@ -27,6 +24,9 @@ app.use(session({
   // secure: true,
   // ephemeral: true
 }));
+
+const auth = require('./api/auth');
+const routes = require('./api/routes');
 
 // https://expressjs.com/en/advanced/best-practice-security.html#at-a-minimum-disable-x-powered-by-header
 // https://medium.com/@atbe/firebase-functions-true-routing-2cb17a5cd288
