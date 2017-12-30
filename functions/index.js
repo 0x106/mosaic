@@ -13,18 +13,20 @@ const session = require('client-sessions');
 
 const app = express();
 
+// --------------------- SESSIONS --------------------- //
 // configure the session middleware as per:
 //      - https://stormpath.com/blog/everything-you-ever-wanted-to-know-about-node-dot-js-sessions
 //      - https://github.com/fmarier/node-client-sessions-sample/blob/master/demo.js
 app.use(session({
   cookieName: '__session',
-  secret: 'lhsdlfvlsdkfjnvslkjdfnvsjdfnvjdfnow',
-  // duration: 30 * 60 * 1000,
-  // activeDuration: 5 * 60 * 1000
-  // httpOnly: true,
+  secret: '(^C*S&CBS87d4c%b8&sydc@8&B8&%bsdb*',
+  duration: 30 * 60 * 1000,
+  activeDuration: 5 * 60 * 1000
+  httpOnly: true,
   secure: true,
-  // ephemeral: true
+  ephemeral: true
 }));
+// ---------------------------------------------------- //
 
 const auth = require('./api/auth');
 const routes = require('./api/routes');
@@ -46,9 +48,6 @@ app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 }));
 app.use(cookieParser());
 // ----------------------------------------------------- //
-
-// --------------------- SESSIONS --------------------- //
-// ---------------------------------------------------- //
 
 // ------------------------ API ------------------------ //
 // general calls
