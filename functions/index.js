@@ -46,6 +46,7 @@ app.use(function(req, res, next) {
           }
         } else {
           console.log(`no data entry`);
+          next();
         }
     });
   } else {
