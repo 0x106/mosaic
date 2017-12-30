@@ -31,9 +31,11 @@ app.use(function(req, res, next) {
   if (req.__session && req.__session.user) {
     console.log('session exists');
     var prevUser = req.__session.user;
+    console.log(`session uid: ${prevUser.uid}`);
     firebase.database().ref(`users/${prevUser.uid}/userData/`).once('value').then(function(snapshot) {
         var data = snapshot.val();
         if (data) {
+          console.log(`data snapshot exists`);
           if (data.hasOwnProperty('userData')) {
             if (data.userData) {
 
@@ -45,6 +47,8 @@ app.use(function(req, res, next) {
             }
             next();
           }
+        } else {
+          console.log(`no data entry`);
         }
     });
   } else {

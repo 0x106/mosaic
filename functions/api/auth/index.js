@@ -43,7 +43,7 @@ router.post('/', function(req, res, next) {
               databaseSceneRef.push().set({aid: 'No scenes uploaded yet.'});
 
               var databaseDataRef = firebase.database().ref(`users/${user.uid}/userData/`);
-              databaseDataRef.push().set({ userData: userData });
+              databaseDataRef.set({ userData: userData });
 
           }).then(function() {
               res.redirect('/auth/dashboard');
