@@ -3,20 +3,9 @@
 
 const express = require('express');
 const firebase = require('../../config.js');
+const util = require('../../util.js');
 
 const router = express.Router();
-
-function capitaliseFirstLetter(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-function requireLogin (req, res, next) {
-  if (!req.__session.user) {
-    res.redirect('/signup');
-  } else {
-    next();
-  }
-};
 
 // New user SIGN UP
 router.post('/', function(req, res, next) {
@@ -27,7 +16,7 @@ router.post('/', function(req, res, next) {
 
         function(user) {
 
-          var username = capitaliseFirstLetter(req.body.username);
+          var username = util.capitaliseFirstLetter(req.body.username);
 
           user.updateProfile( { displayName: username } ).then( function() {
 
@@ -91,7 +80,7 @@ router.get('/logout', function(req, res, next) {
 // TODO: add requireLogin
 router.get('/dashboard',
 
-  requireLogin,
+  util.requireLogin,
 
   function(req, res, next) {
     var user = req.__session.user

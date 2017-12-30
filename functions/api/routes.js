@@ -1,5 +1,6 @@
 const express = require('express');
 const firebase = require('../config.js');
+const util = require('../util.js');
 const router = express.Router();
 
 router.get('/', function(req, res, next) {
@@ -11,7 +12,11 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/signup', (req, res) => {
-  res.render('signup');
+  if (req.__session && req.__session.user) {
+    res.redirect('/auth/dashboard')
+  } else {
+    res.render('signup');
+  }
 });
 
 // TODO: move this into its own file
