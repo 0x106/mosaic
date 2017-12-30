@@ -12,9 +12,6 @@ function capitaliseFirstLetter(string) {
 router.post('/', function(req, res, next) {
     // TODO: check that the password conforms to our specification
 
-    // TODO: indicate to the user whether they match while they are typing
-    // if (req.body.password == req.body.password_confirm) {
-
       // TODO: investigate why persistence isn't working
       firebase.auth().createUserWithEmailAndPassword(req.body.email, req.body.password).then(
 
@@ -39,11 +36,6 @@ router.post('/', function(req, res, next) {
               var errorMessage = error.message;
               res.send('Error creating user:' + error.code + ' --> ' + error.message); // TODO: render errors appropriately
        });
-
-    // } else {
-      // alert("Passwords do not match");
-      // return;
-    // }
 });
 
 // user was previously logged out so when they log back in we need to save the
