@@ -31,14 +31,13 @@ app.use(function(req, res, next) {
   if (req.__session && req.__session.user) {
     var prevUser = req.__session.user;
     firebase.database().ref(`users/${prevUser.uid}/userData/`).once('value').then(function(snapshot) {
-      var data = snapshot.val();
-      if (data) {
-        var userData = data.userData;
-        if (userData) {
-          req.__session.user = userData;
+        var data = snapshot.val();
+        if data.hasOwnProperty('userData') {
+          if (data.userData) {
+            req.__session.user = data.userData;
+          }
+          next();
         }
-        next();
-      }
     });
   } else {
     // no session in use (no one logged in)
