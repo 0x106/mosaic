@@ -98,8 +98,7 @@ router.get('/dashboard',
     var user = req.__session.user
     firebase.database().ref(`users/${user.uid}/scenes/`).once('value').then(function(snapshot) {
         var scenes = snapshot.val();
-        var numKeys = Object.keys(scenes).length
-        if (numKeys == 0) {
+        if (scenes) {
           res.render('dashboard', {uid: user.uid, username: user.username, scenes: {"null": "null"}, noScenes: true});
         } else {
           res.render('dashboard', {uid: user.uid, username: user.username, scenes: scenes, noScenes: false});
