@@ -28,7 +28,7 @@ router.post('/', function(req, res, next) {
 
         function(user) {
 
-          var username = util.capitaliseFirstLetter(req.body.username);
+          var username = capitaliseFirstLetter(req.body.username);
 
           user.updateProfile( { displayName: username } ).then( function() {
 
@@ -92,7 +92,7 @@ router.get('/logout', function(req, res, next) {
 // TODO: add requireLogin
 router.get('/dashboard',
 
-  util.requireLogin,
+  requireLogin,
 
   function(req, res, next) {
     var user = req.__session.user
