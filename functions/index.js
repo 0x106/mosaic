@@ -29,12 +29,15 @@ app.use(session({
 
 app.use(function(req, res, next) {
   if (req.__session && req.__session.user) {
+    console.log('session exists');
     var prevUser = req.__session.user;
     firebase.database().ref(`users/${prevUser.uid}/userData/`).once('value').then(function(snapshot) {
         var data = snapshot.val();
         if (data) {
           if (data.hasOwnProperty('userData')) {
             if (data.userData) {
+
+              console.log(`uid: ${data.userData.uid}`);
 
               // we can only get in here if there is a cookie and if the uid stored in it actually exists.
 
