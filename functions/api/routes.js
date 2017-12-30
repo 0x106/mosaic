@@ -1,6 +1,5 @@
 const express = require('express');
 const firebase = require('../config.js');
-const util = require('../util.js');
 const router = express.Router();
 
 router.get('/', function(req, res, next) {
