@@ -1,12 +1,22 @@
+
+// https://firebase.google.com/docs/database/web/read-and-write
+
 const express = require('express');
 const firebase = require('../../config.js');
-// const session = require('client-sessions');
 
 const router = express.Router();
 
 function capitaliseFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+function requireLogin (req, res, next) {
+  if (!req.__session.user) {
+    res.redirect('/signup');
+  } else {
+    next();
+  }
+};
 
 // New user SIGN UP
 router.post('/', function(req, res, next) {
@@ -23,8 +33,11 @@ router.post('/', function(req, res, next) {
 
               req.__session.user = user;
 
-              var databaseRef = firebase.database().ref(`users/${user.uid}/scenes/`);
-              databaseRef.push().set({aid: 'No scenes uploaded yet.'});
+              var databaseSceneRef = firebase.database().ref(`users/${user.uid}/scenes/`);
+              databaseSceneRef.push().set({aid: 'No scenes uploaded yet.'});
+
+              var databaseDataRef = firebase.database().ref(`users/${user.uid}/userData/`);
+              databaseDataRef.push().set({user: user});
 
           }).then(function() {
               res.redirect('/auth/dashboard');
@@ -58,22 +71,28 @@ router.post('/login', function(req, res, next) {
 // User requested LOGOUT
 router.get('/logout', function(req, res, next) {
   firebase.auth().signOut().then(function() {
+      // delete the auth cookie.
+      if (req.__session && req.__session.user) {
+        req.__session.reset();
+      }
       res.redirect('http://www.atlasreality.xyz/')
       return;
     }, function(error) {
-      res.send('Error:' + error)
+      alert(error.message);
   });
 });
 
 // TODO: add requireLogin
-router.get('/dashboard', function(req, res, next) {
+router.get('/dashboard',
 
-    if (req.__session.user) {
-      console.log('session stored' + req.__session.user);
-    } else {
-      console.log('no session stored');
-    }
-    res.render('dashboard');
+  requireLogin,
+
+  function(req, res, next) {
+    var user = req.__session.user
+    firebase.database().ref(`users/${user.uid}/scenes/`).once('value').then(function(snapshot) {
+        var scenes = snapshot.val();
+        res.render('dashboard', {uid: user.uid, username: user.displayName, scenes});
+    });
 });
 
 module.exports = router;

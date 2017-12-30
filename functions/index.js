@@ -26,6 +26,26 @@ app.use(session({
   secure: true,
   ephemeral: true
 }));
+
+app.use(function(req, res, next) {
+  if (req.__session && req.__session.user) {
+    var prevUser = req.__session.user;
+    firebase.database().ref(`users/${prevUser.uid}/userData/`).once('value').then(function(snapshot) {
+      var currUser = snapshot.val().user;
+      if (currUser) {
+        // req.user = user;            // Do we need to store this? Won't be available on redirect and
+                                       //    isn't used anywhere. (Comment _out_ for now.)
+        req.__session.user = currUser;  //refresh the session value
+      }
+      next();
+    });
+  } else {
+    // no session in use (no one logged in)
+    //    any route that checks for a session user will ONLY
+    //    get data if they are properly logged in and recorded.
+    next();
+  }
+});
 // ---------------------------------------------------- //
 
 const auth = require('./api/auth');
