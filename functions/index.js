@@ -32,11 +32,16 @@ app.use(function(req, res, next) {
     var prevUser = req.__session.user;
     firebase.database().ref(`users/${prevUser.uid}/userData/`).once('value').then(function(snapshot) {
         var data = snapshot.val();
-        if (data.hasOwnProperty('userData')) {
-          if (data.userData) {
-            req.__session.user = data.userData;
+        if (data) {
+          if (data.hasOwnProperty('userData')) {
+            if (data.userData) {
+
+              // we can only get in here if there is a cookie and if the uid stored in it actually exists.
+
+              req.__session.user = data.userData;
+            }
+            next();
           }
-          next();
         }
     });
   } else {
