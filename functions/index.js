@@ -21,8 +21,8 @@ app.use(session({
   cookieName: '__session',
   secret: '(^C*S&CBS87d4c%b8&sydc@8&B8&%bsdb*',
   duration: 30 * 60 * 1000,
-  activeDuration: 5 * 60 * 1000
-  // httpOnly: true,
+  activeDuration: 5 * 60 * 1000,
+  httpOnly: true,
   secure: true,
   ephemeral: true
 }));
