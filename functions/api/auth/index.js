@@ -97,7 +97,7 @@ router.get('/dashboard',
     var user = req.__session.user
     firebase.database().ref(`users/${user.uid}/scenes/`).once('value').then(function(snapshot) {
         var scenes = snapshot.val();
-        res.render('dashboard', {uid: user.uid, username: user.displayName, scenes});
+        res.render('dashboard', {uid: user.uid, username: user.username, scenes});
     });
 });
 
