@@ -2,84 +2,14 @@ const express = require('express');
 const firebase = require('../config.js');
 const router = express.Router();
 
-// function globalSessionCheck(req, res, next) {
-//
-//   // if a session token is available?
-//   if (req.session && req.session.user) {
-//
-//     firebase.database().ref(`/users`).once('value').then(function(snapshot) {
-//       var users = snapshot.val();
-//       console.log(users);
-//       Object.keys(users).forEach(function(key,index) {
-//           // key: the name of the object key
-//           // index: the ordinal position of the key within the object
-//           console.log(key + ' ' + req.session.user.uid);
-//           if(key == req.session.user.uid) {
-//             console.log('key match');
-//             req.user = users[key];
-//             req.session.user = users[key];
-//             res.locals.user = users[key];
-//           }
-//       });
-//       console.log(req.user);
-//     });
-//
-//     next();
-//
-//     // admin.auth().getUser(uid)
-//     //   .then(function(userRecord) {
-//     //     // See the UserRecord reference doc for the contents of userRecord.
-//     //     console.log("Successfully fetched user data:", userRecord.toJSON());
-//     //   })
-//     //   .catch(function(error) {
-//     //     console.log("Error fetching user data:", error);
-//     //   });
-//
-//     // User.findOne({ email: req.session.user.email }, function(err, user) {
-//       // if (user) {
-//         // req.user = user;
-//         // delete req.user.password; // delete the password from the session
-//         // req.session.user = user;  //refresh the session value
-//         // res.locals.user = user;
-//       // }
-//       // finishing processing the middleware and run the route
-//       // next();
-//     // });
-//   } else {
-//     next();
-//   }
-// });
-
 router.get('/', function(req, res, next) {
-  // check if the user is logged in and if so then redirect to the dashboard
 
-  // console.log(`req.session: ${req.session}`);
-  // console.log(`req.session.user: ${req.session.user}`);
-
-  // if (req.session && req.session.user) {
-  //
-  //   firebase.database().ref(`/users`).once('value').then(function(snapshot) {
-  //     var users = snapshot.val();
-  //     console.log('users:' + users);
-  //     Object.keys(users).forEach(function(key,index) {
-  //         // key: the name of the object key
-  //         // index: the ordinal position of the key within the object
-  //         console.log(key + ' ' + req.session.user.uid);
-  //         if(key == req.session.user.uid) {
-  //           console.log('key match');
-  //           req.user = users[key];
-  //           req.session.user = users[key];
-  //           res.locals.user = users[key];
-  //         }
-  //     });
-  //     console.log(req.user);
-  //   });
-  // } else {
+    // TODO: Check session cookie to see if there is a known user at /index
+    //        - if so then show a 'dashboard' option, rather than the signup
+    //          option in the navbar
     res.render('index');
-  // }
 });
 
-// TODO: move this into its own file (routes.js?)
 router.get('/signup', (req, res) => {
   res.render('signup');
 });

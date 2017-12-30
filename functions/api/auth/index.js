@@ -13,7 +13,7 @@ router.post('/', function(req, res, next) {
     // TODO: check that the password conforms to our specification
 
     // TODO: indicate to the user whether they match while they are typing
-    if (req.body.password == req.body.password_confirm) {
+    // if (req.body.password == req.body.password_confirm) {
 
       // TODO: investigate why persistence isn't working
       firebase.auth().createUserWithEmailAndPassword(req.body.email, req.body.password).then(
@@ -26,19 +26,10 @@ router.post('/', function(req, res, next) {
 
               req.__session.user = user;
 
-              console.log('first setting user session' + req.__session.user);
-
               var databaseRef = firebase.database().ref(`users/${user.uid}/scenes/`);
               databaseRef.push().set({aid: 'No scenes uploaded yet.'});
 
           }).then(function() {
-
-              // firebase.database().ref(`/users/${user.uid}/scenes/`).once('value').then(function(snapshot) {
-              //   var scenes = snapshot.val();
-              //   res.render('dashboard', {username: user.displayName, uid: user.uid, scenes: scenes});
-              // });
-
-              // res.redirect('http://www.atlasreality.xyz/auth/dashboard');
               res.redirect('/auth/dashboard');
               return;
             });
@@ -49,22 +40,19 @@ router.post('/', function(req, res, next) {
               res.send('Error creating user:' + error.code + ' --> ' + error.message); // TODO: render errors appropriately
        });
 
-    } else {
-      res.send("Error: Passwords do not match");
-    }
+    // } else {
+      // alert("Passwords do not match");
+      // return;
+    // }
 });
 
+// user was previously logged out so when they log back in we need to save the
+// __session coookie.
 router.post('/login', function(req, res, next) {
     firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then( function(user) {
 
         req.__session.user = user;
-        console.log(req.__session.user);
-        res.redirect('http://www.atlasreality.xyz/auth/dashboard');
-        // res.redirect('http://www.atlasreality.xyz/auth/dashboard?uid='+user.uid);
-        // firebase.database().ref(`/users/${user.uid}/scenes/`).once('value').then(function(snapshot) {
-        //   var scenes = snapshot.val();
-        //   res.render('dashboard', {username: user.displayName, uid: user.uid, scenes: scenes});
-        // });
+        res.redirect('/auth/dashboard');
         return;
 
     }, function(error) {
@@ -86,29 +74,14 @@ router.get('/logout', function(req, res, next) {
 });
 
 // TODO: add requireLogin
-router.get('/dashboard',
+router.get('/dashboard', function(req, res, next) {
 
-  // (req, res, next) => checkSession(req, res, next),
-
-  function(req, res, next) {
-
-    // we presume we have a user (i.e that they are signed in and a session is stored)
-    // var user = req.__session_state.user;
     if (req.__session.user) {
       console.log('session stored' + req.__session.user);
     } else {
       console.log('no session stored');
     }
     res.render('dashboard');
-    // console.log(`Cookie: ${user.uid} | ${user.username} | ${user.email}`);
-
-    // var uid = req.query.uid;
-    // // TODO: HANDLE SESSIONS
-    // // TODO: get username from database
-    // firebase.database().ref(`/users/${uid}/scenes/`).once('value').then(function(snapshot) {
-    //   var scenes = snapshot.val();
-    //   res.render('dashboard', {username: uid, uid: uid, scenes: scenes});
-    // });
 });
 
 module.exports = router;
