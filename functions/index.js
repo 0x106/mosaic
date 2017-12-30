@@ -32,7 +32,7 @@ app.use(function(req, res, next) {
     var prevUser = req.__session.user;
     firebase.database().ref(`users/${prevUser.uid}/userData/`).once('value').then(function(snapshot) {
       var data = snapshot.val();
-      if data {
+      if (data) {
         var userData = data.userData;
         if (userData) {
           req.__session.user = userData;
