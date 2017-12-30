@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
     // res.render('index');
 
     if (req.__session && req.__session.user) {
-      res.redirect('index', {signUpButtonText: 'Dashboard'})
+      res.render('index', {signUpButtonText: 'Dashboard'})
     } else {
       res.render('index', {signUpButtonText: 'Sign Up'});
     }
