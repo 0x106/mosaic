@@ -22,11 +22,11 @@
         firebase.initializeApp(config);
 
         if ({{noScenes}}) {
-          $('#scenegrid').hide();
-          $('#noScenesDiv').show();
+          $('#scenegrid').hide();   $('#scenegrid').slideUp('slow');
+          $('#noScenesDiv').show(); $('#noScenesDiv').slideDown('slow');
         } else {
-          $('#scenegrid').show();
-          $('#noScenesDiv').hide();
+          $('#scenegrid').show();   $('#scenegrid').slideDown('slow');
+          $('#noScenesDiv').hide(); $('#noScenesDiv').slideUp('slow');
         }
 
     </script>
@@ -49,6 +49,9 @@
                   // function uploadFile() {
                       var fileUploadButton = document.querySelector('input');
                       fileUploadButton.addEventListener("change", function() {
+
+                        $('#scenegrid').show();   $('#scenegrid').slideDown('slow');
+                        $('#noScenesDiv').hide(); $('#noScenesDiv').slideUp('slow');
 
                         var userID = "{{uid}}";
 
