@@ -31,13 +31,19 @@ router.post('/', function(req, res, next) {
 
           user.updateProfile( { displayName: username } ).then( function() {
 
-              req.__session.user = user;
+              var userData = {
+                username: user.displayName,
+                uid: user.uid,
+                email: user.email
+              };
+
+              req.__session.user = userData;
 
               var databaseSceneRef = firebase.database().ref(`users/${user.uid}/scenes/`);
               databaseSceneRef.push().set({aid: 'No scenes uploaded yet.'});
 
               var databaseDataRef = firebase.database().ref(`users/${user.uid}/userData/`);
-              databaseDataRef.push().set({user: user});
+              databaseDataRef.push().set({ userData: userData });
 
           }).then(function() {
               res.redirect('/auth/dashboard');

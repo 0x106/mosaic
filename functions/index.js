@@ -31,11 +31,11 @@ app.use(function(req, res, next) {
   if (req.__session && req.__session.user) {
     var prevUser = req.__session.user;
     firebase.database().ref(`users/${prevUser.uid}/userData/`).once('value').then(function(snapshot) {
-      var currUser = snapshot.val().user;
-      if (currUser) {
+      var userData = snapshot.val().userData;
+      if (userData) {
         // req.user = user;            // Do we need to store this? Won't be available on redirect and
                                        //    isn't used anywhere. (Comment _out_ for now.)
-        req.__session.user = currUser;  //refresh the session value
+        req.__session.user = userData;  //refresh the session value
       }
       next();
     });
