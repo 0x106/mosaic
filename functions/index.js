@@ -27,25 +27,25 @@ app.use(session({
   ephemeral: true
 }));
 
-app.use(function(req, res, next) {
-  if (req.__session && req.__session.user) {
-    var prevUser = req.__session.user;
-    firebase.database().ref(`users/${prevUser.uid}/userData/`).once('value').then(function(snapshot) {
-        var data = snapshot.val();
-        if (data.hasOwnProperty('userData')) {
-          if (data.userData) {
-            req.__session.user = data.userData;
-          }
-          next();
-        }
-    });
-  } else {
-    // no session in use (no one logged in)
-    //    any route that checks for a session user will ONLY
-    //    get data if they are properly logged in and recorded.
-    next();
-  }
-});
+// app.use(function(req, res, next) {
+//   if (req.__session && req.__session.user) {
+//     var prevUser = req.__session.user;
+//     firebase.database().ref(`users/${prevUser.uid}/userData/`).once('value').then(function(snapshot) {
+//         var data = snapshot.val();
+//         if (data.hasOwnProperty('userData')) {
+//           if (data.userData) {
+//             req.__session.user = data.userData;
+//           }
+//           next();
+//         }
+//     });
+//   } else {
+//     // no session in use (no one logged in)
+//     //    any route that checks for a session user will ONLY
+//     //    get data if they are properly logged in and recorded.
+//     next();
+//   }
+// });
 // ---------------------------------------------------- //
 
 const auth = require('./api/auth');
