@@ -3,11 +3,6 @@ const firebase = require('../config.js');
 const router = express.Router();
 
 router.get('/', function(req, res, next) {
-    // TODO: Check session cookie to see if there is a known user at /index
-    //        - if so then show a 'dashboard' option, rather than the signup
-    //          option in the navbar
-    // res.render('index');
-
     if (req.__session && req.__session.user) {
       res.render('index', {signUpButtonText: 'Dashboard'})
     } else {
