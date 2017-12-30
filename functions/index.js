@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const engines = require('consolidate');
 var cookieParser = require('cookie-parser');
 const session = require('client-sessions');
-// const firebase = require('./config.js');
+const firebase = require('./config.js');
 
 // ----------------- FIREBASE CONFIG ----------------- //
 // config is now found in config.js:
@@ -33,9 +33,7 @@ app.use(function(req, res, next) {
     firebase.database().ref(`users/${prevUser.uid}/userData/`).once('value').then(function(snapshot) {
       var userData = snapshot.val().userData;
       if (userData) {
-        // req.user = user;            // Do we need to store this? Won't be available on redirect and
-                                       //    isn't used anywhere. (Comment _out_ for now.)
-        req.__session.user = userData;  //refresh the session value
+        req.__session.user = userData;
       }
       next();
     });
