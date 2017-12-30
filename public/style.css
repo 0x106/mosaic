@@ -56,6 +56,28 @@ p {
   margin-top: 40px;
 }
 
+#noScenesText {
+  font-weight: 300;
+  line-height: 2.0;
+
+  /* position: relative; */
+  /* margin-top: 40px; */
+}
+
+.noScenesGridItem {
+  text-align: center;
+}
+
+.noScenesWrapper {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: 260px;
+  padding-top: 100px;
+  justify-items: center;
+  align-items: center;
+}
+
 #loginCTA {
   font-weight: 300;
   line-height: 2.0;
@@ -286,7 +308,7 @@ form input {
 
   /* TODO: check if this padding is necessary (it was migrated from dev) */
   padding-top: 100px;
-  
+
   justify-items: center;
   align-items: center;
 }
