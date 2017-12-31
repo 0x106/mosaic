@@ -107,7 +107,8 @@ router.get('/dashboard',
         if (scenes) {
           res.render('dashboard', {uid: user.uid, username: user.username, scenes: scenes, noScenes: false});
         } else {
-          res.render('dashboard', {uid: user.uid, username: user.username, scenes: {"null": "null"}, noScenes: true});
+          // res.render('dashboard', {uid: user.uid, username: user.username, scenes: {"null": "null"}, noScenes: true});
+          res.render('dashboard', {uid: user.uid, username: user.username, scenes: {}, noScenes: true});
         }
     });
 });
