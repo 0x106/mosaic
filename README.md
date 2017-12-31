@@ -3,26 +3,22 @@
 #### General:
 
 - [ ] Refactor style.css
-- [ ] Go through this directory and make note of all the TODO tags.
+- [x] Go through this directory and make note of all the TO.DO tags.
 - [ ] delete previous deploys
 
 #### Home:
 
 - [ ] menu (contact, FAQ)
 - [ ] video
-- [ ] text
 
 #### Signup:
 
-- [ ] text ("make your ..." etc)
 - [x] password reentry field
-- [ ] error handling - incorrect password etc
-- [ ] signal to user in realtime if passwords don't match
+- [x] error handling - incorrect password etc
 - [ ] email verification?
 - [ ] change password option
 - [x] login persistence
 - [ ] login persistence radio button
-- [ ] highlight colour of input fields for previous entered value (the yellow)
 
 #### Dashboard:
 
@@ -48,3 +44,12 @@
 ----
 
 #### Notes:
+
+**Version: 0.1.0**
+
+1. Initial release.
+2. No known authentication bugs.
+3. Using `__session` cookies to monitor persistence.
+4. Users can upload files
+5. Can't alter files.
+6. Can't alter profile information.

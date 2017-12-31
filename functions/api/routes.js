@@ -18,7 +18,6 @@ router.get('/signup', (req, res) => {
   }
 });
 
-// TODO: move this into its own file
 router.get('/faq', (req, res) => {
     res.status(200).send('“Cyberspace. A consensual hallucination experienced daily by billions of legitimate operators, \
     in every nation, by children being taught mathematical concepts... A graphic representation of data abstracted from banks \

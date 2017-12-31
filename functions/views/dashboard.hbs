@@ -20,19 +20,6 @@
             databaseURL: "https://mosaic-portal.firebaseio.com"
         };
         firebase.initializeApp(config);
-
-        $(document).ready(function()
-        {
-            // {{#if noScenes}}
-            //     $('.wrapper').hide();
-            //     $('.wrapper').slideUp('slow');
-            //     $('.noScenesWrapper').slideDown('slow');
-            // {{else}}
-            //     $('.noScenesWrapper').hide();
-            //     $('.noScenesWrapper').slideUp('slow');
-            //     $('.wrapper').slideDown('slow');
-            // {{/if}}
-        });
     </script>
   </head>
   <body>
@@ -50,16 +37,8 @@
               <input id="file-upload" type="file" name="scene" value="Please upload your scene">
               <script>
                 // https://eloquentjavascript.net/18_forms.html
-                  // function uploadFile() {
                       var fileUploadButton = document.querySelector('input');
                       fileUploadButton.addEventListener("change", function() {
-
-                        // {{#if noScenes}}
-                        //     $('.noScenesWrapper').hide();
-                        //     $('.noScenesWrapper').slideUp('slow');
-                        //     $('.wrapper').slideDown('slow');
-                        // {{else}}
-                        // {{/if}}
 
                         var userID = "{{uid}}";
 
@@ -93,11 +72,9 @@
 
                           }, function(error) {
                                 // Handle unsuccessful uploads
-                                console.log('upload was unsuccessful');
+                                alert("Sorry, the upload could not be completed. Please refresh and try again.");
                           }, function() {
                                 // Handle successful uploads on complete
-                                // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-                                // TODO: IMPORTANT Check that BOTH the database reference AND the storage have completed - only create db ref after storage
                                 databaseRef.push().set({ aid: file.name }).then(function() {
                                     var downloadURL = uploadTask.snapshot.downloadURL;
                                     location.reload(true); // when `true` is set it will reload from the server rather than locally from cache
