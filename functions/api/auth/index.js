@@ -63,7 +63,13 @@ router.post('/', function(req, res, next) {
 router.post('/login', function(req, res, next) {
     firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then( function(user) {
 
-        req.__session.user = user;
+        var userData = {
+          username: user.displayName,
+          uid: user.uid,
+          email: user.email
+        };
+
+        req.__session.user = userData;
         res.redirect('/auth/dashboard');
         return;
 

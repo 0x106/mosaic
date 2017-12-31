@@ -42,6 +42,9 @@
                 $('.noScenesWrapper').slideUp('slow');
                 $('.wrapper').slideDown('slow');
             {{/if}}
+
+            var statusBar = new ldBar("#progressBar");
+            console.log("created progress bar html + js");
         });
     </script>
   </head>
@@ -63,12 +66,6 @@
                   // function uploadFile() {
                       var fileUploadButton = document.querySelector('input');
                       fileUploadButton.addEventListener("change", function() {
-
-                        // if ({{noScenes}}) {
-                        //   $('.noScenesWrapper').hide();
-                        //   $('.noScenesWrapper').slideUp('slow');
-                        //   $('.wrapper').slideDown('slow');
-                        // }
 
                         {{#if noScenes}}
                             $('.noScenesWrapper').hide();
@@ -151,10 +148,10 @@
                   data-fill-background="#FFFFFF"
                   data-img-size="48,48">
           </div>
-          <script>
-                    var statusBar = new ldBar("#progressBar");
-                    console.log("created progress bar html + js");
-          </script>
+          <!-- <script> -->
+                    <!-- var statusBar = new ldBar("#progressBar"); -->
+                    <!-- console.log("created progress bar html + js"); -->
+          <!-- </script> -->
           <p class="sceneTitle" id="boltFillText">FooBar</p>
     </div>
 
