@@ -23,15 +23,15 @@
 
         $(document).ready(function()
         {
-            {{#if noScenes}}
-                $('.wrapper').hide();
-                $('.wrapper').slideUp('slow');
-                $('.noScenesWrapper').slideDown('slow');
-            {{else}}
-                $('.noScenesWrapper').hide();
-                $('.noScenesWrapper').slideUp('slow');
-                $('.wrapper').slideDown('slow');
-            {{/if}}
+            // {{#if noScenes}}
+            //     $('.wrapper').hide();
+            //     $('.wrapper').slideUp('slow');
+            //     $('.noScenesWrapper').slideDown('slow');
+            // {{else}}
+            //     $('.noScenesWrapper').hide();
+            //     $('.noScenesWrapper').slideUp('slow');
+            //     $('.wrapper').slideDown('slow');
+            // {{/if}}
         });
     </script>
   </head>
@@ -54,12 +54,12 @@
                       var fileUploadButton = document.querySelector('input');
                       fileUploadButton.addEventListener("change", function() {
 
-                        {{#if noScenes}}
-                            $('.noScenesWrapper').hide();
-                            $('.noScenesWrapper').slideUp('slow');
-                            $('.wrapper').slideDown('slow');
-                        {{else}}
-                        {{/if}}
+                        // {{#if noScenes}}
+                        //     $('.noScenesWrapper').hide();
+                        //     $('.noScenesWrapper').slideUp('slow');
+                        //     $('.wrapper').slideDown('slow');
+                        // {{else}}
+                        // {{/if}}
 
                         var statusBar = new ldBar("#progressBar");
                         console.log("created progress bar html + js");
@@ -110,15 +110,15 @@
       </ul>
     </div>
 
-    <div class="noScenesWrapper">
-      <div class="noScenesGridItem">
-        <div id="noScenesDiv">
+    <!-- <div class="noScenesWrapper"> -->
+      <!-- <div class="noScenesGridItem"> -->
+        <!-- <div id="noScenesDiv"> -->
           <!-- <h3>It looks like you haven't uploaded any scenes yet.</h3> -->
-          <p id="noScenesText">It looks like you haven't uploaded any scenes yet.</p>
+          <!-- <p id="noScenesText">It looks like you haven't uploaded any scenes yet.</p> -->
           <!-- <span class="signup">Sign up</span>  -->
-        </div>
-      </div>
-    </div>
+        <!-- </div> -->
+      <!-- </div> -->
+    <!-- </div> -->
 
     <div class="wrapper" id="scenegrid">
         {{#each scenes}}
