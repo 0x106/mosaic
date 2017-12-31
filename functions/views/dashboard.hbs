@@ -75,7 +75,12 @@
                           uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function(snapshot) {
 
                               var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                              statusBar.set(progress);
+
+                              {{#if noScenes}}
+                                statusBarFirstItem.set(progress);
+                              {{else}}
+                                statusBar.set(progress);
+                              {{/if}}
 
                               switch (snapshot.state) {
                                 case firebase.storage.TaskState.PAUSED: // or 'paused'
@@ -108,27 +113,17 @@
     </div>
 
     {{#if noScenes}}
-    <div class="noScenesWrapper">
-      <div class="noScenesGridItem">
-        <div id="noScenesDiv">
-          <!-- <h3>It looks like you haven't uploaded any scenes yet.</h3> -->
-          <p id="noScenesText">It looks like you haven't uploaded any scenes yet.</p>
-          <!-- <span class="signup">Sign up</span>  -->
-        </div>
-      </div>
-    </div>
-
-    {{else}}
-    <div class="wrapper" id="scenegrid">
-        {{#each scenes}}
-            <div class="grid-item">
-                <img src="https://www.atlasreality.xyz/bolt.svg" alt={{this.aid}} height="48" width="48">
-                <p class="sceneTitle">{{this.aid}}</p>
+        <div class="noScenesWrapper">
+          <div class="noScenesGridItem">
+            <div id="noScenesDiv">
+              <h3>It looks like you haven't uploaded any scenes yet.</h3>
+              <p id="noScenesText">It looks like you haven't uploaded any scenes yet.</p>
+              <span class="signup">Sign up</span>
             </div>
-        {{/each}}
+          </div>
 
-         <div class="grid-item">
-            <div class="ldBar" id="progressBar"
+          <div class="noScenesGridItem">
+            <div class="ldBar" id="progressBarFirstItem"
                     data-value="0" data-type="fill"
                     data-img="https://www.atlasreality.xyz/boltFill.svg"
                     data-fill-background="#FFFFFF"
@@ -136,12 +131,38 @@
             </div>
             <p class="sceneTitle" id="boltFillText">FooBar</p>
             <script>
-                        var statusBar = new ldBar("#progressBar");
+                        var statusBarFirstItem = new ldBar("#progressBarFirstItem");
                         console.log("created progress bar html + js");
             </script>
-         </div>
-    </div>
+          </div>
+        </div>
+
+    {{else}}
+        <div class="wrapper" id="scenegrid">
+            {{#each scenes}}
+                <div class="grid-item">
+                    <img src="https://www.atlasreality.xyz/bolt.svg" alt={{this.aid}} height="48" width="48">
+                    <p class="sceneTitle">{{this.aid}}</p>
+                </div>
+            {{/each}}
+
+             <div class="grid-item">
+                <div class="ldBar" id="progressBar"
+                        data-value="0" data-type="fill"
+                        data-img="https://www.atlasreality.xyz/boltFill.svg"
+                        data-fill-background="#FFFFFF"
+                        data-img-size="48,48">
+                </div>
+                <p class="sceneTitle" id="boltFillText">FooBar</p>
+                <script>
+                            var statusBar = new ldBar("#progressBar");
+                            console.log("created progress bar html + js");
+                </script>
+             </div>
+        </div>
     {{/if}}
+
+
 
   </body>
 </html>
