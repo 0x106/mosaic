@@ -32,10 +32,6 @@
                 $('.noScenesWrapper').slideUp('slow');
                 $('.wrapper').slideDown('slow');
             {{/if}}
-
-            var statusBar = new ldBar("#progressBar");
-            console.log("created progress bar html + js");
-
         });
     </script>
   </head>
@@ -64,6 +60,9 @@
                             $('.wrapper').slideDown('slow');
                         {{else}}
                         {{/if}}
+
+                        var statusBar = new ldBar("#progressBar");
+                        console.log("created progress bar html + js");
 
                         var userID = "{{uid}}";
 
