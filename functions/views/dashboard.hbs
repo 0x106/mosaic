@@ -127,6 +127,24 @@
             </div>
         {{/each}}
 
+        <script>
+          function runProgressBar() {
+
+            var i = 0;
+            var timer = setInterval(update, 40);
+
+            function update() {
+              statusBar.set(i);
+
+              if (i==100) {
+                i = 0
+              } else {
+                i += 1
+              }
+            }
+          }
+        </script>
+
          <div class="grid-item">
             <div class="ldBar" id="progressBar"
                     data-value="0" data-type="fill"
@@ -138,6 +156,7 @@
             <script>
                         var statusBar = new ldBar("#progressBar");
                         console.log("created progress bar html + js");
+                        runProgressBar();
             </script>
          </div>
     </div>
