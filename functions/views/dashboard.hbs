@@ -61,9 +61,6 @@
                         // {{else}}
                         // {{/if}}
 
-                        var statusBar = new ldBar("#progressBar");
-                        console.log("created progress bar html + js");
-
                         var userID = "{{uid}}";
 
                         var storage = firebase.storage();
@@ -110,16 +107,18 @@
       </ul>
     </div>
 
-    <!-- <div class="noScenesWrapper"> -->
-      <!-- <div class="noScenesGridItem"> -->
-        <!-- <div id="noScenesDiv"> -->
+    {{#if noScenes}}
+    <div class="noScenesWrapper">
+      <div class="noScenesGridItem">
+        <div id="noScenesDiv">
           <!-- <h3>It looks like you haven't uploaded any scenes yet.</h3> -->
-          <!-- <p id="noScenesText">It looks like you haven't uploaded any scenes yet.</p> -->
+          <p id="noScenesText">It looks like you haven't uploaded any scenes yet.</p>
           <!-- <span class="signup">Sign up</span>  -->
-        <!-- </div> -->
-      <!-- </div> -->
-    <!-- </div> -->
+        </div>
+      </div>
+    </div>
 
+    {{else}}
     <div class="wrapper" id="scenegrid">
         {{#each scenes}}
             <div class="grid-item">
@@ -128,19 +127,21 @@
             </div>
         {{/each}}
 
-        <div class="grid-item">
-
-          <!-- <div class="ldBar" id="progressBar" -->
-                  <!-- data-value="0" data-type="fill" -->
-                  <!-- data-img="https://www.atlasreality.xyz/boltFill.svg" -->
-                  <!-- data-fill-background="#FFFFFF" -->
-                  <!-- data-img-size="48,48"></div> -->
-
-                  <div class="ldBar" id="progressBar" data-value="0" data-type="fill" data-img="https://www.atlasreality.xyz/boltFill.svg" data-fill-background="#FFFFFF" data-img-size="48,48"></div>
-
-          <p class="sceneTitle" id="boltFillText">FooBar</p>
-          </div>
+         <div class="grid-item">
+            <div class="ldBar" id="progressBar"
+                    data-value="0" data-type="fill"
+                    data-img="https://www.atlasreality.xyz/boltFill.svg"
+                    data-fill-background="#FFFFFF"
+                    data-img-size="48,48">
+            </div>
+            <p class="sceneTitle" id="boltFillText">FooBar</p>
+            <script>
+                        var statusBar = new ldBar("#progressBar");
+                        console.log("created progress bar html + js");
+            </script>
+         </div>
     </div>
+    {{/if}}
 
   </body>
 </html>
