@@ -40,6 +40,9 @@
 #### SDK:
 
 - [ ] general outline + review previous notes in `~/ezagutza/cocoapods.md` and `~/ezagutza/swift.md`
+- [ ] review .scn inclusion
+- [ ] animations
+- [ ] hit test interactions
 
 ----
 
@@ -53,3 +56,8 @@
 4. Users can upload files
 5. Can't alter files.
 6. Can't alter profile information.
+
+
+----
+
+#### FAQ:
