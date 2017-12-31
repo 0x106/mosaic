@@ -23,15 +23,25 @@
 
         $(document).ready(function()
         {
-            if ({{noScenes}}) {
-              $('.wrapper').hide();
-              $('.wrapper').slideUp('slow');
-              $('.noScenesWrapper').slideDown('slow');
-            } else {
-              $('.noScenesWrapper').hide();
-              $('.noScenesWrapper').slideUp('slow');
-              $('.wrapper').slideDown('slow');
-            }
+            // if ( {{noScenes}} ) {
+            //   $('.wrapper').hide();
+            //   $('.wrapper').slideUp('slow');
+            //   $('.noScenesWrapper').slideDown('slow');
+            // } else {
+            //   $('.noScenesWrapper').hide();
+            //   $('.noScenesWrapper').slideUp('slow');
+            //   $('.wrapper').slideDown('slow');
+            // }
+
+            {{#if noScenes}}
+                $('.wrapper').hide();
+                $('.wrapper').slideUp('slow');
+                $('.noScenesWrapper').slideDown('slow');
+            {{else}}
+                $('.noScenesWrapper').hide();
+                $('.noScenesWrapper').slideUp('slow');
+                $('.wrapper').slideDown('slow');
+            {{/if}}
         });
     </script>
   </head>
@@ -54,11 +64,18 @@
                       var fileUploadButton = document.querySelector('input');
                       fileUploadButton.addEventListener("change", function() {
 
-                        if ({{noScenes}}) {
-                          $('.noScenesWrapper').hide();
-                          $('.noScenesWrapper').slideUp('slow');
-                          $('.wrapper').slideDown('slow');
-                        }
+                        // if ({{noScenes}}) {
+                        //   $('.noScenesWrapper').hide();
+                        //   $('.noScenesWrapper').slideUp('slow');
+                        //   $('.wrapper').slideDown('slow');
+                        // }
+
+                        {{#if noScenes}}
+                            $('.noScenesWrapper').hide();
+                            $('.noScenesWrapper').slideUp('slow');
+                            $('.wrapper').slideDown('slow');
+                        {{else}}
+                        {{/if}}
 
                         var userID = "{{uid}}";
 
