@@ -21,14 +21,18 @@
         };
         firebase.initializeApp(config);
 
-        if ({{noScenes}}) {
-          $('#scenegrid').hide();   $('#scenegrid').slideUp('slow');
-          $('#noScenesDiv').show(); $('#noScenesDiv').slideDown('slow');
-        } else {
-          $('#scenegrid').show();   $('#scenegrid').slideDown('slow');
-          $('#noScenesDiv').hide(); $('#noScenesDiv').slideUp('slow');
-        }
-
+        $(document).ready(function()
+        {
+            if ({{noScenes}}) {
+              $('.wrapper').hide();
+              $('.wrapper').slideUp('slow');
+              $('.noScenesWrapper').slideDown('slow');
+            } else {
+              $('.noScenesWrapper').hide();
+              $('.noScenesWrapper').slideUp('slow');
+              $('.wrapper').slideDown('slow');
+            }
+        });
     </script>
   </head>
   <body>
@@ -50,8 +54,11 @@
                       var fileUploadButton = document.querySelector('input');
                       fileUploadButton.addEventListener("change", function() {
 
-                        $('#scenegrid').show();   $('#scenegrid').slideDown('slow');
-                        $('#noScenesDiv').hide(); $('#noScenesDiv').slideUp('slow');
+                        if ({{noScenes}}) {
+                          $('.noScenesWrapper').hide();
+                          $('.noScenesWrapper').slideUp('slow');
+                          $('.wrapper').slideDown('slow');
+                        }
 
                         var userID = "{{uid}}";
 
@@ -99,6 +106,16 @@
       </ul>
     </div>
 
+    <div class="noScenesWrapper">
+      <div class="noScenesGridItem">
+        <div id="noScenesDiv">
+          <!-- <h3>It looks like you haven't uploaded any scenes yet.</h3> -->
+          <p id="noScenesText">It looks like you haven't uploaded any scenes yet.</p>
+          <!-- <span class="signup">Sign up</span>  -->
+        </div>
+      </div>
+    </div>
+
     <div class="wrapper" id="scenegrid">
         {{#each scenes}}
             <div class="grid-item">
@@ -122,16 +139,6 @@
                     console.log("created progress bar html + js");
           </script>
           <p class="sceneTitle" id="boltFillText">FooBar</p>
-    </div>
-
-    <div class="noScenesWrapper">
-      <div class="noScenesGridItem">
-        <div id="noScenesDiv">
-          <!-- <h3>It looks like you haven't uploaded any scenes yet.</h3> -->
-          <p id="noScenesText">It looks like you haven't uploaded any scenes yet.</p>
-          <!-- <span class="signup">Sign up</span>  -->
-        </div>
-      </div>
     </div>
 
   </body>
