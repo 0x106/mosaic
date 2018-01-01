@@ -61,3 +61,58 @@
 ----
 
 #### FAQ:
+
+**What is Atlas Reality?**
+
+Atlas is a distribution platform for augmented reality experiences. We let users search for, interact with, and experience AR content, from
+any AR compatible app they are using.
+
+**How does this work?**
+
+Developers add our SDK to their apps. This runs in the background, and places an AR menu near to the content of the app they are using. Accessing
+this menu provides access to other AR content that would normally be packaged in its own application.
+
+**Why is this interesting?**
+
+We make it easier to find, access, and experience AR content. Currently, any application has to be distributed as a standalone package, that users
+must download individually, and then open whenever they want to use it. We believe that AR is more like the web.
+
+Imagine a developer has created a Wall-E robot, that rolls around and collects piles of virtual rubbish. With Atlas, this can be released as a native iOS app,
+and also distributed through our network of participating apps. Anyone who uses the Wall-E app can also access the AR content through Atlas in any _other_ app,
+and won't have to switch between apps all the time.
+
+**How do I host content?**
+
+Download our SDK and add the following code to your `viewDidLoad() {}`:
+
+    let config = {}
+    let atlas = Atlas(self.sceneView, config)
+
+The Atlas menu and functionality will then be added to your application.
+
+**How do I provide content?**
+
+Simply visit atlasreality.xyz, create an account, and upload your content in the dashboard.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  -->

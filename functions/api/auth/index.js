@@ -32,12 +32,12 @@ router.post('/', function(req, res, next) {
               var userData = {
                 username: user.displayName,
                 uid: user.uid,
-                email: user.email
+                email: user.email,
               };
 
               req.__session.user = userData;
 
-              var databaseDataRef = firebase.database().ref(`users/${user.uid}/userData/`);
+              var databaseDataRef = firebase.database().ref(`users/${user.uid}/`);
               databaseDataRef.set({ userData: userData });
 
           }).then(function() {
