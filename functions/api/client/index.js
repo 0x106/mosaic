@@ -9,6 +9,9 @@ const router = express.Router();
 // https://www.atlasreality.xyz/client
 router.post('/', function(req, res, next) {
 
+      console.log("Here");
+      console.log(req.body.email);
+
       firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then( function(user) {
 
         firebase.database().ref(`users/${user.uid}/`).once('value').then(function(snapshot) {
