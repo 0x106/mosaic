@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 
 const router = express.Router();
 
-// https://www.atlasreality.xyz/client
+https://www.atlasreality.xyz/client
 router.post('/login', function(req, res, next) {
 
       console.log("Here");
@@ -49,7 +49,7 @@ router.post('/login', function(req, res, next) {
 
 });
 
-router.get('/client-test', function(req, res, next) {
+router.post('/client-test', function(req, res, next) {
   var message = {
     "result": "Accessed client route."
   }
