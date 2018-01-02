@@ -32,6 +32,8 @@ app.use(function(req, res, next) {
   // console.log(req);
 
   console.log("incoming request");
+  res.send(req);
+  return;
   next();
 
   if (req.__session && req.__session.user) {
