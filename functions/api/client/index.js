@@ -14,10 +14,10 @@ router.post('/', function(req, res, next) {
         firebase.database().ref(`users/${user.uid}/`).once('value').then(function(snapshot) {
           var data = snapshot.val();
           if (data) {
-            var result = {
-              `${user.uid}` : data
-            };
-            res.send(result);
+            // var result = {
+            //   `${user.uid}` : data
+            // };
+            res.send(data);
           } else {
             var result = {
               "errorCode" : "-1",
