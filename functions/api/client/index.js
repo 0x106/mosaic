@@ -7,7 +7,7 @@ const firebase = require('../../config.js');
 const router = express.Router();
 
 // https://www.atlasreality.xyz/client
-router.post('/', function(req, res, next) {
+router.post('/login', function(req, res, next) {
 
       console.log("Here");
       console.log(req.body.email);
