@@ -3,6 +3,7 @@
 
 const express = require('express');
 const firebase = require('../../config.js');
+const bodyParser = require('body-parser');
 
 const router = express.Router();
 
