@@ -8,13 +8,14 @@ const bodyParser = require('body-parser');
 const router = express.Router();
 
 router.get('/', function(req, res, next) {
+  console.log("GET client");
   res.send(req.routes);
 });
 
 // https://www.atlasreality.xyz/client
 router.post('/login', function(req, res, next) {
 
-      console.log("Here");
+      console.log("POST /client/login");
       console.log(req.body.email);
 
       firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then( function(user) {
