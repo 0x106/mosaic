@@ -6,33 +6,28 @@ const firebase = require('../../config.js');
 const bodyParser = require('body-parser');
 
 const router = express.Router();
-
-router.get('/', function(req, res, next) {
-  console.log("GET client");
-  res.send({"a":"get /client"});
+//
+router.post('/ios/test', function(req, res, next) {
+  console.log("POST client");
+  console.log(req.query.email);
+  res.send({"b":"post /clien/iost"});
 });
 
 // https://www.atlasreality.xyz/client/test
-router.post('/test', function(req, res, next) {
+router.post('/', function(req, res, next) {
 
-      console.log("POST /client/test");
-      res.send(200)
-      // console.log(req.body.email);
+      var email = req.query.email;
+      var password = req.query.password;
 
-      firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then( function(user) {
+      firebase.auth().signInWithEmailAndPassword(email, password).then( function(user) {
 
         firebase.database().ref(`users/${user.uid}/`).once('value').then(function(snapshot) {
-          console.log("Valid user.");
           var data = snapshot.val();
           if (data) {
-            console.log("Data exists");
-            console.log(data);
-            console.log(data.userData);
-            console.log(data.scenes);
-            // var result = {
-            //   `${user.uid}` : data
-            // };
-            // console.log();
+            var result = {
+              "user" : data.userData,
+              "scenes" : data.scenes,
+            };
             res.send(data);
           } else {
             console.log("Data does not exist");
