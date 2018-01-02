@@ -7,12 +7,14 @@ const bodyParser = require('body-parser');
 
 const router = express.Router();
 
-router.get('/', function(req, res, next) {
-  res.send("GET client");
-});
+// router.get('/', function(req, res, next) {
+//   res.send(req);
+// });
 
 // https://www.atlasreality.xyz/client
-router.post('/login', function(req, res, next) {
+router.get('/', function(req, res, next) {
+
+      res.send('client login');
 
       console.log("Here");
       console.log(req.body.email);
