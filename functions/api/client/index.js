@@ -13,10 +13,10 @@ router.get('/', function(req, res, next) {
 });
 
 // https://www.atlasreality.xyz/client
-router.post('/login', function(req, res, next) {
+router.post('/test', function(req, res, next) {
 
-      console.log("POST /client/login");
-      console.log(req.body.email);
+      console.log("POST /client/test");
+      // console.log(req.body.email);
 
       firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then( function(user) {
 

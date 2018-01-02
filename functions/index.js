@@ -61,40 +61,28 @@ app.use('/auth', auth);
 // the iOS client route in functions/api/client/index.js
 app.use('/client', client);
 
-// app.use(function(req, res, next) {
-//
-//   console.log("incoming request");
-//
-//   if (req.__session && req.__session.user) {
-//     // console.log('session exists');
-//     var prevUser = req.__session.user;
-//     // console.log(`session uid: ${prevUser.uid}`);
-//     firebase.database().ref(`users/${prevUser.uid}/userData/`).once('value').then(function(snapshot) {
-//         var data = snapshot.val();
-//         if (data) {
-//           // console.log(`data snapshot exists`);
-//           if (data.hasOwnProperty('userData')) {
-//             if (data.userData) {
-//               // console.log(`uid: ${data.userData.uid}`);
-//               // we can only get in here if there is a cookie and if the uid stored in it actually exists.
-//               req.__session.user = data.userData;
-//             }
-//             next();
-//           }
-//         } else {
-//           console.log(`no data entry`);
-//           next();
-//         }
-//     });
-//   }
-//   else {
-//     // no session in use (no one logged in)
-//     //    any route that checks for a session user will ONLY
-//     //    get data if they are properly logged in and recorded.
-//     console.log("No session data.");
-//     next();
-//   }
-// });
+// refresh any session objects
+app.use(function(req, res, next) {
+  if (req.__session && req.__session.user) {
+    var prevUser = req.__session.user;
+    firebase.database().ref(`users/${prevUser.uid}/userData/`).once('value').then(function(snapshot) {
+        var data = snapshot.val();
+        if (data) {
+          if (data.hasOwnProperty('userData')) {
+            if (data.userData) {
+              req.__session.user = data.userData;
+            }
+            next();
+          }
+        } else {
+          next();
+        }
+    });
+  }
+  else {
+    next();
+  }
+});
 
 // ----------------------------------------------------- //
 
