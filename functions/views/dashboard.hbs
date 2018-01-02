@@ -74,9 +74,11 @@
                                 // Handle unsuccessful uploads
                                 alert("Sorry, the upload could not be completed. Please refresh and try again.");
                           }, function() {
+
+                                var downloadURL = uploadTask.snapshot.downloadURL;
+
                                 // Handle successful uploads on complete
-                                databaseRef.push().set({ aid: file.name }).then(function() {
-                                    var downloadURL = uploadTask.snapshot.downloadURL;
+                                databaseRef.push().set({ aid: file.name, url: downloadURL }).then(function() {
                                     location.reload(true); // when `true` is set it will reload from the server rather than locally from cache
                                 });
                           });
