@@ -63,17 +63,7 @@ app.use('/client', client);
 
 app.use(function(req, res, next) {
 
-  // console.log(req);
-
   console.log("incoming request");
-  res.send(
-    {
-      "body" : req.body,
-      "route" : req.route
-    }
-  );
-  return;
-  next();
 
   if (req.__session && req.__session.user) {
     // console.log('session exists');
@@ -96,10 +86,12 @@ app.use(function(req, res, next) {
           next();
         }
     });
-  } else {
+  }
+  else {
     // no session in use (no one logged in)
     //    any route that checks for a session user will ONLY
     //    get data if they are properly logged in and recorded.
+    console.log("No session data.");
     next();
   }
 });
