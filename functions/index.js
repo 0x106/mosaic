@@ -27,43 +27,6 @@ app.use(session({
   ephemeral: true
 }));
 
-app.use(function(req, res, next) {
-
-  // console.log(req);
-
-  console.log("incoming request");
-  res.send(req);
-  return;
-  next();
-
-  if (req.__session && req.__session.user) {
-    // console.log('session exists');
-    var prevUser = req.__session.user;
-    // console.log(`session uid: ${prevUser.uid}`);
-    firebase.database().ref(`users/${prevUser.uid}/userData/`).once('value').then(function(snapshot) {
-        var data = snapshot.val();
-        if (data) {
-          // console.log(`data snapshot exists`);
-          if (data.hasOwnProperty('userData')) {
-            if (data.userData) {
-              // console.log(`uid: ${data.userData.uid}`);
-              // we can only get in here if there is a cookie and if the uid stored in it actually exists.
-              req.__session.user = data.userData;
-            }
-            next();
-          }
-        } else {
-          console.log(`no data entry`);
-          next();
-        }
-    });
-  } else {
-    // no session in use (no one logged in)
-    //    any route that checks for a session user will ONLY
-    //    get data if they are properly logged in and recorded.
-    next();
-  }
-});
 // ---------------------------------------------------- //
 
 const auth = require('./api/auth');
@@ -97,6 +60,49 @@ app.use('/auth', auth);
 
 // the iOS client route in functions/api/client/index.js
 app.use('/client', client);
+
+app.use(function(req, res, next) {
+
+  // console.log(req);
+
+  console.log("incoming request");
+  res.send(
+    {
+      "body" : req.body,
+      "route" : req.route
+    }
+  );
+  return;
+  next();
+
+  if (req.__session && req.__session.user) {
+    // console.log('session exists');
+    var prevUser = req.__session.user;
+    // console.log(`session uid: ${prevUser.uid}`);
+    firebase.database().ref(`users/${prevUser.uid}/userData/`).once('value').then(function(snapshot) {
+        var data = snapshot.val();
+        if (data) {
+          // console.log(`data snapshot exists`);
+          if (data.hasOwnProperty('userData')) {
+            if (data.userData) {
+              // console.log(`uid: ${data.userData.uid}`);
+              // we can only get in here if there is a cookie and if the uid stored in it actually exists.
+              req.__session.user = data.userData;
+            }
+            next();
+          }
+        } else {
+          console.log(`no data entry`);
+          next();
+        }
+    });
+  } else {
+    // no session in use (no one logged in)
+    //    any route that checks for a session user will ONLY
+    //    get data if they are properly logged in and recorded.
+    next();
+  }
+});
 
 // ----------------------------------------------------- //
 
