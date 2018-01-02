@@ -48,7 +48,7 @@ router.post('/', function(req, res, next) {
         }, function(error) {
               var errorCode = error.code;
               var errorMessage = error.message;
-              alert(errorMessage);
+              res.status(500).send(errorMessage);
               return;
        });
 });
