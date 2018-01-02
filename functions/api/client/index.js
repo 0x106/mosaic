@@ -7,14 +7,14 @@ const bodyParser = require('body-parser');
 
 const router = express.Router();
 //
-router.post('/ios/test', function(req, res, next) {
+router.post('/test', function(req, res, next) {
   console.log("POST client");
-  console.log(req.query.email);
-  res.send({"b":"post /clien/iost"});
+  // console.log(req.query.email);
+  res.send({"b":"post /client/ios"});
 });
 
 // https://www.atlasreality.xyz/client/test
-router.post('/', function(req, res, next) {
+router.get('/', function(req, res, next) {
 
       var email = req.query.email;
       var password = req.query.password;
@@ -48,15 +48,6 @@ router.post('/', function(req, res, next) {
           res.send(result);
       });
 
-});
-
-router.post('/client-test', function(req, res, next) {
-  var message = {
-    "result": "Accessed client route."
-  }
-
-  res.send(message)
-  // res.send("Accessed client route.");
 });
 
 module.exports = router;
