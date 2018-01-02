@@ -12,9 +12,10 @@ const router = express.Router();
 // });
 
 // https://www.atlasreality.xyz/client
-router.get('/', function(req, res, next) {
+router.post('/', function(req, res, next) {
 
-      res.send('client login');
+      res.send(req);
+      return;
 
       console.log("Here");
       console.log(req.body.email);
