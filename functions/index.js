@@ -60,6 +60,7 @@ app.use(function(req, res, next) {
 
 const auth = require('./api/auth');
 const routes = require('./api/routes');
+const client = require('./api/client');
 
 // https://expressjs.com/en/advanced/best-practice-security.html#at-a-minimum-disable-x-powered-by-header
 // https://medium.com/@atbe/firebase-functions-true-routing-2cb17a5cd288
@@ -85,6 +86,9 @@ app.use('/', routes);
 
 // the authentication route in functions/api/auth/index.js
 app.use('/auth', auth);
+
+// the iOS client route in functions/api/client/index.js
+app.use('/client', client);
 
 // ----------------------------------------------------- //
 

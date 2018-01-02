@@ -77,6 +77,11 @@ router.post('/login', function(req, res, next) {
     });
 });
 
+router.post('/iOSauth', function(req, res, next) {
+  var message = "Received auth request from iOS client.";
+  res.status(200).send(message);
+}
+
 // User requested LOGOUT
 router.get('/logout', function(req, res, next) {
   firebase.auth().signOut().then(function() {
