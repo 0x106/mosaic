@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.get('/', function(req, res, next) {
   console.log("GET client");
-  res.send({"req":req});
+  res.send({"a":"get /client"});
 });
 
 // https://www.atlasreality.xyz/client/test
