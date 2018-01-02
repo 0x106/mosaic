@@ -50,7 +50,28 @@ router.get('/', function(req, res, next) {
           };
           res.send(result);
       });
+});
 
+router.get('/scenes', function(req, res, next) {
+
+  var uid = req.query.uid;
+
+  firebase.database().ref(`users/${uid}/`).once('value').then(function(snapshot) {
+    var data = snapshot.val();
+    if (data) {
+      var result = {
+        "scenes" : data.scenes,
+      };
+      res.send(data);
+    } else {
+      console.log("Data does not exist");
+      var result = {
+        "errorCode" : "-1",
+        "errorMessage" :  "No data available"
+      };
+      res.send(result);
+    }
+  });
 });
 
 module.exports = router;
