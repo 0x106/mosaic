@@ -14,9 +14,6 @@ const router = express.Router();
 // https://www.atlasreality.xyz/client
 router.post('/', function(req, res, next) {
 
-      res.send(req);
-      return;
-
       console.log("Here");
       console.log(req.body.email);
 

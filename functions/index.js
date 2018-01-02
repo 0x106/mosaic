@@ -31,6 +31,9 @@ app.use(function(req, res, next) {
 
   // console.log(req);
 
+  console.log("incoming request");
+  next();
+
   if (req.__session && req.__session.user) {
     // console.log('session exists');
     var prevUser = req.__session.user;
