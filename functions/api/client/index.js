@@ -50,6 +50,6 @@ router.post('/', function(req, res, next) {
 
 router.get('/client-test', function(req, res, next) {
   res.send("Accessed client route.");
-}
+});
 
 module.exports = router;
