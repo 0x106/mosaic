@@ -12,10 +12,11 @@ router.get('/', function(req, res, next) {
   res.send(req.routes);
 });
 
-// https://www.atlasreality.xyz/client
+// https://www.atlasreality.xyz/client/test
 router.post('/test', function(req, res, next) {
 
       console.log("POST /client/test");
+      res.send(200)
       // console.log(req.body.email);
 
       firebase.auth().signInWithEmailAndPassword(req.body.email, req.body.password).then( function(user) {
