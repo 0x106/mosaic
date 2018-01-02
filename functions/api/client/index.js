@@ -19,6 +19,9 @@ router.get('/', function(req, res, next) {
       var email = req.query.email;
       var password = req.query.password;
 
+      console.log(email);
+      console.log(password);
+
       firebase.auth().signInWithEmailAndPassword(email, password).then( function(user) {
 
         firebase.database().ref(`users/${user.uid}/`).once('value').then(function(snapshot) {
