@@ -7,7 +7,11 @@ const bodyParser = require('body-parser');
 
 const router = express.Router();
 
-https://www.atlasreality.xyz/client
+router.get('/', function(req, res, next) {
+  res.send("GET client");
+});
+
+// https://www.atlasreality.xyz/client
 router.post('/login', function(req, res, next) {
 
       console.log("Here");
