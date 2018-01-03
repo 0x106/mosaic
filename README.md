@@ -39,10 +39,21 @@
 
 #### SDK:
 
-- [ ] general outline + review previous notes in `~/ezagutza/cocoapods.md` and `~/ezagutza/swift.md`
-- [ ] review .scn inclusion
+- [x] general outline + review previous notes in `~/ezagutza/cocoapods.md` and `~/ezagutza/swift.md`
+- [x] review .scn inclusion
 - [ ] animations
 - [ ] hit test interactions
+- [ ] --------------------------
+- [x] show menu icon
+- [x] tap to open menu
+- [x] enter details
+- [x] post user data
+- [x] retrieve `userData` + `scenes`
+- [x] display scene list
+- [x] only show scene list if orb is tapped
+- [x] make selection
+- [x] download selection
+- [ ] render scene
 
 ----
 
