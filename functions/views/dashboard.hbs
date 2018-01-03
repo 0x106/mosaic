@@ -21,6 +21,17 @@
         };
         firebase.initializeApp(config);
     </script>
+    <script>
+      var extensionIsValid = function(filename) {
+        var extension = filename.split('.').pop();
+          console.log(`Filename: ${filename}`);
+          console.log(`Extension: ${extension}`);
+          if (extension == "scn") {
+            return true;
+          }
+          return false;
+      }
+    </script>
   </head>
   <body>
 
@@ -47,41 +58,50 @@
 
                         if (fileUploadButton.files.length > 0) {
                           var file = fileUploadButton.files[0];
-                          var storageRef = storage.ref().child(`users/${userID}/${file.name}`);
-                          var databaseRef = database.ref(`users/${userID}/scenes/`);
 
-                          var uploadTask = storageRef.put(file);
-                          uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function(snapshot) {
 
-                              var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                          if (extensionIsValid(file.name)) {
 
-                              {{#if noScenes}}
-                                statusBarFirstItem.set(progress);
-                              {{else}}
-                                statusBar.set(progress);
-                              {{/if}}
+                            console.log("Valid extension");
 
-                              switch (snapshot.state) {
-                                case firebase.storage.TaskState.PAUSED: // or 'paused'
-                                  console.log('Upload is paused');
-                                  break;
-                                case firebase.storage.TaskState.RUNNING: // or 'running'
-                                  console.log('Upload is running');
-                                  break;
-                              }
+                            var storageRef = storage.ref().child(`users/${userID}/${file.name}`);
+                            var databaseRef = database.ref(`users/${userID}/scenes/`);
 
-                          }, function(error) {
-                                // Handle unsuccessful uploads
-                                alert("Sorry, the upload could not be completed. Please refresh and try again.");
-                          }, function() {
+                            var uploadTask = storageRef.put(file);
+                            uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, function(snapshot) {
 
-                                var downloadURL = uploadTask.snapshot.downloadURL;
+                                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
 
-                                // Handle successful uploads on complete
-                                databaseRef.push().set({ aid: file.name, url: downloadURL }).then(function() {
-                                    location.reload(true); // when `true` is set it will reload from the server rather than locally from cache
-                                });
-                          });
+                                {{#if noScenes}}
+                                  statusBarFirstItem.set(progress);
+                                {{else}}
+                                  statusBar.set(progress);
+                                {{/if}}
+
+                                switch (snapshot.state) {
+                                  case firebase.storage.TaskState.PAUSED: // or 'paused'
+                                    console.log('Upload is paused');
+                                    break;
+                                  case firebase.storage.TaskState.RUNNING: // or 'running'
+                                    console.log('Upload is running');
+                                    break;
+                                }
+
+                            }, function(error) {
+                                  // Handle unsuccessful uploads
+                                  alert("Sorry, the upload could not be completed. Please refresh and try again.");
+                            }, function() {
+
+                                  var downloadURL = uploadTask.snapshot.downloadURL;
+
+                                  // Handle successful uploads on complete
+                                  databaseRef.push().set({ aid: file.name, url: downloadURL }).then(function() {
+                                      location.reload(true); // when `true` is set it will reload from the server rather than locally from cache
+                                  });
+                            });
+                          } else {
+                            alert("Please choose a valid scene file, with extension '.scn'");
+                          }
                         } // end if
                       });
                 // }
