@@ -31,7 +31,7 @@
 - [ ] delete scene option
 - [ ] SDK link (to Github)
 - [x] Fix the 'no scenes uploaded yet' item
-- [ ] restrict to `.scn` files
+- [x] restrict to `.scn` files
 
 #### Profile:
 
