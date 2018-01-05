@@ -10,6 +10,18 @@ router.get('/', function(req, res, next) {
     }
 });
 
+router.get('/contact', function(req, res, next) {
+    res.send('contact');
+});
+
+router.get('/about', function(req, res, next) {
+    res.send('about');
+});
+
+router.get('/faq', function(req, res, next) {
+    res.send('faq');
+});
+
 router.get('/signup', (req, res) => {
   if (req.__session && req.__session.user) {
     res.redirect('/auth/dashboard')
