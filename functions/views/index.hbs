@@ -7,7 +7,30 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://www.atlasreality.xyz/style.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.atlasreality.xyz/style.css"/>
+    <script>
+        window.onclick = function(event) {
+          if (!event.target.matches('#menuButton')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+              var openDropdown = dropdowns[i];
+              if (openDropdown.classList.contains('dropdownshow')) {
+                openDropdown.classList.remove('dropdownshow');
+              }
+            }
+
+            var dropdowns = document.getElementsByClassName("content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+              var openDropdown = dropdowns[i];
+              if (openDropdown.classList.contains('maincontentshow')) {
+                openDropdown.classList.remove('maincontentshow');
+              }
+            }
+          }
+        }
+    </script>
   </head>
   <body>
 
@@ -31,7 +54,8 @@
     </div>
 
     <!-- Content -->
-    <div class="content">
+    <!-- <div class="content"> -->
+    <div id="mainContent" class="content">
       <h2>Atlas Reality</h2>
       <h1>AR content distribution for native iOS apps.</h1>
       <!-- <h1>The easiest way to distribute AR content</h1> -->
@@ -43,6 +67,20 @@
         <button type="submit" onclick="location.href='https://www.atlasreality.xyz/signup';" id="signupbutton"></button>
       </div>
     </div>
+
+    <div id="indexdropdownmenu" class="dropdown-content">
+        <a href="https://www.google.co.nz" class="dropdownh2">About</a>
+        <a href="https://www.google.co.nz" class="dropdownh2">Contact</a>
+        <a href="https://www.google.co.nz" class="dropdownh2">FAQ</a>
+    </div>
+
+    <script>
+        var menuButton = document.getElementById('menuButton');
+        menuButton.addEventListener("click", function() {
+          document.getElementById("indexdropdownmenu").classList.toggle("dropdownshow");
+          document.getElementById("mainContent").classList.toggle("maincontentshow");
+        });
+    </script>
 
   </body>
 </html>
