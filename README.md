@@ -13,7 +13,7 @@ Friday 5th January:
 
 #### Home:
 
-- [ ] menu (contact, FAQ)
+- [x] menu (contact, FAQ)
 - [ ] video
 
 #### Signup:
@@ -59,7 +59,7 @@ Friday 5th January:
 - [x] only show scene list if orb is tapped
 - [x] make selection
 - [x] download selection
-- [ ] render scene
+- [x] render scene
 
 ----
 
