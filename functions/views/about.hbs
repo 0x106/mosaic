@@ -3,10 +3,33 @@
 <html>
 
   <head>
-    <title>Atlas Reality</title>
+    <title>About</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://www.atlasreality.xyz/style.css"/>
+    <script>
+        window.onclick = function(event) {
+          if (!event.target.matches('#menuButton')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content-alt");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+              var openDropdown = dropdowns[i];
+              if (openDropdown.classList.contains('dropdownshowalt')) {
+                openDropdown.classList.remove('dropdownshowalt');
+              }
+            }
+
+            var dropdowns = document.getElementsByClassName("contentbox");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+              var openDropdown = dropdowns[i];
+              if (openDropdown.classList.contains('maincontentshow')) {
+                openDropdown.classList.remove('maincontentshow');
+              }
+            }
+          }
+        }
+    </script>
   </head>
   <body>
 
@@ -16,14 +39,32 @@
         <!-- <li><a onclick="location.href='https://www.atlasreality.xyz/';" class="generalnav">Atlas</a></li> -->
         <!-- <li><a class="generalnav">Contact</a></li> -->
         <!-- <li><a class="generalnav">FAQ</a></li> -->
-        <li><a href="https://www.atlasreality.xyz/signup" class="signupnav">{{signUpButtonText}}</a></li>
+        <li><a href="index.html" class="signupnav">Atlas</a></li>
         <li><a class="loginnav" id="menuButton">Menu</a></li>
       </ul>
     </div>
 
-    <div>
-      <h2>About<h2>
+    <div class="contentbox" id="aboutContent">
+      <h2>About</h2>
+      <p></p>
+      <p><p>
     </div>
+
+    <div id="myDropdown" class="dropdown-content-alt">
+      <div class="wrapper-menu-alt">
+        <div class="grid-item-menu-alt"> <a href="https://www.atlasreality.xyz/about" class="dropdownh2">About</a></div>
+        <div class="grid-item-menu-alt"> <a href="https://www.atlasreality.xyz/contact" class="dropdownh2">Contact</a></div>
+        <div class="grid-item-menu-alt"> <a href="https://www.atlasreality.xyz/faq" class="dropdownh2">FAQ</a></div>
+      </div>
+    </div>
+
+    <script>
+        var menuButton = document.getElementById('menuButton');
+        menuButton.addEventListener("click", function() {
+          document.getElementById("myDropdown").classList.toggle("dropdownshowalt");
+          document.getElementById("aboutContent").classList.toggle("maincontentshow");
+        });
+    </script>
 
   </body>
 </html>
