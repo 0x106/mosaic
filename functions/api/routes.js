@@ -11,15 +11,15 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/contact', function(req, res, next) {
-    res.send('contact');
+    res.render('contact');
 });
 
 router.get('/about', function(req, res, next) {
-    res.send('about');
+    res.render('about');
 });
 
 router.get('/faq', function(req, res, next) {
-    res.send('faq');
+    res.render('faq');
 });
 
 router.get('/signup', (req, res) => {
