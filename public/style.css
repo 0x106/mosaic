@@ -11,11 +11,14 @@ body {
 h1 {
   /* color: #E0E0E0; */
   color: #42718A;
+  font-size: 2.25em;
 }
 
 h2 {
   color: #3D405B;
-  font-size: 3em;
+  /* font-size: 3em; */
+  /* font-size: 2.6em; */
+  font-size: 2.8em;
   font-weight: 300;
 
   line-height: 1.6;
@@ -136,7 +139,8 @@ p {
 
 .content {
   position: absolute;
-  left: 50%;
+  /* left: 50%; */
+  left: 45%;
   top: 30%;
 }
 

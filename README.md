@@ -6,6 +6,11 @@
 - [x] Go through this directory and make note of all the TO.DO tags.
 - [ ] delete previous deploys
 
+Friday 5th January:
+
+- [ ] add `about` page
+- [ ] add `contact` page
+
 #### Home:
 
 - [ ] menu (contact, FAQ)
