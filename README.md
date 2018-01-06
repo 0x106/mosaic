@@ -91,12 +91,9 @@ this menu provides access to other AR content that would normally be packaged in
 
 **Why is this interesting?**
 
-We make it easier to find, access, and experience AR content. Currently, any application has to be distributed as a standalone package, that users
-must download individually, and then open whenever they want to use it. We believe that AR is more like the web.
+We make it easier to find, access, and experience AR content. Currently, any application has to be distributed as a standalone package, that users must download individually, and then open whenever they want to use it. We believe that AR is more like the web, where you can quickly jump between webpages, watch videos, talk to your friends, and create content - all without leaving the browser.
 
-Imagine a developer has created a Wall-E robot, that rolls around and collects piles of virtual rubbish. With Atlas, this can be released as a native iOS app,
-and also distributed through our network of participating apps. Anyone who uses the Wall-E app can also access the AR content through Atlas in any _other_ app,
-and won't have to switch between apps all the time.
+Imagine a developer has created a Wall-E robot, that rolls around and collects piles of virtual rubbish. With Atlas, this can be released as a native iOS app, and also distributed through our network of participating apps. Anyone who uses the Wall-E app can also access the AR content through Atlas in any _other_ app, without having to switch between apps all the time.
 
 **How do I host content?**
 
@@ -104,6 +101,10 @@ Download our SDK and add the following code to your `viewDidLoad() {}`:
 
     let config = {}
     let atlas = Atlas(self.sceneView, config)
+
+    func <tap>( ... ) {
+      atlas.handleUserInput( ... )
+    }
 
 The Atlas menu and functionality will then be added to your application.
 
@@ -116,7 +117,20 @@ Simply visit atlasreality.xyz, create an account, and upload your content in the
 
 
 
+----
 
+#### About:
+
+Atlas is a platform for distributing and sharing augmented reality content. We help you get your games, characters,
+AR billboards, 3D products, and environments in front of as many people as possible,
+
+
+As a developer, you can be both a creator and a host. If you have built a piece of 3D content, for instance a little robot that drives
+around picking up animated rocks, then you can upload this to our network and it will become available to all our users.
+
+Users can access this content through any of our participating applications. If you had chosen to build a native iOS app around your
+robot model, then you could download and integrate our simple SDK into your app - which would automatically allow anyone using your
+app to access any content on our network.
 
 
 
