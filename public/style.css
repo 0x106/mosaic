@@ -559,3 +559,12 @@ input[type="file"] {
 .dropdownshowalt {
   display:inline-block;
 }
+
+
+#createaccount {
+  border: 1px solid red;
+  border-width: 0px 0px 1px 0px;
+  border-color: #FB887C;
+  text-decoration: none;
+  color: black;
+}
