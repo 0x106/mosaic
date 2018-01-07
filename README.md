@@ -77,17 +77,15 @@ Friday 5th January:
 
 ----
 
-#### FAQ:
+#### FAQ: (ABOUT)
 
 **What is Atlas Reality?**
 
-Atlas is a distribution platform for augmented reality experiences. We let users search for, interact with, and experience AR content, from
-any AR compatible app they are using.
+Atlas is a distribution platform for augmented reality experiences. We let users search for, interact with, and experience AR content, from any AR compatible app they are using.
 
 **How does this work?**
 
-Developers add our SDK to their apps. This runs in the background, and places an AR menu near to the content of the app they are using. Accessing
-this menu provides access to other AR content that would normally be packaged in its own application.
+Developers add our SDK to their apps. This runs in the background, and places an AR menu near to the content of the app they are using. Accessing this menu provides access to other AR content that would normally be packaged in its own application.
 
 **Why is this interesting?**
 
@@ -111,11 +109,6 @@ The Atlas menu and functionality will then be added to your application.
 **How do I provide content?**
 
 Simply visit atlasreality.xyz, create an account, and upload your content in the dashboard.
-
-
-
-
-
 
 ----
 
