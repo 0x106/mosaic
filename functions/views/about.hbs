@@ -46,8 +46,65 @@
 
     <div class="contentbox" id="aboutContent">
       <h2>About</h2>
-      <p>We believe that it should be much easier for you to share </p>
-      <p><p>
+
+      <h1>What is Atlas Reality?</h1>
+      <p>Atlas is a distribution and sharing platform for augmented reality experiences. We
+        let users search for, interact with, and experience AR content, from any
+        AR compatible app they are using.</p>
+
+      <h1>How does this work?</h1>
+      <p>Developers add our SDK to their apps. This runs in the background, and
+        places an AR menu near to the scene content. Accessing
+        this menu provides access to other AR content that would normally be
+        packaged in its own application.</p>
+
+      <p>While using an app that supports Atlas, users can share AR content with
+      their friends. This means that they can send the content to anyone using the
+      Atlas platform, without requiring the recipient to download an app.</p>
+
+      <h1>Why is this interesting?</h1>
+      <p>We make it easier to find, access, and experience AR content.<br><br>
+
+        Distributing apps is hard! It's hard to be discovered and expensive to
+        get users. Most importantly, it's hard to keep people coming back.<br><br>
+
+        We believe that AR is more like the web, where you can quickly jump between
+        webpages, watch videos, talk to your friends, and create content - all
+        without leaving the browser.
+      </p>
+
+      <p>Imagine a developer has created a Wall-E robot, that rolls around and
+        collects piles of virtual rubbish. With Atlas, this can be released as a
+        native iOS app, and also distributed through our network. Anyone who uses
+        the Wall-E app can access any other Atlas content - without opening or closing
+        anything. What's more, they can have instant access to Wall-E, no matter what
+        app they're actually using.</p>
+
+      <h1>How do I host content?</h1>
+      <p>Download our SDK and add the following code to your main ViewController class:
+        <pre>
+        <code>
+
+          viewDidLoad() {
+
+              ...
+
+              let config = {}
+              let atlas = Atlas(self.sceneView, config)
+          }
+
+          func tap( ... ) {
+            atlas.handleUserInput( ... )
+          }
+
+        </code>
+      </pre>
+      <p>The Atlas menu and functionality will then be added to your application.</p>
+
+      <h1>How do I provide content?</h1>
+      <p>Simply <a href=""><span class="">create a free account</span></a>, and upload your content
+        in the dashboard.</p>
+
     </div>
 
     <div id="myDropdown" class="dropdown-content-alt">

@@ -131,10 +131,18 @@ p {
 }
 
 .ulnavbar {
+    /* margin: 0; */
+    /* padding: 0; */
+    /* overflow: hidden; */
+
     list-style-type: none;
-    margin: 0;
+    position: fixed;
+    /* margin: 0; */
     padding: 0;
     overflow: hidden;
+    width: 95%;
+    /* margin-right: 60px; */
+    /* padding-right: 40px; */
 }
 
 .content {
@@ -470,14 +478,26 @@ input[type="file"] {
 .contentbox {
   /* position: */
   margin-left: 50px;
+  width: 50%;
+  margin-bottom: 200px;
 }
 
-.contentbox p {
+#contentboxp {
   /* position: */
   font-size: 1.4em;
   letter-spacing: 0.05em;
 }
 
+.contentbox p {
+  /* position: */
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+}
+.contentbox h1 {
+  font-size: 1.1em;
+  line-height: 1.8;
+}
 
 
 
