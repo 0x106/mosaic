@@ -60,10 +60,10 @@ Friday 5th January:
 - [x] make selection
 - [x] download selection
 - [x] render scene
-- [x] ObjC bridging header - interface between Swift / ObjC
-- [x] Backend ObjC function, called by bridging header
-- [x] create text field ObjC - call from Swift AR + bridging header
-- [x] bridging header should contain function to turn textField on/off from swift
+- [ ] ObjC bridging header - interface between Swift / ObjC
+- [ ] Backend ObjC function, called by bridging header
+- [ ] create text field ObjC - call from Swift AR + bridging header
+- [ ] bridging header should contain function to turn textField on/off from swift
 
     let textField = AtlasObjCTextField(sensitive=true)
     
