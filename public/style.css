@@ -294,6 +294,11 @@ form input {
   /* text-decoration-color: #81B29A; */
 }
 
+.indexsignup a {
+  text-decoration: none;
+  color: ;
+}
+
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;
